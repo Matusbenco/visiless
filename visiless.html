@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisiLess® | Velkoobchod</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="ddfullscreenmenu.css">
+    <link rel="stylesheet" href="cookies.css">
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="main_theme.css">
+    
+    <style>
+        /* Úpravy pro VisiLess design (Zelená téma) */
+        :root {
+            --visiless-green: #4B5320;
+            --visiless-dark: #2a2e12;
+        }
+
+        .brand-font {
+            font-family: 'Black Ops One', cursive !important;
+            color: var(--visiless-green) !important;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .brand-font-white {
+            font-family: 'Black Ops One', cursive !important;
+            color: #ffffff !important;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+/* Úprava znaku (R) - zväčšené a prisunuté bližšie k textu */
+.brand-font sup, .brand-font-white sup {
+    font-family: 'WorkSansMedium', Arial, sans-serif !important;
+    font-size: 0.6em !important; /* Zväčšené z 0.4 na 0.6 */
+    position: relative;
+    top: -0.4em; /* Presné zarovnanie výšky s hornou hranou písmen */
+    margin-left: -2px !important; /* Záporný margin to natlačí priamo k písmenu S */
+    line-height: 0;
+}
+
+/* Trieda na zarovnanie loga do bežného textu, aby neskákala výška */
+.brand-inline {
+    font-size: 0.9em; /* Black Ops One je opticky väčší, takto ho zrovnáme s okolitým textom */
+    vertical-align: baseline;
+    display: inline-block;
+    transform: translateY(-2px); /* Jemné doladenie na stred riadku */
+}
+
+        /* Přepsání Climex barev na VisiLess zelenou */
+        .container_bg__b { background-color: var(--visiless-green) !important; }
+        .text-visiless { color: var(--visiless-green) !important; }
+        .border-visiless { border-color: var(--visiless-green) !important; }
+        
+        /* Tlačítka a hover efekty - Výraznější CTA */
+        .btn-custom {
+            background-color: var(--visiless-green) !important;
+            border: 2px solid var(--visiless-green) !important;
+            color: #ffffff !important;
+            padding: 12px 35px;
+            text-transform: uppercase;
+            font-family: 'WorkSansSemiBold', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .btn-custom:hover {
+            background-color: transparent !important;
+            border-color: #ffffff !important;
+            color: #ffffff !important;
+            box-shadow: none;
+        }
+        
+        .btn-primary-custom { border: 2px solid var(--visiless-green) !important; background: var(--visiless-green) !important; color: #fff !important; text-transform: uppercase; font-family: 'WorkSansMedium'; transition: 0.3s; }
+        .btn-primary-custom:hover { background: transparent !important; color: var(--visiless-green) !important; }
+        
+        /* Fixace obrázků a pozadí na střed, aby nedocházelo k podivným ořezům */
+        .c_x_bg, .rslider_wrapper .image {
+            background-position: center center !important; 
+        }
+        .grid-gallery img, .card-img-top {
+            object-fit: cover;
+            object-position: center center;
+        }
+        
+        /* Fullscreen Menu */
+        .hamburger { cursor: pointer; color: #fff; font-size: 24px; z-index: 1200; position: relative; }
+        #ddfullscreenmenu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20, 25, 15, 0.98); z-index: 9999; }
+        #ddfullscreenmenu.openmenu { display: block; }
+        #closex { position: absolute; top: 30px; right: 50px; color: #fff; font-size: 40px; text-decoration: none; }
+        #ulwrapper { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+        #fullscreenmenu-ul li { margin-bottom: 20px; list-style: none; }
+        #fullscreenmenu-ul li a { color: #fff; font-size: 2rem; text-decoration: none; border-bottom: none; transition: color 0.3s; font-family: 'WorkSansMedium', sans-serif; }
+        #fullscreenmenu-ul li a:hover { color: var(--visiless-green) !important; }
+        
+        /* Formulář */
+        .form-control { background: rgba(255,255,255,0.05); border: 1px solid #555; color: #fff; border-radius: 0; padding: 15px; }
+        .form-control:focus { background: rgba(255,255,255,0.05); border-color: var(--visiless-green); color: #fff; box-shadow: none; }
+    </style>
+</head>
+<body>
+
+    <nav id="ddfullscreenmenu">
+        <a href="#" id="closex">&times;</a>
+        <div id="ulwrapper">
+            <ul id="fullscreenmenu-ul">
+                <li><a href="#uvod">Úvod</a></li>
+                <li><a href="#o-znacke">O značce</a></li>
+                <li><a href="#usp">Proč VisiLess®</a></li>
+                <li><a href="#produkty">Produkty</a></li>
+                <li><a href="#spolupraca">Spolupráce</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="header w-100">
+        <div class="container-fluid d-flex justify-content-between align-items-center box_padding">
+            <a href="#" class="main_logo position-absolute text-decoration-none d-flex align-items-center" style="border-bottom: none;">
+                <img src="logo_visiless.png" alt="VisiLess Logo" style="height: 50px; margin-right: 15px; object-fit: contain;">
+                <span class="brand-font d-none d-sm-block" style="font-size: 2.2rem;">VISILESS<sup>®</sup></span>
+            </a>
+            
+            <nav class="navigation ml-auto d-flex align-items-center mainNavigation">
+                <div class="header_nav_b d-none d-md-block">
+                    <span class="mr-4 text-white">+420 733 719 766 | info@visiless.cz</span>
+                </div>
+                <div class="header_nav_a d-none d-md-block">
+                    <a href="#kontakt" class="text-center d-inline-block btn-primary-custom" style="height: auto; line-height: normal; padding: 10px 20px;">B2B Ceník</a>
+                </div>
+                <div class="hamburger ml-4" onclick="ddfullscreenmenu.togglemenu('open')">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="uvod" class="rslider_wrapper position-relative overflow-hidden" style="height: 100vh;">
+        <div class="image" style="background-image: url('visiless1.webp');"></div>
+        
+        <div class="rslider_wrapper_in d-flex align-items-end h-100 position-relative rslider_opacity">
+            <div class="rslider_content w-100 z-index-10 wow fadeInDown">
+                <div class="box-content" style="width: 700px; max-width: 100%;">
+                    <h1 class="rslider_title font-weight-bold mb-4 brand-font-white">VisiLess<sup>®</sup></span> 
+NNeviditelná síla</h1>
+                    <h3 class="text-white mb-4">Jistota, kterou dravci neuvidí.</h3>
+                    <p class="mb-5 text-light" style="font-size: 1.1rem; line-height: 1.6;">Nabídněte svým zákazníkům unikátní profesionální lanka. Dokonalé pro lov velmi opatrných dravých ryb - candátů, bolenů, okounů a štik.</p>
+                    <a href="#kontakt" class="btn btn-custom mr-3 mb-3">Staňte se naším partnerem</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="o-znacke" class="content box_margin3 text_wrapper text_wrapper__a">
+        <div class="c_x_bg c_x_bg_left img" style="background-image: url('visiless0.jpg');"></div>
+        
+        <div class="container-fluid p-0">
+            <div class="row m-0">
+                <div class="col-lg-6 offset-lg-6 p-0">
+                    <div class="text_container container_bg__a text-white wow fadeInRight h-100 d-flex flex-column justify-content-center">
+                        <div class="title_box mb-4">
+    <h2>Náš příběh</h2>
+    <h3 class="text-white" style="font-size: 1.5rem;"><span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> nevznikl v kanceláři, ale u vody.</h3>
+</div>
+                        <p class="mb-4">Jsme tým profesionálních rybářů, kteří odmítli dělat kompromisy mezi viditelností montáže a bezpečností úlovku. Naše lanka jsou výsledkem let testování v nejčistších revírech, kde jsou ryby extrémně opatrné.</p>
+                        <blockquote class="blockquote pl-4" style="border-left: 3px solid var(--visiless-green); font-family: 'WorkSansMedium';">
+                            <p class="mb-0">„Vyrábíme každé lanko tak, jako bychom ho vázali na vlastní prut.“</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="usp" class="content box_padding box_margin3 advantage_wrapper">
+        <div class="title_box text-center box_margin3 wow fadeInDown">
+    <h2>Proč <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span>?</h2>
+    <p class="text-muted">Technické argumenty, které vaši zákazníci ocení</p>
+</div>
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="p-4 border h-100 title_box">
+                    <i class="fas fa-hand-paper mb-3 text-visiless" style="font-size: 2rem;"></i>
+                    <h3 class="font-weight-bold mb-3" style="font-size: 1.5rem;">100% Ruční výroba</h3>
+                    <p class="text-muted">Žádná pásová produkce. Každý spoj, každé krimpování a očko projde rukama odborníka. Garantujeme nulovou chybovost.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="p-4 border h-100 container_bg__b text-white title_box">
+                    <i class="fas fa-eye-slash mb-3" style="font-size: 2rem; color: #fff;"></i>
+                    <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Efekt neviditelnosti</h3>
+                    <p>Díky speciální mikro-ocelové technologii lanko ve vodě téměř splývá s prostředím. Ideální pro opatrné candáty, boleny či okouny.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="p-4 border h-100 title_box">
+                    <i class="fas fa-water mb-3 text-visiless" style="font-size: 2rem;"></i>
+                    <h3 class="font-weight-bold mb-3" style="font-size: 1.5rem;">Nulová tuhost</h3>
+                    <p class="text-muted">VisiLess<sup>®</sup> neomezuje chod nástrahy. Woblery i gumy si zachovávají svůj přirozený "Natural Movement", což zvyšuje počet záběrů.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.4s">
+                <div class="p-4 border border-visiless h-100 container_bg__a text-white title_box">
+                    <i class="fas fa-shield-alt mb-3 text-visiless" style="font-size: 2rem;"></i>
+                    <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Pike-Proof odolnost</h3>
+                    <p>Navzdory své jemnosti je materiál 100% odolný vůči ostrým štičím zubům. Definitivní konec ztraceným trofejním rybám.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content box_padding box_margin3">
+        <div class="title_box mb-4 text-center wow fadeInDown">
+            <h2>Detail, který rozhoduje</h2>
+        </div>
+        <div class="grid-gallery">
+            <div class="wow zoomIn"><img src="visiless3.webp" class="w-100 h-100" alt="Detail 1"></div>
+            <div class="wow zoomIn" data-wow-delay="0.1s"><img src="visiless4.webp" class="w-100 h-100" alt="Detail 2"></div>
+            <div class="wow zoomIn" data-wow-delay="0.2s"><img src="visiless5.webp" class="w-100 h-100" alt="Detail 3"></div>
+            <div class="wow zoomIn" data-wow-delay="0.3s"><img src="visiless6.webp" class="w-100 h-100" alt="Detail 4"></div>
+        </div>
+    </section>
+
+    <section id="produkty" class="content box_padding box_margin3 container_bg__a pt-5 pb-5">
+        <div class="title_box mb-5 text-center text-white wow fadeInDown">
+            <h2 class="brand-font-white">Produktové řady</h2>
+            <p class="text-light">Přehled sortimentu pro partnery</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4 wow zoomIn">
+                <div class="card border-0 rounded-0 bg-dark h-100 text-white">
+                    <img src="visiless7.webp" class="card-img-top rounded-0" style="height: 250px;" alt="Spinning PRO">
+                    <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
+                        <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">Spinning PRO</h3>
+                        <p class="text-light">Standard pro každodenní přívlač. Maximální nenápadnost a lehkost, díky které oklamete i tu nejopatrnější rybu.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 wow zoomIn" data-wow-delay="0.1s">
+                <div class="card border-0 rounded-0 bg-dark h-100 text-white">
+                    <img src="visiless8.webp" class="card-img-top rounded-0" style="height: 250px;" alt="Spinning ULTRA+">
+                    <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
+                        <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">Spinning ULTRA+</h3>
+                        <p class="text-light">Zesílené verze s pevnostními obratlíky dimenzované pro lov trofejních ryb a brutální souboje bez kompromisů.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 wow zoomIn" data-wow-delay="0.2s">
+                <div class="card border-0 rounded-0 bg-dark h-100 text-white">
+                    <img src="visiless9.webp" class="card-img-top rounded-0" style="height: 250px;" alt="LiveBait">
+                    <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
+                        <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">LiveBait (Single/Treble)</h3>
+                        <p class="text-light">Specializované montáže na živou a mrtvou rybku se speciálním soft-krimpováním pro dokonalou prezentaci nástrahy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="spolupraca" class="content box_margin3 text_wrapper text_wrapper__b">
+        <div class="c_x_bg c_x_bg_right img" style="background-image: url('visiless10.webp');"></div>
+        <div class="container-fluid p-0">
+            <div class="row m-0">
+                <div class="col-lg-6 p-0">
+                    <div class="text_container container_bg__b text-white wow fadeInLeft h-100 d-flex flex-column justify-content-center">
+                        <div class="title_box mb-4">
+                            <h2>Proč s námi spolupracovat?</h2>
+                            <h3>Benefity pro váš obchod</h3>
+                        </div>
+                        <ul class="text_list vnutro pl-3" style="border-left-color: #fff;">
+                            <li class="pl-3 mb-4">
+                                <strong>Atraktivní marže:</strong> Férové nastavení podmínek pro udržitelný růst vašeho byznysu.
+                            </li>
+                            <li class="pl-3 mb-4">
+                                <strong>Marketingová podpora:</strong> Poskytneme vám profesionální fotografie, produktová videa a hotové popisy pro váš e-shop.
+                            </li>
+                            <li class="pl-3 mb-4">
+                                <strong>Skladová dostupnosť:</strong> Pružně reagujeme na objednávky, abyste měli pulty vždy plné.
+                            </li>
+                            <li class="pl-3">
+    <strong>Unikátnost:</strong> <span class="brand-font-white brand-inline" style="font-size: 1rem;">VISILESS<sup>®</sup></span> není masový produkt z Číny. Je to prémiová evropská značka.
+</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt" class="content container_bg__a text-white box_padding box_padding_vertical">
+        <div class="row">
+            <div class="col-lg-5 mb-5 mb-lg-0 pr-lg-5 wow fadeInRight">
+                <div class="title_box mb-4">
+    <h2>Zařadit <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> do nabídky?</h2>
+</div>
+                <p class="mb-4" style="font-size: 1.1rem; color: #adadad;">Hledáme partnere, kteří sdílejí naši vášeň pro kvalitu a profesionální rybolov. Ať už provozujete kamennou prodejnu nebo velký e-shop, rádi vám připravíme nabídku na míru.</p>
+                <div class="mt-5">
+                    <h4 class="mb-3 font-weight-bold" style="font-family: 'WorkSansMedium'; color: var(--visiless-green);">Přímý kontakt</h4>
+                    <p class="mb-1"><i class="fas fa-phone mr-3 text-visiless"></i> +420 733 719 766</p>
+                    <p class="mb-1"><i class="fas fa-envelope mr-3 text-visiless"></i> info@visiless.cz</p>
+                    <p class="mb-1"><i class="fas fa-globe mr-3 text-visiless"></i> www.visiless.cz</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-7 wow fadeInLeft">
+                <div class="p-4 p-md-5" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(75, 83, 32, 0.4);">
+                    <form action="#" method="POST" class="ajax form">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="text-muted small text-uppercase">Jméno a příjmení / Firma *</label>
+                                <input type="text" name="name" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="text-muted small text-uppercase">IČO (volitelné)</label>
+                                <input type="text" name="ico" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="text-muted small text-uppercase">E-mail *</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="text-muted small text-uppercase">Telefonní číslo *</label>
+                                <input type="tel" name="phone" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-muted small text-uppercase">Zpráva *</label>
+                            <textarea name="message" class="form-control" rows="4" placeholder="Např. Mám zájem o velkoobchodní ceník a podmínky spolupráce..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom w-100 py-3">Odeslat žádost o spolupráci</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer bg-black text-center py-4" style="background-color: #050505; border-top: 2px solid var(--visiless-green);">
+        <p class="mb-0 text-muted small">&copy; 2026 <span class="brand-font text-visiless" style="font-size: 0.9rem;">VISILESS<sup>®</sup></span>. Všechna práva vyhrazena. Vytvořeno s vášní pro rybolov.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="jquery.form.js"></script>
+    <script src="jquery.matchHeight.js"></script>
+    <script src="classie.js"></script>
+    <script src="ddfullscreenmenu.js"></script>
+    <script src="wow.min.js"></script>
+    <script src="scroll.js"></script>
+    <script src="init.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            new WOW().init();
+            $('.advantage_wrapper .border').matchHeight();
+            $('.card').matchHeight();
+
+            if(typeof ddfullscreenmenu !== 'undefined') {
+                ddfullscreenmenu.init();
+            }
+        });
+    </script>
+</body>
+</html>
