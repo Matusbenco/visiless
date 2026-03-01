@@ -130,6 +130,40 @@
             display: inline-block;
         }
     
+        /* =======================================================
+           RESPONZIVITA PRE MOBILY (Oprava pôvodného main_theme.css) 
+           ======================================================= */
+        @media screen and (max-width: 767px) {
+            /* 1. Oprava hlavičky a loga */
+            .main_logo { left: 15px !important; top: 10px !important; transform: none !important; position: absolute !important; }
+            .main_logo img { height: 35px !important; margin-right: 10px !important; }
+            .brand-font { font-size: 1.6rem !important; }
+            .header { padding-top: 10px !important; padding-bottom: 10px !important; }
+            .hamburger { font-size: 28px !important; margin-right: 15px !important; }
+
+            /* 2. Oprava Úvodnej sekcie (Hero) - Zobrazenie textu a vycentrovanie */
+            .rslider_wrapper { height: 100vh !important; }
+            .rslider_wrapper_in { height: 100% !important; display: flex !important; align-items: center !important; justify-content: center !important; }
+            .rslider_wrapper_in::before { display: block !important; background-color: rgba(0,0,0,0.6) !important; z-index: 1; } /* Vrátenie stmavenia pre čitateľnosť */
+            .rslider_content { position: relative !important; bottom: 0 !important; padding: 0 20px !important; text-align: center; z-index: 10; margin-top: 60px; }
+            .box-content { width: 100% !important; }
+            .rslider_title { font-size: 2rem !important; margin-bottom: 15px !important; }
+            .rslider_content h3 { font-size: 1.2rem !important; }
+            .rslider_content p { font-size: 1rem !important; }
+            .btn-custom { display: block; width: 100%; margin-bottom: 15px; margin-right: 0 !important; }
+
+            /* 3. Oprava sekcií s polovičným obrázkom (O značke, Spolupráca) */
+            .c_x_bg { position: relative !important; width: 100% !important; height: 300px !important; left: 0 !important; right: 0 !important; }
+            .text_container { padding: 50px 20px !important; text-align: center; }
+            .text_list li { text-align: left; }
+            
+            /* Skrytie starých bielych čiar (rámečkov), ktoré sa na mobile zle lámu */
+            .text_wrapper__a .img::before, .text_wrapper__b .img::before, .eshop_wrapper::before { display: none !important; }
+
+            /* 4. Oprava okrajov pre grid a USP */
+            .box_padding { padding-left: 20px !important; padding-right: 20px !important; }
+            .title_box h2 { font-size: 2rem !important; }
+        }
     </style>
 </head>
 <body>
