@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisiLess® | Velkoobchodní spolupráce</title>
+    <title>VisiLess® | Großhandelspartnerschaft</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="main_theme.css">
     
     <style>
-        /* Úpravy pro VisiLess design (Zelená téma) */
+        /* Modifikationen für VisiLess Design (Grünes Theme) */
         :root {
             --visiless-green: #4B5320;
             --visiless-dark: #2a2e12;
@@ -39,7 +39,7 @@
             text-transform: uppercase;
         }
         
-        /* Úprava znaku (R) */
+        /* Anpassung des (R) Zeichens */
         .brand-font sup, .brand-font-white sup {
             font-family: 'WorkSansMedium', Arial, sans-serif !important;
             font-size: 0.6em !important; 
@@ -60,7 +60,7 @@
         .text-visiless { color: var(--visiless-green) !important; }
         .border-visiless { border-color: var(--visiless-green) !important; }
         
-        /* Tlačítka */
+        /* Buttons */
         .btn-custom {
             background-color: var(--visiless-green) !important;
             border: 2px solid var(--visiless-green) !important;
@@ -99,11 +99,11 @@
         .btn-primary-custom { border: 2px solid var(--visiless-green) !important; background: var(--visiless-green) !important; color: #fff !important; text-transform: uppercase; font-family: 'WorkSansMedium'; transition: 0.3s; }
         .btn-primary-custom:hover { background: transparent !important; color: var(--visiless-green) !important; }
         
-        /* Fixace obrázků a ořezů */
+        /* Fixierung von Bildhintergründen */
         .c_x_bg, .rslider_wrapper .image { background-position: center center !important; }
         .grid-gallery img, .card-img-top { object-fit: cover; object-position: center center; }
 
-        /* Zobrazení celé fotky v sekci Spolupráce */
+        /* Anzeige des kompletten Bildes im Abschnitt Partnerschaft */
         #spolupraca .c_x_bg {
             background-size: contain !important;
             background-position: center right !important;
@@ -111,7 +111,7 @@
             background-color: var(--visiless-dark) !important;
         }
 
-        /* Úplné odstranění bílých čar přes fotky */
+        /* Entfernung weißer überlappender Linien */
         .text_wrapper::before, .text_wrapper::after, .text_wrapper__a::before, .text_wrapper__a::after,
         .text_wrapper__b::before, .text_wrapper__b::after, .text_wrapper__a .img::before, .text_wrapper__a .img::after, 
         .text_wrapper__b .img::before, .text_wrapper__b .img::after, .c_x_bg::before, .c_x_bg::after,
@@ -119,7 +119,7 @@
             display: none !important; border: none !important;
         }
         
-        /* Menu & Form */
+        /* Menü & Formular */
         .hamburger { cursor: pointer; color: #fff; font-size: 24px; z-index: 1200; position: relative; }
         #ddfullscreenmenu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20, 25, 15, 0.98); z-index: 9999; }
         #ddfullscreenmenu.openmenu { display: block; }
@@ -132,20 +132,19 @@
         .form-control { background: rgba(255,255,255,0.05); border: 1px solid #555; color: #fff; border-radius: 0; padding: 15px; }
         .form-control:focus { background: rgba(255,255,255,0.05); border-color: var(--visiless-green); color: #fff; box-shadow: none; }
     
-        /* Jazyky */
+        /* Sprachenschalter */
         .lang-switcher a { font-family: 'WorkSansMedium', sans-serif; font-size: 1.1rem; text-decoration: none; border: none; transition: color 0.3s; }
         .lang-switcher a:hover { color: var(--visiless-green) !important; }
         .lang-switcher-mobile { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
         .lang-switcher-mobile a { font-size: 1.3rem !important; border: none !important; display: inline-block; }
         
-        /* FAQ Sekce */
+        /* FAQ Bereich */
         .faq-box { border-left: 3px solid var(--visiless-green); background: rgba(0,0,0,0.03); padding: 20px; height: 100%; transition: all 0.3s ease; }
         .faq-box:hover { background: rgba(75, 83, 32, 0.08); transform: translateY(-5px); }
 
         /* =========================================
            REGION MODAL & COOKIE BANNER STYLES
            ========================================= */
-        /* Výběr krajiny - překrytí celé obrazovky */
         .region-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 10, 10, 0.98); z-index: 10000;
@@ -162,7 +161,6 @@
         .region-overlay.show .region-box { transform: translateY(0); }
         .region-box img { animation: pulse 2s infinite; }
 
-        /* Cookie Lišta */
         .cookie-banner {
             position: fixed; bottom: -150px; left: 0; width: 100%;
             background: rgba(10, 10, 10, 0.98); border-top: 2px solid var(--visiless-green);
@@ -172,7 +170,7 @@
         .cookie-banner.show { bottom: 0; }
         .cookie-text { font-size: 0.9rem; line-height: 1.5; color: #ccc; }
     
-        /* Responzivita */
+        /* Responsivität */
         @media screen and (max-width: 767px) {
             .main_logo { left: 15px !important; top: 10px !important; transform: none !important; position: absolute !important; }
             .main_logo img { height: 35px !important; margin-right: 10px !important; }
@@ -189,7 +187,7 @@
             .text_list li { text-align: left; }
             .box_padding { padding-left: 20px !important; padding-right: 20px !important; }
             
-            /* Cookies mobil */
+            /* Cookies Mobile */
             .cookie-buttons { margin-top: 15px; width: 100%; justify-content: space-between; }
             .cookie-buttons button { width: 48%; padding: 10px 5px; font-size: 0.9rem; }
         }
@@ -200,13 +198,13 @@
     <div id="region-modal" class="region-overlay">
         <div class="region-box text-center">
             <img src="logo_visiless.png" alt="VisiLess Logo" style="height: 70px; margin-bottom: 30px; object-fit: contain;">
-            <h3 class="text-white mb-2 brand-font-white" style="font-size: 1.6rem;">Zvolte svůj region</h3>
-            <p class="text-muted mb-4" style="font-family: 'WorkSansMedium';">Please select your region to continue</p>
+            <h3 class="text-white mb-2 brand-font-white" style="font-size: 1.6rem;">Wählen Sie Ihre Region</h3>
+            <p class="text-muted mb-4" style="font-family: 'WorkSansMedium';">Bitte wählen Sie Ihre Region, um fortzufahren</p>
             
             <div class="d-flex flex-column px-sm-4">
-                <a href="index.html" class="btn btn-custom mb-3 py-3" onclick="setRegion('cz')">Česká republika / Slovensko (CZ)</a>
+                <a href="index.html" class="btn btn-outline-custom mb-3 py-3" onclick="setRegion('cz')">Česká republika / Slovensko (CZ)</a>
                 <a href="index_en.html" class="btn btn-outline-custom mb-3 py-3" onclick="setRegion('en')">International (EN)</a>
-                <a href="index_de.html" class="btn btn-outline-custom py-3" onclick="setRegion('de')">Deutschland / Österreich (DE)</a>
+                <a href="index_de.html" class="btn btn-custom py-3" onclick="setRegion('de')">Deutschland / Österreich (DE)</a>
             </div>
         </div>
     </div>
@@ -214,13 +212,13 @@
     <div id="cookie-banner" class="cookie-banner">
         <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
             <div class="cookie-text mb-3 mb-md-0 mr-md-4">
-                <strong class="text-white d-block mb-1" style="font-family: 'WorkSansMedium';">Tento web používá cookies</strong>
-                Pro co nejlepší uživatelský zážitek, analýzu návštěvnosti a personalizaci obsahu využíváme soubory cookies. 
-                <a href="#" class="text-visiless text-decoration-none border-bottom border-visiless pb-1 ml-1 hover-white">Více informací</a>.
+                <strong class="text-white d-block mb-1" style="font-family: 'WorkSansMedium';">Diese Website verwendet Cookies</strong>
+                Wir verwenden Cookies, um Ihnen das beste Erlebnis zu bieten, den Datenverkehr zu analysieren und Inhalte zu personalisieren. 
+                <a href="#" class="text-visiless text-decoration-none border-bottom border-visiless pb-1 ml-1 hover-white">Weitere Informationen</a>.
             </div>
             <div class="cookie-buttons d-flex flex-shrink-0">
-                <button class="btn btn-outline-custom btn-sm mr-2 py-2 px-3" onclick="acceptCookies('essential')">Pouze nezbytné</button>
-                <button class="btn btn-custom btn-sm py-2 px-4" onclick="acceptCookies('all')">Přijmout vše</button>
+                <button class="btn btn-outline-custom btn-sm mr-2 py-2 px-3" onclick="acceptCookies('essential')">Nur notwendige</button>
+                <button class="btn btn-custom btn-sm py-2 px-4" onclick="acceptCookies('all')">Alle akzeptieren</button>
             </div>
         </div>
     </div>
@@ -229,18 +227,18 @@
         <a href="#" id="closex">&times;</a>
         <div id="ulwrapper">
             <ul id="fullscreenmenu-ul">
-                <li><a href="#uvod">Úvod</a></li>
-                <li><a href="#o-znacke">O značce</a></li>
-                <li><a href="#usp">Proč VisiLess</a></li>
-                <li><a href="#produkty">Produkty</a></li>
-                <li><a href="#spolupraca">Spolupráce</a></li>
-                <li><a href="#faq">Časté dotazy</a></li>
+                <li><a href="#uvod">Startseite</a></li>
+                <li><a href="#o-znacke">Über uns</a></li>
+                <li><a href="#usp">Warum VisiLess</a></li>
+                <li><a href="#produkty">Produkte</a></li>
+                <li><a href="#spolupraca">Partnerschaft</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
                 
                 <li class="lang-switcher-mobile d-flex justify-content-center">
-                    <a href="index.html" class="text-visiless mx-3">CZ</a>
+                    <a href="index.html" class="text-muted mx-3">CZ</a>
                     <a href="index_en.html" class="text-muted mx-3">EN</a>
-                    <a href="index_de.html" class="text-muted mx-3">DE</a>
+                    <a href="index_de.html" class="text-visiless mx-3">DE</a>
                 </li>
             </ul>
         </div>
@@ -258,15 +256,15 @@
                     <span class="mr-4 text-white"><i class="fas fa-phone text-visiless mr-2"></i>+420 733 719 766</span>
                 </div>
                 <div class="header_nav_a d-none d-md-block">
-                    <a href="#kontakt" class="text-center d-inline-block btn-primary-custom" style="height: auto; line-height: normal; padding: 8px 20px;">B2B Ceník</a>
+                    <a href="#kontakt" class="text-center d-inline-block btn-primary-custom" style="height: auto; line-height: normal; padding: 8px 20px;">B2B-Preisliste</a>
                 </div>
                 
                 <div class="lang-switcher d-none d-sm-flex align-items-center ml-4">
-                    <a href="index.html" class="text-visiless font-weight-bold">CZ</a>
+                    <a href="index.html" class="text-white">CZ</a>
                     <span class="mx-2 text-muted" style="font-size: 0.8rem;">|</span>
                     <a href="index_en.html" class="text-white">EN</a>
                     <span class="mx-2 text-muted" style="font-size: 0.8rem;">|</span>
-                    <a href="index_de.html" class="text-white">DE</a>
+                    <a href="index_de.html" class="text-visiless font-weight-bold">DE</a>
                 </div>
 
                 <div class="hamburger ml-4" onclick="ddfullscreenmenu.togglemenu('open')">
@@ -282,12 +280,12 @@
         <div class="rslider_wrapper_in d-flex align-items-center justify-content-start h-100 position-relative rslider_opacity" style="padding-left: 5%;">
             <div class="rslider_content z-index-10 wow fadeInDown" style="margin-top: 80px;">
                 <div class="box-content" style="width: 750px; max-width: 100%; background: rgba(0,0,0,0.4); padding: 40px; border-left: 4px solid var(--visiless-green);">
-                    <h1 class="rslider_title font-weight-bold mb-3 brand-font-white">Neviditelná síla</h1>
-                    <h3 class="text-white mb-4" style="font-family: 'WorkSansMedium';">Produkt, který si vaši zákazníci přijdou koupit znovu.</h3>
-                    <p class="mb-5 text-light" style="font-size: 1.15rem; line-height: 1.6;">Rozšiřte svůj sortiment o prémiová neviditelná lanka VisiLess. Nabízíme nadstandardní marže, silnou podporu prodeje a špičkový produkt s nulovou mírou reklamací pro kamenné prodejny i e-shopy.</p>
+                    <h1 class="rslider_title font-weight-bold mb-3 brand-font-white">Unsichtbare Kraft</h1>
+                    <h3 class="text-white mb-4" style="font-family: 'WorkSansMedium';">Ein Produkt, das Ihre Kunden immer wieder kaufen werden.</h3>
+                    <p class="mb-5 text-light" style="font-size: 1.15rem; line-height: 1.6;">Erweitern Sie Ihr Sortiment um erstklassige unsichtbare VisiLess-Vorfächer. Wir bieten überdurchschnittliche Margen, starke Verkaufsförderung und ein Spitzenprodukt mit null Reklamationen für stationäre Geschäfte und Onlineshops.</p>
                     <div class="d-flex flex-column flex-sm-row">
-                        <a href="#kontakt" class="btn btn-custom mr-sm-3 mb-3 mb-sm-0">Získat B2B ceník</a>
-                        <a href="#kontakt" class="btn btn-outline-custom">Požádat o vzorky a informace</a>
+                        <a href="#kontakt" class="btn btn-custom mr-sm-3 mb-3 mb-sm-0">B2B-Preisliste anfordern</a>
+                        <a href="#kontakt" class="btn btn-outline-custom">Muster & Infos anfordern</a>
                     </div>
                 </div>
             </div>
@@ -302,14 +300,14 @@
                 <div class="col-lg-6 offset-lg-6 p-0">
                     <div class="text_container container_bg__a text-white wow fadeInRight h-100 d-flex flex-column justify-content-center">
                         <div class="title_box mb-4">
-                            <h2>Příběh a vize</h2> 
+                            <h2>Geschichte & Vision</h2> 
                             <h3 class="text-white" style="font-size: 1.5rem;">
-                                <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> Vznikl přímo u vody - poctivou praxí
+                                <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> Entstanden am Wasser - durch ehrliche Praxis
                             </h3>
                         </div>
-                        <p class="mb-4">Jsme tým profesionálních rybářů a milovníků přírody, kteří odmítli dělat kompromisy. Naše lanka jsou výsledkem desítky let testování v revírech s průzračnou vodou. Dnes tento prověřený produkt přinášíme do B2B sítě, abychom pomohli specializovaným prodejnám nabídnout zákazníkům kvalitu, na kterou se mohou spolehnout.</p>
+                        <p class="mb-4">Wir sind ein Team von professionellen Anglern und Naturliebhabern, die keine Kompromisse eingehen. Unsere Vorfächer sind das Ergebnis jahrzehntelanger Tests an Gewässern mit kristallklarem Wasser. Heute bringen wir dieses bewährte Produkt ins B2B-Netzwerk, um Fachgeschäften zu helfen, ihren Kunden eine Qualität anzubieten, auf die sie sich verlassen können.</p>
                         <blockquote class="blockquote pl-4" style="border-left: 3px solid var(--visiless-green); font-family: 'WorkSansMedium';">
-                            <p class="mb-0">„Vyrábíme každé lanko tak, jakoby každé nahození znamenalo záběr od kapitálního úlovku. Tuto jistotu předáváme vám i vašim zákazníkům.“</p>
+                            <p class="mb-0">„Wir fertigen jedes Vorfach so, als würde jeder Wurf einen Biss von einem kapitalen Fang bedeuten. Diese Sicherheit geben wir an Sie und Ihre Kunden weiter.“</p>
                         </blockquote>
                     </div>
                 </div>
@@ -319,36 +317,36 @@
 
     <section id="usp" class="content box_padding box_margin3 advantage_wrapper">
         <div class="title_box text-center box_margin3 wow fadeInDown">
-            <h2 class="brand-font">Proč <span class="text-visiless brand-inline">VISILESS<sup>®</sup></span> milují rybáři?</h2>
-            <p class="text-muted">Argumenty, díky kterým se produkt prodává sám</p>
+            <h2 class="brand-font">Warum lieben Angler <span class="text-visiless brand-inline">VISILESS<sup>®</sup></span>?</h2>
+            <p class="text-muted">Argumente, durch die sich das Produkt von selbst verkauft</p>
         </div>
         <div class="row">
             <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="p-4 border h-100 title_box bg-white">
                     <i class="fas fa-chart-line mb-3 text-visiless" style="font-size: 2rem;"></i>
-                    <h3 class="font-weight-bold mb-3 text-dark" style="font-size: 1.5rem;">Větší počet záběrů</h3>
-                    <p class="text-muted">Díky velmi tenkému průměru a naprosté nenápadnosti ve vodě se prokazatelně zvyšuje počet záběrů opatrných dravců.</p>
+                    <h3 class="font-weight-bold mb-3 text-dark" style="font-size: 1.5rem;">Mehr Bisse</h3>
+                    <p class="text-muted">Dank des extrem dünnen Durchmessers und der absoluten Unsichtbarkeit im Wasser erhöht sich die Anzahl der Bisse von vorsichtigen Raubfischen nachweislich.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="p-4 border h-100 container_bg__b text-white title_box">
                     <i class="fas fa-clock mb-3" style="font-size: 2rem; color: #fff;"></i>
-                    <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Úspora času u vody</h3>
-                    <p>Lanko je z výroby kompletně připravené k rybolovu. Zákazník neztrácí čas zdlouhavou přípravou a vázáním montáží.</p>
+                    <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Zeitersparnis am Wasser</h3>
+                    <p>Das Vorfach ist ab Werk komplett einsatzbereit. Der Kunde verliert keine Zeit mit langwierigen Vorbereitungen und dem Binden von Montagen.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="p-4 border h-100 title_box bg-white">
                     <i class="fas fa-tasks mb-3 text-visiless" style="font-size: 2rem;"></i>
-                    <h3 class="font-weight-bold mb-3 text-dark" style="font-size: 1.5rem;">Široké portfolio</h3>
-                    <p class="text-muted">Pokrýváme potřeby všech rybářů – od lehké přívlače až po lov trofejních štik na živou nástrahu.</p>
+                    <h3 class="font-weight-bold mb-3 text-dark" style="font-size: 1.5rem;">Breites Portfolio</h3>
+                    <p class="text-muted">Wir decken die Bedürfnisse aller Angler ab – vom leichten Spinnfischen bis zur Jagd auf Trophäenhechte mit Naturködern.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="p-4 border border-visiless h-100 container_bg__a text-white title_box">
                     <i class="fas fa-trophy mb-3 text-visiless" style="font-size: 2rem;"></i>
-                    <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Ověřená účinnost</h3>
-                    <p>Dekáda testování a nespočet ulovených trofejních ryb dělají z lanka absolutní jistotu, kterou rybáři doporučují dál.</p>
+                    <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Bewährte Wirksamkeit</h3>
+                    <p>Ein Jahrzehnt an Tests und unzählige gefangene Trophäenfische machen das Vorfach zu einer absoluten Sicherheit, die Angler gerne weiterempfehlen.</p>
                 </div>
             </div>
         </div>
@@ -356,7 +354,7 @@
 
     <section class="content box_padding box_margin3">
         <div class="title_box mb-4 text-center wow fadeInDown">
-            <h2>Ryba v podběráku je nejlepším důkazem kvality</h2>
+            <h2>Ein Fisch im Kescher ist der beste Qualitätsbeweis</h2>
         </div>
         <div class="grid-gallery">
             <div class="wow zoomIn"><img src="visiless3.webp" class="w-100 h-100" alt="Detail 1"></div>
@@ -368,8 +366,8 @@
 
     <section id="produkty" class="content box_padding box_margin3 container_bg__a pt-5 pb-5">
         <div class="title_box mb-5 text-center text-white wow fadeInDown">
-            <h2 class="brand-font-white">Produktové řady</h2>
-            <p class="text-light">Kompaktní a přehledný sortiment pro vaše pulty</p>
+            <h2 class="brand-font-white">Produktlinien</h2>
+            <p class="text-light">Ein kompaktes und übersichtliches Sortiment für Ihre Regale</p>
         </div>
         <div class="row">
             <div class="col-md-4 mb-4 wow zoomIn">
@@ -377,7 +375,7 @@
                     <img src="spining-pro.png" class="card-img-top rounded-0" style="height: 250px; object-fit: contain; background-color: #ffffff; padding: 10px;" alt="Spinning PRO Series">
                     <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
                         <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">Spinning PRO Series</h3>
-                        <p class="text-light">Etalon kvality pro každodenní přívlačové drama. Maximální nenápadnost a lehkost, díky které zvládnete přimět k záběru i tu nejopatrnější rybu.</p>
+                        <p class="text-light">Der Qualitätsmaßstab für das alltägliche Spinnfischen. Maximale Unsichtbarkeit und Leichtigkeit, dank derer Sie selbst den vorsichtigsten Fisch zum Biss verleiten können.</p>
                     </div>
                 </div>
             </div>
@@ -386,7 +384,7 @@
                     <img src="1.webp" class="card-img-top rounded-0" style="height: 250px; object-fit: contain; background-color: #ffffff; padding: 10px;" alt="LiveBait PRO Series">
                     <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
                         <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">LiveBait PRO Series</h3>
-                        <p class="text-light">LiveBait-ové verze dimenzované pro lov trofejních ryb na živočišné nástrahy. Užijte si brutální souboje bez kompromisů.</p>
+                        <p class="text-light">LiveBait-Versionen, die für den Fang von Trophäenfischen mit Naturködern dimensioniert sind. Genießen Sie brutale Drills ohne Kompromisse.</p>
                     </div>
                 </div>
             </div>
@@ -395,15 +393,15 @@
                     <img src="visacka.png" class="card-img-top rounded-0" style="height: 250px; object-fit: contain; background-color: #ffffff; padding: 10px;" alt="GHOSTBAIT LAZY FISH ELITE">
                     <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
                         <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">GHOSTBAIT LAZY FISH ELITE</h3>
-                        <p class="text-light">Specializované montáže na mrtvou rybku se speciálním soft-krimpováním pro dokonalou prezentaci. Jediný systém, který probudí k záběru i apatickou rekordní rybu.</p>
+                        <p class="text-light">Spezialisierte Montagen für tote Köderfische mit speziellem Soft-Crimping für eine perfekte Präsentation. Das einzige System, das selbst apathische Rekordfische zum Biss animiert.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row mt-5">
             <div class="col-12 text-center wow fadeInUp">
-                <a href="katalog.html" class="btn btn-custom" style="font-size: 1.2rem; padding: 15px 40px;">
-                    <i class="fas fa-list mr-2"></i> Zobrazit kompletní B2B katalog
+                <a href="katalog_de.html" class="btn btn-custom" style="font-size: 1.2rem; padding: 15px 40px;">
+                    <i class="fas fa-list mr-2"></i> Kompletten B2B-Katalog ansehen
                 </a>
             </div>
         </div>
@@ -416,21 +414,21 @@
                 <div class="col-lg-6 p-0">
                     <div class="text_container container_bg__b text-white wow fadeInLeft h-100 d-flex flex-column justify-content-center">
                         <div class="title_box mb-4">
-                            <h2>Chcete růst s námi?</h2>
-                            <h3>Rozumíme B2B partnerům a tvoříme ideální podmínky pro váš byznys:</h3>
+                            <h2>Möchten Sie mit uns wachsen?</h2>
+                            <h3>Wir verstehen B2B-Partner und schaffen ideale Bedingungen für Ihr Geschäft:</h3>
                         </div>
                         <ul class="text_list vnutro pl-3" style="border-left-color: #fff;">
                             <li class="pl-3 mb-4">
-                                <strong>Nadstandardní marže a ochrana trhu:</strong> Přísně hlídáme dodržování doporučených maloobchodních cen (MOC). Zaručujeme, že váš prodej bude vždy ziskový a bez cenových válek.
+                                <strong>Überdurchschnittliche Margen und Marktschutz:</strong> Wir überwachen streng die Einhaltung der unverbindlichen Preisempfehlung (UVP). Wir garantieren, dass Ihr Verkauf immer profitabel und frei von Preiskämpfen ist.
                             </li>
                             <li class="pl-3 mb-4">
-                                <strong>Podpora pro kamenné prodejny i e-shopy:</strong> Kamenným prodejnám poskytujeme atraktivní prezentační POS materiály (stojany, poutače). E-shopům dodáme kompletní XML feed s profi fotografiemi a texty pro okamžité naskladnění.
+                                <strong>Unterstützung für Ladengeschäfte und E-Shops:</strong> Wir stellen stationären Geschäften attraktive POS-Präsentationsmaterialien (Ständer, Aufsteller) zur Verfügung. E-Shops erhalten einen kompletten XML-Feed mit professionellen Fotos und Texten für die sofortige Listung.
                             </li>
                             <li class="pl-3 mb-4">
-                                <strong>Nulové reklamace a garantovaná kvalita:</strong> Prodáváte produkt, který prošel ruční kontrolou. Šetříme váš čas i nervy s nespokojenými zákazníky – s námi reklamace řešit nebudete.
+                                <strong>Null Reklamationen und garantierte Qualität:</strong> Sie verkaufen ein Produkt, das eine manuelle Kontrolle bestanden hat. Wir sparen Ihre Zeit und Nerven mit unzufriedenen Kunden – mit uns müssen Sie keine Reklamationen abwickeln.
                             </li>
                             <li class="pl-3">
-                                <strong>Spolehlivá logistika a dostupnost:</strong> Zboží držíme skladem ve velkých objemech a objednávky našim B2B partnerům expedujeme obratem, nejpozději do 48 hodin.
+                                <strong>Zuverlässige Logistik und Verfügbarkeit:</strong> Wir halten Waren in großen Mengen auf Lager und versenden Bestellungen an unsere B2B-Partner umgehend, spätestens innerhalb von 48 Stunden.
                             </li>
                         </ul>
                     </div>
@@ -441,32 +439,32 @@
 
     <section id="faq" class="content box_padding box_margin3 pt-5 pb-5 bg-white">
         <div class="title_box text-center mb-5 wow fadeInDown">
-            <h2>Časté dotazy ke spolupráci</h2>
-            <p class="text-muted">Vše, co potřebujete vědět před první objednávkou</p>
+            <h2>Häufig gestellte Fragen (FAQ)</h2>
+            <p class="text-muted">Alles, was Sie vor Ihrer ersten Bestellung wissen müssen</p>
         </div>
         <div class="row">
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="faq-box">
-                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Jaké je minimální množství pro objednávku (MOQ)?</h4>
-                    <p class="mb-0 text-muted">Naším cílem je podpořit i menší prodejny. Minimální hodnota první objednávky je nastavena velmi dostupně, aby pro vás zařazení nové značky nepředstavovalo finanční zátěž. Konkrétní čísla najdete v našem ceníku.</p>
+                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Wie hoch ist die Mindestbestellmenge (MOQ)?</h4>
+                    <p class="mb-0 text-muted">Unser Ziel ist es, auch kleinere Geschäfte zu unterstützen. Der Mindestwert der Erstbestellung ist sehr zugänglich angesetzt, damit die Aufnahme einer neuen Marke keine finanzielle Belastung darstellt. Konkrete Zahlen finden Sie in unserer Preisliste.</p>
                 </div>
             </div>
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="faq-box">
-                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Poskytujete podklady pro e-shopy?</h4>
-                    <p class="mb-0 text-muted">Ano, ihned po navázání spolupráce vám zašleme přístup k XML/CSV feedu, složku s profesionálními ořezovými fotografiemi produktů a optimalizované popisy připravené k importu do vašeho systému.</p>
+                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Stellen Sie Materialien für Onlineshops zur Verfügung?</h4>
+                    <p class="mb-0 text-muted">Ja, direkt nach Beginn der Partnerschaft senden wir Ihnen Zugang zu einem XML/CSV-Feed, einen Ordner mit professionellen Produktfotos und optimierten Beschreibungen, die bereit für den Import in Ihr System sind.</p>
                 </div>
             </div>
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="faq-box">
-                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Je možné nevyhovující sortiment vyměnit?</h4>
-                    <p class="mb-0 text-muted">Chápeme, že každý revír a zákazník je jiný. Pokud zjistíte, že se u vás některá délka nebo nosnost neprodává dle očekávání, bez problémů vám zboží vyměníme za žádanější varianty.</p>
+                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Ist es möglich, nicht verkaufte Artikel umzutauschen?</h4>
+                    <p class="mb-0 text-muted">Wir verstehen, dass jedes Gewässer und jeder Kunde anders ist. Wenn Sie feststellen, dass sich eine bestimmte Länge oder Tragkraft nicht wie erwartet verkauft, tauschen wir die Ware problemlos gegen gefragtere Varianten um.</p>
                 </div>
             </div>
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="faq-box">
-                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Lze si produkt před prodejem vyzkoušet?</h4>
-                    <p class="mb-0 text-muted">Rozhodně. Víme, že rybář si potřebuje produkt osahat. Napište nám přes formulář níže a rádi se s vámi domluvíme na dodání testovacích vzorků nebo vám poskytneme podrobnější informace k produktům.</p>
+                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Kann ich das Produkt vor dem Verkauf testen?</h4>
+                    <p class="mb-0 text-muted">Absolut. Wir wissen, dass ein Angler das Produkt anfassen muss. Schreiben Sie uns über das untenstehende Formular und wir vereinbaren gerne die Lieferung von Testmustern oder versorgen Sie mit detaillierteren Produktinformationen.</p>
                 </div>
             </div>
         </div>
@@ -476,11 +474,11 @@
         <div class="row">
             <div class="col-lg-5 mb-5 mb-lg-0 pr-lg-5 wow fadeInRight">
                 <div class="title_box mb-4">
-                    <h2>Získejte velkoobchodní ceník a přidejte <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> do nabídky</h2>
+                    <h2>Fordern Sie die B2B-Preisliste an und nehmen Sie <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> in Ihr Angebot auf</h2>
                 </div>
-                <p class="mb-4" style="font-size: 1.1rem; color: #adadad;">Vyplňte krátký formulář vedle. <strong class="text-white">Odpovíme vám do 24 hodin</strong> s kompletním velkoobchodním ceníkem, návrhem marží a podmínkami spolupráce připravenými na míru vašemu byznysu.</p>
+                <p class="mb-4" style="font-size: 1.1rem; color: #adadad;">Füllen Sie das kurze Formular nebenan aus. <strong class="text-white">Wir antworten Ihnen innerhalb von 24 Stunden</strong> mit einer kompletten Großhandelspreisliste, einem Margenvorschlag und auf Ihr Geschäft zugeschnittenen Partnerschaftsbedingungen.</p>
                 <div class="mt-5">
-                    <h4 class="mb-3 font-weight-bold" style="font-family: 'WorkSansMedium'; color: var(--visiless-green);">Přímý kontakt na obchodní oddělení</h4>
+                    <h4 class="mb-3 font-weight-bold" style="font-family: 'WorkSansMedium'; color: var(--visiless-green);">Direkter Kontakt zur Verkaufsabteilung</h4>
                     <p class="mb-1"><i class="fas fa-phone mr-3 text-visiless"></i> +420 733 719 766</p>
                     <p class="mb-1"><i class="fas fa-envelope mr-3 text-visiless"></i> Info@lov-ryb.cz</p>
                     <p class="mb-1"><i class="fas fa-globe mr-3 text-visiless"></i> www.visiless.cz</p>
@@ -492,33 +490,33 @@
                     <form action="https://formspree.io/f/mvzbnzbv" method="POST" class="form">
                         <div class="row">
                             <div class="col-md-6 mb-4">
-                                <label class="text-muted small text-uppercase">Jméno a příjmení / Firma *</label>
-                                <input type="text" name="name" class="form-control" required placeholder="Např. Rybářské potřeby u Petra">
+                                <label class="text-muted small text-uppercase">Vor- und Nachname / Firmenname *</label>
+                                <input type="text" name="name" class="form-control" required placeholder="z.B. Peters Angelshop">
                             </div>
                             <div class="col-md-6 mb-4">
-                                <label class="text-muted small text-uppercase">IČO/IČ DPH (volitelné pro ověření)</label>
+                                <label class="text-muted small text-uppercase">Firmen-ID / USt-IdNr. (optional)</label>
                                 <input type="text" name="ico" class="form-control">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-4">
-                                <label class="text-muted small text-uppercase">E-mail *</label>
+                                <label class="text-muted small text-uppercase">E-Mail *</label>
                                 <input type="email" name="email" class="form-control" required>
                             </div>
                             <div class="col-md-6 mb-4">
-                                <label class="text-muted small text-uppercase">Telefonní číslo *</label>
+                                <label class="text-muted small text-uppercase">Telefonnummer *</label>
                                 <input type="tel" name="phone" class="form-control" required>
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label class="text-muted small text-uppercase">Zpráva nebo specifikace e-shopu/prodejny *</label>
-                            <textarea name="message" class="form-control" rows="4" placeholder="Dobrý den, mám zájem o velkoobchodní ceník pro náš e-shop/kamennou prodejnu..." required></textarea>
+                            <label class="text-muted small text-uppercase">Nachricht oder Besonderheiten Ihres Shops *</label>
+                            <textarea name="message" class="form-control" rows="4" placeholder="Guten Tag, ich interessiere mich für eine B2B-Preisliste für unseren Onlineshop/unser Ladengeschäft..." required></textarea>
                         </div>
                         <div class="mb-4 d-flex align-items-center">
-                            <input type="checkbox" id="vzorky" name="vzorky" value="Ano" style="width: 20px; height: 20px; margin-right: 15px; cursor: pointer;">
-                            <label for="vzorky" class="mb-0 cursor-pointer" style="cursor: pointer; font-family: 'WorkSansMedium';">Mám zájem o testovací vzorky nebo více informací ke spolupráci</label>
+                            <input type="checkbox" id="vzorky" name="vzorky" value="Ja" style="width: 20px; height: 20px; margin-right: 15px; cursor: pointer;">
+                            <label for="vzorky" class="mb-0 cursor-pointer" style="cursor: pointer; font-family: 'WorkSansMedium';">Ich bin an Testmustern oder weiteren Informationen zur Zusammenarbeit interessiert</label>
                         </div>
-                        <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-2" style="font-size: 1.2rem;">Odeslat žádost o spolupráci</button>
+                        <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-2" style="font-size: 1.2rem;">Partnerschaftsanfrage senden</button>
                     </form>
                 </div>
             </div>
@@ -530,27 +528,29 @@
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">
                     <span class="brand-font text-visiless mb-3 d-inline-block" style="font-size: 1.5rem;">VISILESS<sup>®</sup></span>
-                    <p class="small">Prémiová rybářská lanka vyvinutá pro úspěšný lov opatrných dravců. Vytvořeno s vášní pro rybolov, dodáváno s respektem k byznys partnerům.</p>
+                    <p class="small">Premium-Angelvorfächer, entwickelt für den erfolgreichen Fang vorsichtiger Raubfische. Mit Leidenschaft für das Angeln kreiert, mit Respekt an Geschäftspartner geliefert.</p>
                 </div>
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <h5 class="text-white mb-3" style="font-size: 1.1rem;">Fakturační údaje</h5>
-                    <p class="small mb-1"><strong>Trademont s. r. o.</strong></p> <p class="small mb-1">Korunní 2569/108</p>
-                    <p class="small mb-1">10100 Praha, Česká republika</p>
+                    <h5 class="text-white mb-3" style="font-size: 1.1rem;">Rechnungsdaten</h5>
+                    <p class="small mb-1"><strong>Trademont s. r. o.</strong></p>
+                    <p class="small mb-1">Korunní 2569/108</p>
+                    <p class="small mb-1">101 00 Praha</p>
+                    <p class="small mb-1">Tschechische Republik</p>
                     <p class="small mb-1">IČO: 07890842</p>
                     <p class="small mb-0">DIČ: CZ07890842</p>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-white mb-3" style="font-size: 1.1rem;">Právní informace</h5>
+                    <h5 class="text-white mb-3" style="font-size: 1.1rem;">Rechtliche Informationen</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Obchodní podmínky (B2B)</a></li>
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Zásady ochrany osobních údajů</a></li>
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Nastavení Cookies</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Allgemeine Geschäftsbedingungen (B2B)</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Datenschutzerklärung</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Cookie-Einstellungen</a></li>
                     </ul>
                 </div>
             </div>
             <div class="row mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.1);">
                 <div class="col-12 text-center">
-                    <p class="mb-0 small">&copy; 2026 <span class="brand-font text-visiless" style="font-size: 0.8rem;">VISILESS<sup>®</sup></span>. Všechna práva vyhrazena.</p>
+                    <p class="mb-0 small">&copy; 2026 <span class="brand-font text-visiless" style="font-size: 0.8rem;">VISILESS<sup>®</sup></span>. Alle Rechte vorbehalten.</p>
                 </div>
             </div>
         </div>
@@ -583,33 +583,33 @@
         // REGION & COOKIE LOGIC
         // ==========================================
         
-        // Zápis volby regionu do paměti
+        // Save region preference to memory
         window.setRegion = function(region) {
             localStorage.setItem('visilessRegion', region);
-            document.body.style.overflow = 'auto'; // Obnovení scrollování
+            document.body.style.overflow = 'auto'; // Restore scrolling
         };
 
-        // Zápis volby cookies do paměti
+        // Save cookie preference to memory
         window.acceptCookies = function(type) {
             localStorage.setItem('visilessCookies', type);
             document.getElementById('cookie-banner').classList.remove('show');
         };
 
-        // Kontrola při načtení stránky
+        // Check on page load
         $(window).on('load', function() {
-            // 1. Logika pro výběr krajiny
+            // 1. Region selection logic
             if (!localStorage.getItem('visilessRegion')) {
-                // Pokud ještě nezvolil, zobrazíme okno a zablokujeme scrollování
+                // If not selected, show modal and block scrolling
                 document.getElementById('region-modal').classList.add('show');
                 document.body.style.overflow = 'hidden';
             }
 
-            // 2. Logika pro Cookie lištu
+            // 2. Cookie banner logic
             if (!localStorage.getItem('visilessCookies')) {
-                // Pokud ještě nepotvrdil cookies, ukážeme lištu s malým zpožděním
+                // If cookies not accepted, show banner with a small delay
                 setTimeout(function() {
                     document.getElementById('cookie-banner').classList.add('show');
-                }, 1500); // Zobrazí se 1.5 sekundy po načtení webu
+                }, 1500); // Appears 1.5 seconds after site loads
             }
         });
     </script>
