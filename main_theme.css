@@ -578,3 +578,11 @@ a, .header_nav_a a, .video_container a .img-video {
 	.c_x_bg { height:220px; }
 
 }
+
+.btn-custom, .btn-outline-custom {
+    transition: all 0.3s ease;
+}
+.btn-custom:hover, .btn-outline-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
