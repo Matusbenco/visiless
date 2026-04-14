@@ -923,7 +923,7 @@
         </div>
     </footer>
 
-    <div id="socialBanner" class="social-banner">
+    <div id="socialBanner" class="social-banner hidden">
         <div class="social-banner-header">
             <div>
                 <span class="social-banner-tag">Sledujte nás</span>
@@ -945,7 +945,7 @@
         </div>
     </div>
 
-    <div id="socialBannerButton" class="social-banner-button hidden" onclick="toggleSocialBanner(true)" title="Zobrazit panel sociálních sítí">
+    <div id="socialBannerButton" class="social-banner-button" onclick="toggleSocialBanner(true)" title="Zobrazit panel sociálních sítí">
         <i class="fas fa-share-alt"></i>
     </div>
 
@@ -1040,13 +1040,13 @@
             const socialBanner = document.getElementById('socialBanner');
             const socialButton = document.getElementById('socialBannerButton');
             const savedState = localStorage.getItem('socialBannerState');
-            if (savedState === 'hidden') {
-                socialBanner.classList.add('hidden');
-                socialButton.classList.remove('hidden');
-            } else {
+            if (savedState === 'visible') {
                 socialBanner.classList.remove('hidden');
                 socialButton.classList.add('hidden');
                 startSocialBannerTimer();
+            } else {
+                socialBanner.classList.add('hidden');
+                socialButton.classList.remove('hidden');
             }
         });
     </script>
