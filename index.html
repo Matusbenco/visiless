@@ -750,7 +750,7 @@ document.addEventListener('click', function(event) {
         </div>
 
         <div class="marketing-slider-wrapper wow fadeInUp">
-            <h4 class="mb-4 text-uppercase" style="letter-spacing: 2px; font-size: 0.9rem; opacity: 0.7;">Reálné statistiky z našich sítí (klikni pro detail):</h4>
+            <h4 class="mb-4 text-uppercase" style="letter-spacing: 2px; font-size: 0.9rem; opacity: 0.7;">Statistiky z našich sítí:</h4>
             <div class="marketing-carousel">
                 <div class="px-2">
                     <a href="marketing\visiless_stat4.jpeg" data-lightbox="marketing" data-title="Dosah příspěvku - Detail">
@@ -1012,17 +1012,18 @@ $(document).ready(function(){
     $('.marketing-carousel').slick({
         dots: true,                // Body pod sliderom
         infinite: true,            // Nekonečné opakovanie
-        speed: 500,                // Rýchlosť prechodu
+        speed: 6000,               // Pomalší prechod
         slidesToShow: 4,           // Koľko fotiek vidieť naraz na PC
         slidesToScroll: 1,
         autoplay: true,            // Automatické posúvanie
-        autoplaySpeed: 3000,       // Interval pre autoplay
-        pauseOnHover: true,        // Pauza pri hoveri
-        pauseOnFocus: true,
-        cssEase: 'ease',
+        autoplaySpeed: 0,          // Nepretržité pohybovanie bez paúzy - pomaly
+        pauseOnHover: false,       // Nepretržité pohybovanie
+        pauseOnFocus: false,       // Nepretržité pohybovanie
+        cssEase: 'linear',         // Lineárny prechod pre plynulé pohybovanie
         draggable: true,           // Povoliť posúvanie myšou
         swipe: true,               // Povoliť swipe na mobile
-        arrows: true,              // Zobraziť šípky
+        arrows: false,              // Zobraziť šípky
+        touchThreshold: 5,         // Citlivosť na touch
         responsive: [
             {
                 breakpoint: 1024,
