@@ -21,12 +21,84 @@
     <link rel="stylesheet" href="form.css">
     <link rel="stylesheet" href="main_theme.css">
     
-    
     <style>
         /* Úpravy pro VisiLess design (Zelená téma) */
         :root {
             --visiless-green: #4B5320;
             --visiless-dark: #2a2e12;
+        }
+
+        /* Mini tlačidlo na pravom okraji */
+        .social-trigger {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 10px 0 0 10px;
+            border: 2px solid white;
+            border-right: none;
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            box-shadow: -2px 0 15px rgba(0,0,0,0.3);
+        }
+
+        .social-trigger:hover {
+            padding-right: 25px; /* Jemne sa vysunie pri hoveri */
+        }
+
+        /* Štýl bannera (Sklenený efekt) */
+        .social-banner {
+            position: fixed;
+            right: -350px; /* Štartovacia pozícia mimo obrazovky */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px 0 0 20px;
+            padding: 25px;
+            z-index: 9999;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            transition: right 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .social-banner.active {
+            right: 0; /* Vysunie sa na obrazovku */
+        }
+
+        /* Ostatné drobné detaily */
+        .social-banner-tag { background: var(--visiless-green); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        .social-banner-title { color: white; font-weight: bold; margin-top: 10px; font-size: 1.1rem; }
+        .social-banner-desc { color: #ccc; font-size: 0.85rem; margin: 15px 0; line-height: 1.4; }
+        .social-banner-links { display: flex; gap: 12px; }
+        .social-banner-link { width: 40px; height: 40px; background: rgba(206, 204, 204, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
+        .social-banner-link:hover { background: var(--visiless-green); transform: translateY(-3px); }
+        .social-banner-close { position: absolute; top: 15px; right: 15px; color: white; cursor: pointer; font-size: 1.5rem; opacity: 0.5; transition: 0.3s; }
+        .social-banner-close:hover { opacity: 1; }
+
+        @media (max-width: 768px) {
+            .social-banner {
+                right: 10px;
+                width: 260px;
+                top: auto;
+                bottom: 20px;
+                transform: none;
+            }
+            .social-trigger {
+                right: 10px;
+                top: auto;
+                bottom: 100px;
+                transform: none;
+            }
         }
 
         .brand-font {
@@ -373,97 +445,6 @@
     .marketing-section { padding: 40px 0; }
 }
 
-/* --- SOCIÁLNÍ SÍTĚ BANNER --- */
-.social-banner {
-    position: fixed;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background: linear-gradient(135deg, rgba(75, 83, 32, 0.95), rgba(75, 83, 32, 0.85));
-    border: 2px solid var(--visiless-green);
-    border-radius: 18px 0 0 18px;
-    padding: 20px 15px;
-    z-index: 999;
-    box-shadow: -5px 10px 40px rgba(0, 0, 0, 0.5);
-    transition: right 0.3s ease;
-}
-
-.social-banner.hidden {
-    right: -120px;
-}
-
-.social-banner-close {
-    position: absolute;
-    top: 10px;
-    right: 12px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 0;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.2s ease;
-}
-
-.social-banner-close:hover {
-    color: var(--visiless-green);
-}
-
-.social-banner-links {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 30px;
-}
-
-.social-banner-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 24px;
-    transition: all 0.3s ease;
-}
-
-.social-banner-link:hover {
-    background: var(--visiless-green);
-    border-color: var(--visiless-green);
-    transform: scale(1.1);
-}
-
-.social-banner-title {
-    color: #fff;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-align: center;
-    margin-bottom: 5px;
-    font-family: 'WorkSansMedium', sans-serif;
-}
-
-@media (max-width: 768px) {
-    .social-banner {
-        right: -120px;
-        padding: 15px 12px;
-    }
-    
-    .social-banner-link {
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
-    }
-}
     </style>
 </head>
 <body>
@@ -548,21 +529,36 @@
         </div>
     </header>
 
+    <script>
     <!-- Sociální sítě banner -->
-    <div id="socialBanner" class="social-banner">
-        <button type="button" class="social-banner-close" onclick="toggleSocialBanner()">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="social-banner-title">Sledujte nás</div>
-        <div class="social-banner-links">
-            <a href="https://www.facebook.com/lovryb" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Navštívit Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.youtube.com/@visiless" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Navštívit YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-        </div>
-    </div>
+     function toggleSocialBanner(show) {
+    const banner = document.getElementById('socialBanner');
+    if (typeof show === 'boolean') {
+        if (show) {
+            banner.classList.add('active');
+        } else {
+            banner.classList.remove('active');
+        }
+    } else {
+        banner.classList.toggle('active');
+    }
+}
+
+// Zatvorenie pri kliknutí hocikde inde na stránke
+document.addEventListener('click', function(event) {
+    const banner = document.getElementById('socialBanner');
+    const trigger = document.getElementById('socialTrigger');
+    
+    // Ak je banner aktívny a kliknutie nebolo na spúšťacie tlačidlo
+    if (banner.classList.contains('active')) {
+        if (!trigger.contains(event.target)) {
+            banner.classList.remove('active');
+        }
+    }
+});
+
+// Zabezpečíme, aby sa banner nespúšťal automaticky (odstráňte staré setTimeout ak tam nejaké bolo)
+    </script>
 
     <section id="uvod" class="rslider_wrapper position-relative overflow-hidden" style="height: 100vh;">
         <div class="image" style="background-image: url('visiless1.webp');"></div>
@@ -977,12 +973,11 @@
             document.getElementById('cookie-banner').classList.remove('show');
         };
 
-        // Zavření/otevření sociálního banneru
-        window.toggleSocialBanner = function() {
-            const banner = document.getElementById('socialBanner');
-            banner.classList.toggle('hidden');
-            localStorage.setItem('socialBannerHidden', banner.classList.contains('hidden'));
-        };
+// Upravte zatváracie tlačidlo v HTML, aby si pamätalo voľbu
+function closeSocialBanner() {
+    toggleSocialBanner(false);
+    localStorage.setItem('socialBannerClosed', 'true');
+}
 
         // Kontrola při načtení stránky
         $(window).on('load', function() {
@@ -1007,8 +1002,6 @@
             }
         });
     </script>
-    <script>
-   
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -1019,15 +1012,17 @@ $(document).ready(function(){
     $('.marketing-carousel').slick({
         dots: true,                // Body pod sliderom
         infinite: true,            // Nekonečné opakovanie
-        speed: 10000,              // Dlhý lineárny prechod pre efekt plynulého pásu
+        speed: 500,                // Rýchlosť prechodu
         slidesToShow: 4,           // Koľko fotiek vidieť naraz na PC
         slidesToScroll: 1,
         autoplay: true,            // Automatické posúvanie
-        autoplaySpeed: 1,          // Prakticky nepretržité posúvanie
-        pauseOnHover: false,       // Pokračuje aj pri prejdení myšou
-        pauseOnFocus: false,
-        cssEase: 'linear',
-        draggable: false,
+        autoplaySpeed: 3000,       // Interval pre autoplay
+        pauseOnHover: true,        // Pauza pri hoveri
+        pauseOnFocus: true,
+        cssEase: 'ease',
+        draggable: true,           // Povoliť posúvanie myšou
+        swipe: true,               // Povoliť swipe na mobile
+        arrows: true,              // Zobraziť šípky
         responsive: [
             {
                 breakpoint: 1024,
@@ -1058,5 +1053,36 @@ $(document).ready(function(){
     })
 });
 </script>
+
+
+<div id="socialTrigger" class="social-trigger" onclick="event.stopPropagation(); toggleSocialBanner();">
+    <i class="fas fa-users"></i>
+</div>
+
+<div id="socialBanner" class="social-banner">
+    <div class="social-banner-header">
+        <div>
+            <span class="social-banner-tag" style="background: var(--visiless-green); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;">LIVE KOMUNITA</span>
+            <div class="social-banner-title" style="font-weight: bold; margin-top: 5px;">Sledujte příběh miliónových dosahů</div>
+        </div>
+        <span class="social-banner-close" onclick="toggleSocialBanner(false)" title="Zavřít" style="cursor: pointer; font-size: 1.5rem; line-height: 1;">×</span>
+    </div>
+    <div class="social-banner-desc" style="font-size: 0.9rem; margin: 10px 0; color: #ffffff;">
+Vše pro nadšence rybaření na jednom místě. Získejte exkluzivní rady, články a novinky, které hýbou rybářským světem. </div>
+    <div class="social-banner-links" style="display: flex; gap: 10px;">
+        <a href="https://www.facebook.com/lovryb" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Sledujte náš Facebook" onclick="event.stopPropagation();">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@visiless" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Odebírejte náš YouTube" onclick="event.stopPropagation();">
+            <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.visiless.cz/blog-cz" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Čtěte náš blog" onclick="event.stopPropagation();">
+            <i class="fas fa-newspaper"></i>
+        </a>
+    </div>
+</div>
+
+
+
 </body>
 </html>
