@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     
@@ -17,6 +20,7 @@
     <link rel="stylesheet" href="cookies.css">
     <link rel="stylesheet" href="form.css">
     <link rel="stylesheet" href="main_theme.css">
+    
     
     <style>
         /* Úpravy pro VisiLess design (Zelená téma) */
@@ -234,10 +238,231 @@
 .brand-text-span { font-size: 2.2rem; transform: translateY(8px); }
 
 @media (max-width: 767px) {
+    /* 1. ÚPRAVY HLAVIČKY A LOGA */
     .brand-wrapper-link { padding-left: 10px !important; }
     .brand-logo-img { max-height: 35px !important; margin-right: 8px !important; }
-    /* Tu sme zmenšili font-size a jemne prispôsobili transform */
     .brand-text-span { font-size: 1.1rem !important; transform: translateY(3px) !important; } 
+
+    /* 2. ÚPRAVY ÚVODNÉHO BOXXU (HERO SEKCIA) */
+    .rslider_content {
+        margin-top: 40px !important; /* Zmenšíme zbytočne veľkú medzeru zhora */
+    }
+    .box-content {
+        padding: 25px 20px !important; /* Zúžime vnútorné okraje boxu, aby mal text viac miesta */
+    }
+    .box-content .rslider_title {
+        font-size: 1.8rem !important; /* Zmenšíme hlavný nadpis */
+    }
+    .box-content h3 {
+        font-size: 1.2rem !important; /* Zmenšíme podnadpis */
+    }
+    .box-content p {
+        font-size: 1rem !important; /* Zmenšíme odsek */
+        margin-bottom: 30px !important;
+    }
+    
+    /* 3. TLAČIDLÁ NA CELÚ ŠÍRKU PRE POHODLNÉ KLIKANIE */
+    .box-content .btn {
+        width: 100% !important; /* Roztiahne tlačidlá na celú šírku boxu */
+        margin-right: 0 !important; /* Zrušíme medzeru vpravo, keďže sú pod sebou */
+        margin-bottom: 15px !important; /* Pekná medzera medzi tlačidlami */
+        padding: 12px 20px !important; /* Urobíme ich trošku vyššie pre prst */
+    }
+}
+
+
+/* --- MARKETINGOVÁ SEKCIA ŠTÝLY --- */
+.marketing-section {
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('visiless1.webp'); /* Pozadie ladiace s webom */
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 80px 0;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    height: 100%;
+}
+
+.stat-number {
+    font-family: 'Black Ops One', cursive;
+    font-size: 3rem;
+    color: var(--visiless-green);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.story-text {
+    line-height: 1.8;
+    color: #e0e0e0;
+}
+
+.highlight-green {
+    color: var(--visiless-green);
+    font-weight: bold;
+}
+
+/* Galéria */
+.marketing-gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.marketing-gallery img:hover {
+    transform: scale(1.05);
+    border-color: var(--visiless-green);
+}
+
+.marketing-carousel .slick-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marketing-carousel .px-2 {
+    padding: 0 8px;
+}
+
+.marketing-carousel .px-2 a {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    transition: transform 0.35s ease, border-color 0.35s ease;
+    display: block;
+}
+
+.marketing-carousel .px-2 a:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.marketing-carousel .px-2 img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 767px) {
+    .marketing-carousel .px-2 img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 767px) {
+    .stat-number { font-size: 2rem; }
+    .marketing-section { padding: 40px 0; }
+}
+
+/* --- SOCIÁLNÍ SÍTĚ BANNER --- */
+.social-banner {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, rgba(75, 83, 32, 0.95), rgba(75, 83, 32, 0.85));
+    border: 2px solid var(--visiless-green);
+    border-radius: 18px 0 0 18px;
+    padding: 20px 15px;
+    z-index: 999;
+    box-shadow: -5px 10px 40px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+}
+
+.social-banner.hidden {
+    right: -120px;
+}
+
+.social-banner-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.social-banner-close:hover {
+    color: var(--visiless-green);
+}
+
+.social-banner-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.social-banner-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.social-banner-link:hover {
+    background: var(--visiless-green);
+    border-color: var(--visiless-green);
+    transform: scale(1.1);
+}
+
+.social-banner-title {
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 5px;
+    font-family: 'WorkSansMedium', sans-serif;
+}
+
+@media (max-width: 768px) {
+    .social-banner {
+        right: -120px;
+        padding: 15px 12px;
+    }
+    
+    .social-banner-link {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
 }
     </style>
 </head>
@@ -322,6 +547,22 @@
             </nav>
         </div>
     </header>
+
+    <!-- Sociální sítě banner -->
+    <div id="socialBanner" class="social-banner">
+        <button type="button" class="social-banner-close" onclick="toggleSocialBanner()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="social-banner-title">Sledujte nás</div>
+        <div class="social-banner-links">
+            <a href="https://www.facebook.com/lovryb" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Navštívit Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.youtube.com/@visiless" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Navštívit YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+    </div>
 
     <section id="uvod" class="rslider_wrapper position-relative overflow-hidden" style="height: 100vh;">
         <div class="image" style="background-image: url('visiless1.webp');"></div>
@@ -482,7 +723,7 @@
                                 <strong>Nulové reklamace a garantovaná kvalita:</strong> Prodáváte produkt, který prošel ruční kontrolou. Šetříme váš čas i nervy s nespokojenými zákazníky – s námi reklamace řešit nebudete.
                             </li>
                             <li class="pl-3">
-                                <strong>Spolehlivá logistika a dostupnost:</strong> Zboží držíme skladem ve velkých objemech a objednávky našim B2B partnerům expedujeme obratem, nejpozději do 48 hodin.
+                                <strong>Spolehlivá logistika a dostupnost:</strong> Zboží držíme skladem ve velkých objemech.
                             </li>
                         </ul>
                     </div>
@@ -490,6 +731,90 @@
             </div>
         </div>
     </section>
+
+    <section id="marketing" class="marketing-section text-white py-5" style="background: #0b0b0b;">
+    <div class="container">
+        <div class="row mb-5 align-items-center">
+            <div class="col-lg-7 wow fadeInLeft">
+                <h2 class="brand-font mb-4" style="color: var(--visiless-green); font-size: 2.5rem;">SÍLA ZNAČKY V ČÍSLECH</h2>
+                <div class="glass-card p-4" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
+                    <p style="font-size: 1.1rem; line-height: 1.7;">Od roku 2020 rosteme každým rokem o <span style="color: var(--visiless-green); font-weight: bold;">desítky procent</span>. Náš příběh začal první velkou štikou ulovenou z kajaku 📸. Vůbec nešlo o byznys, šlo jen o rybářskou radost.</p>
+                    <p style="font-size: 1.1rem; line-height: 1.7;">Dnes dosahujeme <span style="color: var(--visiless-green); font-weight: bold;">miliónových počtů zhlédnutí</span>. V roce 2025 jsme pokořili hranici 1 000 000 zobrazení u videa hned 2x. Podaří se nám brzy zdolat magických 5 milionů? <br><strong>Pojďte růst s námi.</strong></p>
+                </div>
+            </div>
+            <div class="col-lg-5 mt-4 mt-lg-0 wow fadeInRight text-center">
+                <div class="p-4" style="border-left: 4px solid var(--visiless-green); background: rgba(75, 83, 32, 0.1);">
+                    <h3 class="brand-font" style="font-size: 3.5rem; color: var(--visiless-green); margin-bottom: 0;">2X</h3>
+                    <p class="text-uppercase" style="letter-spacing: 2px;">Milionové dosahy (2025)</p>
+                    <hr style="border-color: rgba(255,255,255,0.1);">
+                    <h3 class="brand-font" style="font-size: 3.5rem; color: var(--visiless-green); margin-bottom: 0;">500%</h3>
+                    <p class="text-uppercase" style="letter-spacing: 2px;">Meziroční nárůst komunity</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="marketing-slider-wrapper wow fadeInUp">
+            <h4 class="mb-4 text-uppercase" style="letter-spacing: 2px; font-size: 0.9rem; opacity: 0.7;">Reálné statistiky z našich sítí (klikni pro detail):</h4>
+            <div class="marketing-carousel">
+                <div class="px-2">
+                    <a href="marketing\visiless_stat4.jpeg" data-lightbox="marketing" data-title="Dosah příspěvku - Detail">
+                        <img src="marketing\visiless_stat4.jpeg" class="img-fluid rounded" alt="Statistika 4">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat2.jpeg" data-lightbox="marketing" data-title="Statistika růstu">
+                        <img src="marketing\visiless_stat2.jpeg" class="img-fluid rounded" alt="Statistika 2">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat3.jpeg" data-lightbox="marketing" data-title="Zhlédnutí videí">
+                        <img src="marketing\visiless_stat3.jpeg" class="img-fluid rounded" alt="Statistika 3">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat5.jpeg" data-lightbox="marketing" data-title="Zhlédnutí videí">
+                        <img src="marketing\visiless_stat5.jpeg" class="img-fluid rounded" alt="Statistika 5">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat6.jpeg" data-lightbox="marketing" data-title="Statistika 6">
+                        <img src="marketing\visiless_stat6.jpeg" class="img-fluid rounded" alt="Statistika 6">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat7.jpeg" data-lightbox="marketing" data-title="Statistika 7">
+                        <img src="marketing\visiless_stat7.jpeg" class="img-fluid rounded" alt="Statistika 7">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat8.jpeg" data-lightbox="marketing" data-title="Statistika 8">
+                        <img src="marketing\visiless_stat8.jpeg" class="img-fluid rounded" alt="Statistika 8">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat10.jpeg" data-lightbox="marketing" data-title="Statistika 10">
+                        <img src="marketing\visiless_stat10.jpeg" class="img-fluid rounded" alt="Statistika 10">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat11.jpeg" data-lightbox="marketing" data-title="Statistika 11">
+                        <img src="marketing\visiless_stat11.jpeg" class="img-fluid rounded" alt="Statistika 11">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat12.jpeg" data-lightbox="marketing" data-title="Statistika 12">
+                        <img src="marketing\visiless_stat12.jpeg" class="img-fluid rounded" alt="Statistika 12">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat13.jpeg" data-lightbox="marketing" data-title="Statistika 13">
+                        <img src="marketing\visiless_stat13.jpeg" class="img-fluid rounded" alt="Statistika 13">
+                    </a>
+                </div>
+                </div>
+        </div>
+    </div>
+</section>
 
     <section id="faq" class="content box_padding box_margin3 pt-5 pb-5 bg-white">
         <div class="title_box text-center mb-5 wow fadeInDown">
@@ -598,6 +923,11 @@
                         <li class="mb-2"><a href="gdpr" class="text-muted text-decoration-none hover-white">Zásady ochrany osobních údajů</a></li>
                         <li class="mb-2"><a href="gdpr" class="text-muted text-decoration-none hover-white">Nastavení Cookies</a></li>
                     </ul>
+                    <h5 class="text-white mb-3 mt-4" style="font-size: 1.1rem;">Sledujte nás</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="https://www.youtube.com/@visiless" target="_blank" rel="noopener noreferrer" class="text-muted text-decoration-none hover-white"><i class="fab fa-youtube mr-2"></i>Youtube kanál</a></li>
+                        <li class="mb-2"><a href="https://www.facebook.com/lovryb" target="_blank" rel="noopener noreferrer" class="text-muted text-decoration-none hover-white"><i class="fab fa-facebook-f mr-2"></i>Facebook kanál</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="row mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.1);">
@@ -647,6 +977,13 @@
             document.getElementById('cookie-banner').classList.remove('show');
         };
 
+        // Zavření/otevření sociálního banneru
+        window.toggleSocialBanner = function() {
+            const banner = document.getElementById('socialBanner');
+            banner.classList.toggle('hidden');
+            localStorage.setItem('socialBannerHidden', banner.classList.contains('hidden'));
+        };
+
         // Kontrola při načtení stránky
         $(window).on('load', function() {
             // 1. Logika pro výběr krajiny
@@ -663,7 +1000,63 @@
                     document.getElementById('cookie-banner').classList.add('show');
                 }, 1500); // Zobrazí se 1.5 sekundy po načtení webu
             }
+
+            // 3. Obnovení stavu sociálního banneru
+            if (localStorage.getItem('socialBannerHidden') === 'true') {
+                document.getElementById('socialBanner').classList.add('hidden');
+            }
         });
     </script>
+    <script>
+   
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.marketing-carousel').slick({
+        dots: true,                // Body pod sliderom
+        infinite: true,            // Nekonečné opakovanie
+        speed: 10000,              // Dlhý lineárny prechod pre efekt plynulého pásu
+        slidesToShow: 4,           // Koľko fotiek vidieť naraz na PC
+        slidesToScroll: 1,
+        autoplay: true,            // Automatické posúvanie
+        autoplaySpeed: 1,          // Prakticky nepretržité posúvanie
+        pauseOnHover: false,       // Pokračuje aj pri prejdení myšou
+        pauseOnFocus: false,
+        cssEase: 'linear',
+        draggable: false,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1    // Na mobile len jedna fotka
+                }
+            }
+        ]
+    });
+
+    // Nastavenie Lightboxu (voliteľné)
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true,
+      'albumLabel': "Obrázek %1 z %2"
+    })
+});
+</script>
 </body>
 </html>
