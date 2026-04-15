@@ -530,35 +530,52 @@
     </header>
 
     <script>
-    <!-- Sociální sítě banner -->
-     function toggleSocialBanner(show) {
-    const banner = document.getElementById('socialBanner');
-    if (typeof show === 'boolean') {
+    // Funkcia na otvorenie a zatvorenie bannera
+    function toggleSocialBanner(show, event) {
+        // Zastavenie eventu, aby sa nespustilo náhodné kliknutie na pozadie (dôležité pre mobily)
+        if (event) {
+            event.stopPropagation();
+        }
+
+        var bannerContent = document.getElementById('social-banner-content');
+        var bannerBtn = document.getElementById('social-banner-btn');
+
+        if (!bannerContent || !bannerBtn) return;
+
         if (show) {
-            banner.classList.add('active');
+            // Najskôr zapneme viditeľnosť a hneď na to pridáme triedu pre CSS animáciu
+            bannerContent.style.display = 'block';
+            setTimeout(function() {
+                bannerContent.classList.add('active');
+            }, 10);
+            bannerBtn.style.display = 'none'; // Skryjeme ikonu
         } else {
-            banner.classList.remove('active');
-        }
-    } else {
-        banner.classList.toggle('active');
-    }
-}
-
-// Zatvorenie pri kliknutí hocikde inde na stránke
-document.addEventListener('click', function(event) {
-    const banner = document.getElementById('socialBanner');
-    const trigger = document.getElementById('socialTrigger');
-    
-    // Ak je banner aktívny a kliknutie nebolo na spúšťacie tlačidlo
-    if (banner.classList.contains('active')) {
-        if (!trigger.contains(event.target)) {
-            banner.classList.remove('active');
+            // Zrušíme aktívnu triedu (spustí sa zasúvacia CSS animácia)
+            bannerContent.classList.remove('active');
+            // Počkáme, kým animácia dobehne a potom skryjeme úplne
+            setTimeout(function() {
+                bannerContent.style.display = 'none';
+            }, 500); 
+            bannerBtn.style.display = 'flex'; // Znova ukážeme ikonu
         }
     }
-});
 
-// Zabezpečíme, aby sa banner nespúšťal automaticky (odstráňte staré setTimeout ak tam nejaké bolo)
-    </script>
+    // Detekcia kliknutia mimo pre zatvorenie bannera (Zlúčené mobilné dotyky aj myš)
+    ['click', 'touchstart'].forEach(function(eventType) {
+        document.addEventListener(eventType, function(event) {
+            var bannerContent = document.getElementById('social-banner-content');
+            var bannerBtn = document.getElementById('social-banner-btn');
+
+            // Ak banner existuje, je viditeľný a má triedu active (je vysunutý)
+            if (bannerContent && bannerContent.classList.contains('active') && bannerContent.style.display !== 'none') {
+                // Ak cieľ kliknutia nie je samotný banner, jeho vnútro a nie je to otváracie tlačidlo
+                if (!bannerContent.contains(event.target) && (!bannerBtn || !bannerBtn.contains(event.target))) {
+                    toggleSocialBanner(false);
+                }
+            }
+        });
+    });
+</script>
 
     <section id="uvod" class="rslider_wrapper position-relative overflow-hidden" style="height: 100vh;">
         <div class="image" style="background-image: url('visiless1.webp');"></div>
@@ -997,9 +1014,11 @@ function closeSocialBanner() {
             }
 
             // 3. Obnovení stavu sociálního banneru
-            if (localStorage.getItem('socialBannerHidden') === 'true') {
-                document.getElementById('socialBanner').classList.add('hidden');
-            }
+if (localStorage.getItem('socialBannerHidden') === 'true') {
+    var sb = document.getElementById('social-banner-content');
+    if (sb) sb.style.display = 'none';
+}
+
         });
     </script>
 
@@ -1056,20 +1075,24 @@ $(document).ready(function(){
 </script>
 
 
-<div id="socialTrigger" class="social-trigger" onclick="event.stopPropagation(); toggleSocialBanner();">
-    <i class="fas fa-users"></i>
+
+
+<div id="social-banner-btn" class="social-trigger" onclick="toggleSocialBanner(true, event)" style="display: flex; z-index: 99999;">
+    <i class="fas fa-users" style="font-size: 1.5rem; color: #fff;"></i>
+    <span style="font-size: 0.6rem; font-weight: bold; text-transform: uppercase;">Komunita</span>
 </div>
 
-<div id="socialBanner" class="social-banner">
-    <div class="social-banner-header">
+<div id="social-banner-content" class="social-banner" style="display: none; z-index: 99999;">
+    <div class="social-banner-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
         <div>
             <span class="social-banner-tag" style="background: var(--visiless-green); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;">LIVE KOMUNITA</span>
             <div class="social-banner-title" style="font-weight: bold; margin-top: 5px;">Sledujte příběh miliónových dosahů</div>
         </div>
-        <span class="social-banner-close" onclick="toggleSocialBanner(false)" title="Zavřít" style="cursor: pointer; font-size: 1.5rem; line-height: 1;">×</span>
+        <span class="social-banner-close" onclick="toggleSocialBanner(false, event)" title="Zavřít" style="cursor: pointer; font-size: 2.5rem; line-height: 1; padding: 0 15px; margin-right: -10px;">&times;</span>
     </div>
     <div class="social-banner-desc" style="font-size: 0.9rem; margin: 10px 0; color: #ffffff;">
-Vše pro nadšence rybaření na jednom místě. Získejte exkluzivní rady, články a novinky, které hýbou rybářským světem. </div>
+        Vše pro nadšence rybaření na jednom místě. Získejte exkluzivní rady, články a novinky, které hýbou rybářským světem.
+    </div>
     <div class="social-banner-links" style="display: flex; gap: 10px;">
         <a href="https://www.facebook.com/lovryb" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Sledujte náš Facebook" onclick="event.stopPropagation();">
             <i class="fab fa-facebook-f"></i>
@@ -1077,13 +1100,54 @@ Vše pro nadšence rybaření na jednom místě. Získejte exkluzivní rady, čl
         <a href="https://www.youtube.com/@visiless" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Odebírejte náš YouTube" onclick="event.stopPropagation();">
             <i class="fab fa-youtube"></i>
         </a>
-        <a href="https://www.visiless.cz/blog-cz" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Čtěte náš blog" onclick="event.stopPropagation();">
-            <i class="fas fa-newspaper"></i>
+        <a href="https://www.instagram.com/lovryb" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Sledujte náš Instagram" onclick="event.stopPropagation();">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@visiless" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Sledujte náš TikTok" onclick="event.stopPropagation();">
+            <i class="fab fa-tiktok"></i>
         </a>
     </div>
 </div>
 
+<script>
+    // Správna funkcionalita pre otváranie/zatváranie
+    function toggleSocialBanner(show, event) {
+        if (event) event.stopPropagation();
 
+        var bannerContent = document.getElementById('social-banner-content');
+        var bannerBtn = document.getElementById('social-banner-btn');
+
+        if (!bannerContent || !bannerBtn) return;
+
+        if (show) {
+            bannerContent.style.display = 'block';
+            setTimeout(function() {
+                bannerContent.classList.add('active');
+            }, 10);
+            bannerBtn.style.display = 'none'; 
+        } else {
+            bannerContent.classList.remove('active');
+            setTimeout(function() {
+                bannerContent.style.display = 'none';
+            }, 500); 
+            bannerBtn.style.display = 'flex';
+        }
+    }
+
+    // Kliknutie mimo bannera
+    ['click', 'touchstart'].forEach(function(eventType) {
+        document.addEventListener(eventType, function(event) {
+            var bannerContent = document.getElementById('social-banner-content');
+            var bannerBtn = document.getElementById('social-banner-btn');
+            
+            if (bannerContent && bannerContent.style.display !== 'none') {
+                if (!bannerContent.contains(event.target) && (!bannerBtn || !bannerBtn.contains(event.target))) {
+                    toggleSocialBanner(false);
+                }
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
