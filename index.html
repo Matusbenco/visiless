@@ -907,7 +907,55 @@
     <script src="jquery.form.js"></script>
     <script src="jquery.matchHeight.js"></script>
     <script src="classie.js"></script>
-    <script src="ddfullscreenmenu.js"></script>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menu = document.getElementById('ddfullscreenmenu');
+        var hamburger = document.querySelector('.hamburger');
+        var closeBtn = document.getElementById('closex');
+        var menuLinks = document.querySelectorAll('#fullscreenmenu-ul a');
+
+        // Funkcia na otvorenie/zatvorenie menu
+        function toggleMyMenu(e) {
+            // Ak klikáme na krížik, zabránime preskočeniu stránky
+            if (e && e.currentTarget.id === 'closex') {
+                e.preventDefault();
+            }
+            
+            if (menu.classList.contains('openmenu')) {
+                menu.classList.remove('openmenu');
+                document.body.style.overflow = 'auto'; // Povoliť scrollovanie webu
+            } else {
+                menu.classList.add('openmenu');
+                document.body.style.overflow = 'hidden'; // Zablokovať scrollovanie pod menu
+            }
+        }
+
+        // 1. Aktivácia Hamburger ikony
+        if (hamburger) {
+            hamburger.removeAttribute('onclick'); // Zmazanie starého chybného príkazu
+            hamburger.addEventListener('click', toggleMyMenu);
+        }
+
+        // 2. Aktivácia krížika na zatvorenie
+        if (closeBtn) {
+            closeBtn.removeAttribute('onclick');
+            closeBtn.addEventListener('click', toggleMyMenu);
+        }
+
+        // 3. Zatvorenie menu po kliknutí na akýkoľvek odkaz v menu
+        if (menuLinks) {
+            menuLinks.forEach(function(link) {
+                link.removeAttribute('onclick');
+                link.addEventListener('click', function() {
+                    menu.classList.remove('openmenu');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+        }
+    });
+</script>
+
     <script src="wow.min.js"></script>
     <script src="scroll.js"></script>
     <script src="init.js"></script>
