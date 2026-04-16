@@ -261,12 +261,11 @@
     
         /* Responzivita */
         @media screen and (max-width: 767px) {
-            .main_logo { left: 15px !important; top: 10px !important; transform: none !important; position: absolute !important; }
+.main_logo { left: 15px !important; top: 10px !important; transform: none !important; position: absolute !important; z-index: 1000 !important; max-width: 70%; }
             .main_logo img { height: 35px !important; margin-right: 10px !important; }
             .brand-font { font-size: 1.6rem !important; }
             .header { padding-top: 10px !important; padding-bottom: 10px !important; }
-            .hamburger { font-size: 28px !important; margin-right: 15px !important; }
-            .rslider_wrapper { height: 100vh !important; }
+.hamburger { font-size: 28px !important; margin-right: 15px !important; position: relative !important; z-index: 9999 !important; }            .rslider_wrapper { height: 100vh !important; }
             .rslider_wrapper_in { height: 100% !important; display: flex !important; align-items: center !important; justify-content: center !important; }
             .rslider_wrapper_in::before { display: block !important; background-color: rgba(0,0,0,0.6) !important; z-index: 1; }
             .rslider_content { position: relative !important; bottom: 0 !important; padding: 0 20px !important; text-align: center; z-index: 10; margin-top: 60px; }
