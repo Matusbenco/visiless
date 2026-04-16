@@ -305,13 +305,13 @@
         <i class="fas fa-fish bg-fish f3"></i>
     </div>
 
-    <a href="https://visiless.com" class="top-left-badge">
+    <a href="https://www.visiless.cz" class="top-left-badge">
         <i class="fas fa-arrow-left"></i> Späť na web
     </a>
 
     <div class="top-right-badge">
         <div class="status-dot"></div>
-        Zabezpečený B2B portál
+        Online - B2B portál
     </div>
 
     <div class="header">
@@ -331,11 +331,11 @@
             </div>
 
             <div class="summary-box">
-                <div class="summary-row"><span>Celkem MOC (bez DPH):</span><span id="sum-moc">0,00 CZK</span></div>
-                <div class="summary-row"><span>Celkem Nákup (VOC bez DPH):</span><span id="sum-voc" style="color: #fff;">0,00 CZK</span></div>
-                <div class="summary-row profit"><span>Váš čistý zisk (Marže):</span><span id="sum-profit">0,00 CZK</span></div>
-                <div class="summary-row" style="margin-top: 15px; border-top: 1px dashed var(--border); padding-top: 15px;"><span>DPH (21 %):</span><span id="sum-tax">0,00 CZK</span></div>
-                <div class="summary-row total"><span>K úhradě (s DPH):</span><span id="sum-final">0,00 CZK</span></div>
+                <div class="summary-row"><span>Celkem MOC (bez DPH):</span><span id="sum-moc">0,00 Kč</span></div>
+                <div class="summary-row"><span>Celkem Nákup (VOC bez DPH):</span><span id="sum-voc" style="color: #fff;">0,00 Kč</span></div>
+                <div class="summary-row profit"><span>Váš čistý zisk (Marže):</span><span id="sum-profit">0,00 Kč</span></div>
+                <div class="summary-row" style="margin-top: 15px; border-top: 1px dashed var(--border); padding-top: 15px;"><span>DPH (21 %):</span><span id="sum-tax">0,00 Kč</span></div>
+                <div class="summary-row total"><span>K úhradě (s DPH):</span><span id="sum-final">0,00 Kč</span></div>
             </div>
 
             <form action="https://formspree.io/f/mvzbnzbv" method="POST" id="b2b-form">
@@ -376,8 +376,9 @@
     </div>
 
     <script>
-        const formatEur = (number) => {
-            return new Intl.NumberFormat('cs-CZ', { style: 'currency', currency: 'EUR' }).format(number);
+        // Formátovanie na CZK meny
+        const formatCzk = (number) => {
+            return new Intl.NumberFormat('cs-CZ', { style: 'currency', currency: 'CZK' }).format(number);
         };
 
         const catalogData = [
@@ -435,7 +436,7 @@
                     <img src="${group.img}" alt="${group.name}" class="group-img" onerror="this.style.display='none'">
                     <div>
                         <div class="group-title">${group.name}</div>
-                        <div class="group-moc">Základní MOC: ${formatEur(group.moc)} s DPH</div>
+                        <div class="group-moc">Základní MOC: ${formatCzk(group.moc)} s DPH</div>
                     </div>
                 </div>
                 <div class="variants-table">`;
@@ -496,12 +497,12 @@
                 const voc_bez_DPH = moc_bez_DPH - profit_per_piece;
 
                 infoSpan.style.background = "rgba(0,0,0,0.4)";
-                let text = `<span style="color:#fff">MOC (bez DPH): ${formatEur(moc_bez_DPH)} | VOC: ${formatEur(voc_bez_DPH)}</span><br>`;
+                let text = `<span style="color:#fff">MOC (bez DPH): ${formatCzk(moc_bez_DPH)} | VOC: ${formatCzk(voc_bez_DPH)}</span><br>`;
                 
                 if (nextTier) {
-                    text += `<span style="color:var(--success)">Zisk: ${formatEur(profit_per_piece)}/ks (${itemTier.marginPct * 100}%)</span> <span style="color:var(--warning); font-size: 0.8rem;">(Chybí ${nextTier.minQty - qty} ks na ${nextTier.marginPct * 100}%)</span>`;
+                    text += `<span style="color:var(--success)">Zisk: ${formatCzk(profit_per_piece)}/ks (${itemTier.marginPct * 100}%)</span> <span style="color:var(--warning); font-size: 0.8rem;">(Chybí ${nextTier.minQty - qty} ks na ${nextTier.marginPct * 100}%)</span>`;
                 } else {
-                    text += `<span style="color:var(--success)">Zisk: ${formatEur(profit_per_piece)}/ks (${itemTier.marginPct * 100}% - MAX)</span>`;
+                    text += `<span style="color:var(--success)">Zisk: ${formatCzk(profit_per_piece)}/ks (${itemTier.marginPct * 100}% - MAX)</span>`;
                 }
                 infoSpan.innerHTML = text;
             }
@@ -541,9 +542,9 @@
                 const marginDisplay = `${marginDec * 100}%`;
 
                 emailText += `[ ${item.variant.code} ] - ${item.qty} ks\n`;
-                emailText += `   MOC (bez DPH): ${formatEur(moc_bez_DPH_ks)} / ks\n`;
-                emailText += `   Vaše nákupní cena VOC: ${formatEur(voc_bez_DPH_ks)} / ks\n`;
-                emailText += `   Čistý zisk za položku: ${formatEur(lineProfit)} (Marže: ${marginDisplay})\n\n`;
+                emailText += `   MOC (bez DPH): ${formatCzk(moc_bez_DPH_ks)} / ks\n`;
+                emailText += `   Vaše nákupní cena VOC: ${formatCzk(voc_bez_DPH_ks)} / ks\n`;
+                emailText += `   Čistý zisk za položku: ${formatCzk(lineProfit)} (Marže: ${marginDisplay})\n\n`;
 
                 previewHTML += `
                     <div class="cart-item-card">
@@ -552,9 +553,9 @@
                             <span style="color:var(--brand-green);">${marginDisplay}</span>
                         </div>
                         <div class="cart-item-math">
-                            <div>MOC (bez DPH):<br><strong>${formatEur(moc_bez_DPH_ks)}/ks</strong></div>
-                            <div>Nákup (bez DPH):<br><strong>${formatEur(voc_bez_DPH_ks)}/ks</strong></div>
-                            <div class="cart-item-profit">Váš zisk z položky: ${formatEur(lineProfit)}</div>
+                            <div>MOC (bez DPH):<br><strong>${formatCzk(moc_bez_DPH_ks)}/ks</strong></div>
+                            <div>Nákup (bez DPH):<br><strong>${formatCzk(voc_bez_DPH_ks)}/ks</strong></div>
+                            <div class="cart-item-profit">Váš zisk z položky: ${formatCzk(lineProfit)}</div>
                         </div>
                     </div>`;
             });
@@ -566,22 +567,22 @@
                 previewHTML = `<div style="color: var(--text-muted); font-style: italic; text-align: center; padding: 20px 0;">Košík je zatím prázdný.</div>`;
             }
 
-            document.getElementById('sum-moc').innerText = formatEur(sumMoc);
-            document.getElementById('sum-voc').innerText = formatEur(sumVoc);
-            document.getElementById('sum-profit').innerText = formatEur(sumProfit);
-            document.getElementById('sum-tax').innerText = formatEur(totalTax);
-            document.getElementById('sum-final').innerText = formatEur(totalFinal);
+            document.getElementById('sum-moc').innerText = formatCzk(sumMoc);
+            document.getElementById('sum-voc').innerText = formatCzk(sumVoc);
+            document.getElementById('sum-profit').innerText = formatCzk(sumProfit);
+            document.getElementById('sum-tax').innerText = formatCzk(totalTax);
+            document.getElementById('sum-final').innerText = formatCzk(totalFinal);
             document.getElementById('cart-list-preview').innerHTML = previewHTML;
 
             const btn = document.getElementById('submit-order');
             btn.disabled = Object.keys(orderItems).length === 0;
 
             emailText += "---------------------------------\n";
-            emailText += `CELKEM MOC (bez DPH): ${formatEur(sumMoc)}\n`;
-            emailText += `CELKEM VOC (bez DPH): ${formatEur(sumVoc)}\n`;
-            emailText += `VÁŠ ČISTÝ ZISK:       ${formatEur(sumProfit)}\n`;
-            emailText += `DPH (21%):            ${formatEur(totalTax)}\n`;
-            emailText += `CELKEM K ÚHRADĚ s DPH:${formatEur(totalFinal)}\n`;
+            emailText += `CELKEM MOC (bez DPH): ${formatCzk(sumMoc)}\n`;
+            emailText += `CELKEM VOC (bez DPH): ${formatCzk(sumVoc)}\n`;
+            emailText += `VÁŠ ČISTÝ ZISK:       ${formatCzk(sumProfit)}\n`;
+            emailText += `DPH (21%):            ${formatCzk(totalTax)}\n`;
+            emailText += `CELKEM K ÚHRADĚ s DPH:${formatCzk(totalFinal)}\n`;
             
             cachedCartEmailText = emailText;
         }
