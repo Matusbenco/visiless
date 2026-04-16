@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     
@@ -205,11 +205,11 @@
         }
         
         /* Menu & Form */
-        .hamburger { cursor: pointer; color: #fff; font-size: 24px; z-index: 1200; position: relative; }
+        .hamburger { cursor: pointer; color: #fff; font-size: 24px; z-index: 10001 !important; position: relative !important; pointer-events: auto !important; }
         #ddfullscreenmenu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20, 25, 15, 0.98); z-index: 9999; }
         #ddfullscreenmenu.openmenu { display: block; }
-        #closex { position: absolute; top: 30px; right: 50px; color: #fff; font-size: 40px; text-decoration: none; }
-        #ulwrapper { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+        #closex { position: absolute; top: 30px; right: 50px; color: #fff; font-size: 40px; text-decoration: none; z-index: 10005; }
+        #ulwrapper { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 100%; }
         #fullscreenmenu-ul li { margin-bottom: 20px; list-style: none; }
         #fullscreenmenu-ul li a { color: #fff; font-size: 2rem; text-decoration: none; border-bottom: none; transition: color 0.3s; font-family: 'WorkSansMedium', sans-serif; }
         #fullscreenmenu-ul li a:hover { color: var(--visiless-green) !important; }
@@ -235,9 +235,10 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 10, 10, 0.98); z-index: 10000;
             display: flex; align-items: center; justify-content: center;
-            opacity: 0.5; visibility: hidden; transition: all 0.5s ease;
+            opacity: 0; visibility: hidden; transition: all 0.5s ease;
+            pointer-events: none; /* OPRAVA: Zabraňuje blokovaniu kliknutí, keď je schované */
         }
-        .region-overlay.show { opacity: 1; visibility: visible; }
+        .region-overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
         .region-box {
             background: rgba(255,255,255,0.03); border: 1px solid var(--visiless-green);
             padding: 50px 40px; border-radius: 2px; max-width: 550px; width: 90%;
@@ -248,7 +249,6 @@
         .region-box img { animation: pulse 2s infinite; }
 
         /* Cookie Lišta */
-       
         .cookie-banner {
             position: fixed; 
             bottom: 0; 
@@ -258,7 +258,6 @@
             border-top: 2px solid var(--visiless-green);
             padding: 20px 0; 
             z-index: 9998; 
-            /* Použitie transform zaručí skrytie bez ohľadu na to, aká je lišta vysoká */
             transform: translateY(100%); 
             transition: transform 0.5s ease;
             box-shadow: 0 -5px 30px rgba(0,0,0,0.8);
@@ -270,11 +269,12 @@
     
         /* Responzivita */
         @media screen and (max-width: 767px) {
-.main_logo { left: 15px !important; top: 10px !important; transform: none !important; position: absolute !important; z-index: 1000 !important; max-width: 70%; }
+            .main_logo { left: 15px !important; top: 10px !important; transform: none !important; position: absolute !important; z-index: 1000 !important; max-width: 70%; }
             .main_logo img { height: 35px !important; margin-right: 10px !important; }
             .brand-font { font-size: 1.6rem !important; }
             .header { padding-top: 10px !important; padding-bottom: 10px !important; }
-.hamburger { font-size: 28px !important; margin-right: 15px !important; position: relative !important; z-index: 9999 !important; }            .rslider_wrapper { height: 100vh !important; }
+            .hamburger { font-size: 28px !important; margin-right: 15px !important; position: relative !important; z-index: 10001 !important; pointer-events: auto !important; }
+            .rslider_wrapper { height: 100vh !important; }
             .rslider_wrapper_in { height: 100% !important; display: flex !important; align-items: center !important; justify-content: center !important; }
             .rslider_wrapper_in::before { display: block !important; background-color: rgba(0,0,0,0.6) !important; z-index: 1; }
             .rslider_content { position: relative !important; bottom: 0 !important; padding: 0 20px !important; text-align: center; z-index: 10; margin-top: 60px; }
@@ -289,170 +289,161 @@
             .cookie-buttons button { width: 48%; padding: 10px 5px; font-size: 0.9rem; }
 
             /* OPRAVA OREZANÉHO TEXTU V ÚVODE NA MOBILE */
-        .rslider_wrapper_in {
-            padding-left: 0 !important; /* Odstráni 5% okraj, ktorý to posúval mimo stred */
+            .rslider_wrapper_in {
+                padding-left: 0 !important;
+            }
+            .rslider_content {
+                width: 100% !important;
+                padding: 0 15px !important;
+                box-sizing: border-box !important;
+            }
+            .box-content {
+                width: 100% !important; 
+                max-width: 100% !important;
+                padding: 25px 15px !important; 
+                box-sizing: border-box !important;
+            }
+            .rslider_title { font-size: 2rem !important; }
+            .rslider_content h3 { font-size: 1.1rem !important; }
+            .rslider_content p { font-size: 0.95rem !important; }
         }
-        .rslider_content {
-            width: 100% !important;
-            padding: 0 15px !important;
-            box-sizing: border-box !important;
-        }
-        .box-content {
-            width: 100% !important; /* Zruší fixných 750px */
-            max-width: 100% !important;
-            padding: 25px 15px !important; /* Zmenší pôvodný 40px padding, aby mal text viac miesta */
-            box-sizing: border-box !important;
-        }
-        /* Jemné zmenšenie písma pre lepšiu čitateľnosť na veľmi malých displejoch */
-        .rslider_title { font-size: 2rem !important; }
-        .rslider_content h3 { font-size: 1.1rem !important; }
-        .rslider_content p { font-size: 0.95rem !important; }
-        }
-
-
-
 
         /* Responzívne nastavenie pre logo a text VISILESS */
-.brand-wrapper-link { padding-left: 20px; }
-.brand-logo-img { max-height: 60px; margin-right: 15px; }
-.brand-text-span { font-size: 2.2rem; transform: translateY(8px); }
+        .brand-wrapper-link { padding-left: 10px; }
+        .brand-logo-img { max-height: 50px; margin-right: 15px; width: auto; } /* OPRAVA HLAVIČKY: max-výška loga */
+        .brand-text-span { font-size: 2.2rem; transform: translateY(8px); }
 
-@media (max-width: 767px) {
-    /* 1. ÚPRAVY HLAVIČKY A LOGA */
-    .brand-wrapper-link { padding-left: 10px !important; }
-    .brand-logo-img { max-height: 35px !important; margin-right: 8px !important; }
-    .brand-text-span { font-size: 1.1rem !important; transform: translateY(3px) !important; } 
+        @media (max-width: 767px) {
+            /* 1. ÚPRAVY HLAVIČKY A LOGA */
+            .brand-wrapper-link { padding-left: 0px !important; }
+            .brand-logo-img { max-height: 35px !important; margin-right: 8px !important; }
+            .brand-text-span { font-size: 1.1rem !important; transform: translateY(3px) !important; } 
 
-    /* 2. ÚPRAVY ÚVODNÉHO BOXXU (HERO SEKCIA) */
-    .rslider_content {
-        margin-top: 40px !important; /* Zmenšíme zbytočne veľkú medzeru zhora */
-    }
-    .box-content {
-        padding: 25px 20px !important; /* Zúžime vnútorné okraje boxu, aby mal text viac miesta */
-    }
-    .box-content .rslider_title {
-        font-size: 1.8rem !important; /* Zmenšíme hlavný nadpis */
-    }
-    .box-content h3 {
-        font-size: 1.2rem !important; /* Zmenšíme podnadpis */
-    }
-    .box-content p {
-        font-size: 1rem !important; /* Zmenšíme odsek */
-        margin-bottom: 30px !important;
-    }
-    
-    /* 3. TLAČIDLÁ NA CELÚ ŠÍRKU PRE POHODLNÉ KLIKANIE */
-    .box-content .btn {
-        width: 100% !important; /* Roztiahne tlačidlá na celú šírku boxu */
-        margin-right: 0 !important; /* Zrušíme medzeru vpravo, keďže sú pod sebou */
-        margin-bottom: 15px !important; /* Pekná medzera medzi tlačidlami */
-        padding: 12px 20px !important; /* Urobíme ich trošku vyššie pre prst */
-    }
-}
+            /* 2. ÚPRAVY ÚVODNÉHO BOXXU (HERO SEKCIA) */
+            .rslider_content {
+                margin-top: 40px !important; 
+            }
+            .box-content {
+                padding: 25px 20px !important; 
+            }
+            .box-content .rslider_title {
+                font-size: 1.8rem !important; 
+            }
+            .box-content h3 {
+                font-size: 1.2rem !important; 
+            }
+            .box-content p {
+                font-size: 1rem !important; 
+                margin-bottom: 30px !important;
+            }
+            
+            /* 3. TLAČIDLÁ NA CELÚ ŠÍRKU PRE POHODLNÉ KLIKANIE */
+            .box-content .btn {
+                width: 100% !important; 
+                margin-right: 0 !important; 
+                margin-bottom: 15px !important; 
+                padding: 12px 20px !important; 
+            }
+        }
 
+        /* --- MARKETINGOVÁ SEKCIA ŠTÝLY --- */
+        .marketing-section {
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('visiless1.webp'); 
+            background-attachment: fixed;
+            background-size: cover;
+            padding: 80px 0;
+        }
 
-/* --- MARKETINGOVÁ SEKCIA ŠTÝLY --- */
-.marketing-section {
-    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('visiless1.webp'); /* Pozadie ladiace s webom */
-    background-attachment: fixed;
-    background-size: cover;
-    padding: 80px 0;
-}
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+        }
 
-.glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 30px;
-    height: 100%;
-}
+        .stat-number {
+            font-family: 'Black Ops One', cursive;
+            font-size: 3rem;
+            color: var(--visiless-green);
+            display: block;
+            margin-bottom: 5px;
+        }
 
-.stat-number {
-    font-family: 'Black Ops One', cursive;
-    font-size: 3rem;
-    color: var(--visiless-green);
-    display: block;
-    margin-bottom: 5px;
-}
+        .stat-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
 
-.stat-label {
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
-    color: #ccc;
-}
+        .story-text {
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
 
-.story-text {
-    line-height: 1.8;
-    color: #e0e0e0;
-}
+        .highlight-green {
+            color: var(--visiless-green);
+            font-weight: bold;
+        }
 
-.highlight-green {
-    color: var(--visiless-green);
-    font-weight: bold;
-}
+        /* Galéria */
+        .marketing-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-/* Galéria */
-.marketing-gallery img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
+        .marketing-gallery img:hover {
+            transform: scale(1.05);
+            border-color: var(--visiless-green);
+        }
 
-.marketing-gallery img:hover {
-    transform: scale(1.05);
-    border-color: var(--visiless-green);
-}
+        .marketing-carousel .slick-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.marketing-carousel .slick-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .marketing-carousel .px-2 {
+            padding: 0 8px;
+        }
 
-.marketing-carousel .px-2 {
-    padding: 0 8px;
-}
+        .marketing-carousel .px-2 a {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+            transition: transform 0.35s ease, border-color 0.35s ease;
+            display: block;
+        }
 
-.marketing-carousel .px-2 a {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
-    transition: transform 0.35s ease, border-color 0.35s ease;
-    display: block;
-}
+        .marketing-carousel .px-2 a:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
 
-.marketing-carousel .px-2 a:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.3);
-}
+        .marketing-carousel .px-2 img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+        }
 
-.marketing-carousel .px-2 img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-    display: block;
-}
-
-@media (max-width: 767px) {
-    .marketing-carousel .px-2 img {
-        height: 200px;
-    }
-}
-
-@media (max-width: 767px) {
-    .stat-number { font-size: 2rem; }
-    .marketing-section { padding: 40px 0; }
-}
-
+        @media (max-width: 767px) {
+            .marketing-carousel .px-2 img {
+                height: 200px;
+            }
+            .stat-number { font-size: 2rem; }
+            .marketing-section { padding: 40px 0; }
+        }
     </style>
 </head>
 <body>
@@ -486,16 +477,16 @@
     </div>
 
     <nav id="ddfullscreenmenu">
-        <a href="./" id="closex">&times;</a>
+        <a href="javascript:void(0)" id="closex" onclick="ddfullscreenmenu.togglemenu()">&times;</a>
         <div id="ulwrapper">
             <ul id="fullscreenmenu-ul">
-                <li><a href="#uvod">Úvod</a></li>
-                <li><a href="#o-znacke">O značce</a></li>
-                <li><a href="#usp">Proč VisiLess</a></li>
-                <li><a href="#produkty">Produkty</a></li>
-                <li><a href="#spolupraca">Spolupráce</a></li>
-                <li><a href="#faq">Časté dotazy</a></li>
-                <li><a href="#kontakt">Kontakt</a></li>
+                <li><a href="#uvod" onclick="ddfullscreenmenu.togglemenu()">Úvod</a></li>
+                <li><a href="#o-znacke" onclick="ddfullscreenmenu.togglemenu()">O značce</a></li>
+                <li><a href="#usp" onclick="ddfullscreenmenu.togglemenu()">Proč VisiLess</a></li>
+                <li><a href="#produkty" onclick="ddfullscreenmenu.togglemenu()">Produkty</a></li>
+                <li><a href="#spolupraca" onclick="ddfullscreenmenu.togglemenu()">Spolupráce</a></li>
+                <li><a href="#faq" onclick="ddfullscreenmenu.togglemenu()">Časté dotazy</a></li>
+                <li><a href="#kontakt" onclick="ddfullscreenmenu.togglemenu()">Kontakt</a></li>
                 
                 <li class="lang-switcher-mobile d-flex justify-content-center">
                     <a href="./" class="text-visiless mx-3">CZ</a>
@@ -506,13 +497,12 @@
         </div>
     </nav>
 
-    <header class="header w-100 position-fixed" style="z-index: 1000; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);">
-        <div class="container-fluid d-flex justify-content-between align-items-center box_padding" style="padding-top: 10px; padding-bottom: 5px;">
-            <a href="/" class="brand-wrapper-link d-flex align-items-center text-decoration-none" style="height: 100%; margin: 0; outline: none; border: none;">
-    <img src="logo_visiless.png" alt="Visiless Logo" class="brand-logo-img" style="height: auto; border: none; outline: none;">
-    
-    <span class="brand-font brand-text-span" style="line-height: 0.7; margin: 0; padding: 0;">VISILESS<sup style="font-size: 0.5em; top: -1em;">®</sup></span>
-</a>
+    <header class="header w-100 position-fixed" style="z-index: 9990; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); height: 75px; display: flex; align-items: center;">
+        <div class="container-fluid d-flex justify-content-between align-items-center px-3 px-md-5 w-100">
+            <a href="/" class="brand-wrapper-link d-flex align-items-center text-decoration-none" style="margin: 0; outline: none; border: none;">
+                <img src="logo_visiless.png" alt="Visiless Logo" class="brand-logo-img" style="border: none; outline: none;">
+                <span class="brand-font brand-text-span" style="line-height: 0.7; margin: 0; padding: 0;">VISILESS<sup style="font-size: 0.5em; top: -1em;">®</sup></span>
+            </a>
             
             <nav class="navigation ml-auto d-flex align-items-center mainNavigation">
                 <div class="header_nav_b d-none d-lg-block">
@@ -530,74 +520,26 @@
                     <a href="de" class="text-white">DE</a>
                 </div>
 
-                <div class="hamburger ml-4" onclick="ddfullscreenmenu.togglemenu('open')">
+                <div class="hamburger ml-4" onclick="ddfullscreenmenu.togglemenu()">
                     <i class="fas fa-bars"></i>
                 </div>
             </nav>
         </div>
     </header>
 
-    <script>
-    // Funkcia na otvorenie a zatvorenie bannera
-    function toggleSocialBanner(show, event) {
-        // Zastavenie eventu, aby sa nespustilo náhodné kliknutie na pozadie (dôležité pre mobily)
-        if (event) {
-            event.stopPropagation();
-        }
-
-        var bannerContent = document.getElementById('social-banner-content');
-        var bannerBtn = document.getElementById('social-banner-btn');
-
-        if (!bannerContent || !bannerBtn) return;
-
-        if (show) {
-            // Najskôr zapneme viditeľnosť a hneď na to pridáme triedu pre CSS animáciu
-            bannerContent.style.display = 'block';
-            setTimeout(function() {
-                bannerContent.classList.add('active');
-            }, 10);
-            bannerBtn.style.display = 'none'; // Skryjeme ikonu
-        } else {
-            // Zrušíme aktívnu triedu (spustí sa zasúvacia CSS animácia)
-            bannerContent.classList.remove('active');
-            // Počkáme, kým animácia dobehne a potom skryjeme úplne
-            setTimeout(function() {
-                bannerContent.style.display = 'none';
-            }, 500); 
-            bannerBtn.style.display = 'flex'; // Znova ukážeme ikonu
-        }
-    }
-
-    // Detekcia kliknutia mimo pre zatvorenie bannera (Zlúčené mobilné dotyky aj myš)
-    ['click', 'touchstart'].forEach(function(eventType) {
-        document.addEventListener(eventType, function(event) {
-            var bannerContent = document.getElementById('social-banner-content');
-            var bannerBtn = document.getElementById('social-banner-btn');
-
-            // Ak banner existuje, je viditeľný a má triedu active (je vysunutý)
-            if (bannerContent && bannerContent.classList.contains('active') && bannerContent.style.display !== 'none') {
-                // Ak cieľ kliknutia nie je samotný banner, jeho vnútro a nie je to otváracie tlačidlo
-                if (!bannerContent.contains(event.target) && (!bannerBtn || !bannerBtn.contains(event.target))) {
-                    toggleSocialBanner(false);
-                }
-            }
-        });
-    });
-</script>
-
     <section id="uvod" class="rslider_wrapper position-relative overflow-hidden" style="height: 100vh;">
         <div class="image" style="background-image: url('visiless1.webp');"></div>
         
         <div class="rslider_wrapper_in d-flex align-items-center justify-content-start h-100 position-relative rslider_opacity" style="padding-left: 5%;">
-            <div class="rslider_content z-index-10 wow fadeInDown" style="margin-top: 80px;">
+            <div class="rslider_content z-index-10 wow fadeInDown" style="margin-top: 100px;">
                 <div class="box-content" style="width: 750px; max-width: 100%; background: rgba(0,0,0,0.4); padding: 40px; border-left: 4px solid var(--visiless-green); backdrop-filter: blur(8px); border-radius: 4px;">
                     <h1 class="rslider_title font-weight-bold mb-3 brand-font-white">EXTRÉMNĚ TENKÉ A PEVNÉ</h1>
                     <h3 class="text-white mb-4" style="font-family: 'WorkSansMedium';">Produkt, který si vaši zákazníci přijdou koupit znovu.</h3>
-<ul class="list-unstyled mt-4 mb-5 text-light" style="font-size: 1.1rem;">
-    <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color: var(--visiless-green);"></i> Výhodné B2B nákupní ceny</li>
-    <li class="mb-2"><i class="fas fa-bullhorn mr-2" style="color: var(--visiless-green);"></i> Silná podpora prodeje</li>
-    <li class="mb-2"><i class="fas fa-shield-alt mr-2" style="color: var(--visiless-green);"></i> Nulová míra reklamací</li>
-</ul>
+                    <ul class="list-unstyled mt-4 mb-5 text-light" style="font-size: 1.1rem;">
+                        <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color: var(--visiless-green);"></i> Výhodné B2B nákupní ceny</li>
+                        <li class="mb-2"><i class="fas fa-bullhorn mr-2" style="color: var(--visiless-green);"></i> Silná podpora prodeje</li>
+                        <li class="mb-2"><i class="fas fa-shield-alt mr-2" style="color: var(--visiless-green);"></i> Nulová míra reklamací</li>
+                    </ul>
                     
                     <div class="d-flex flex-column flex-sm-row">
                         <a href="#kontakt" class="btn btn-custom mr-sm-3 mb-3 mb-sm-0">Získat B2B ceník</a>
@@ -715,12 +657,12 @@
             </div>
         </div>
         <div class="row mt-5">
-    <div class="col-12 text-center wow fadeInUp">
-        <a href="https://www.visiless.cz/" class="btn btn-custom" style="font-size: 1.2rem; padding: 15px 40px;">
-            <i class="fas fa-list mr-2"></i> Zobrazit kompletní B2B katalog
-        </a>
-    </div>
-</div>
+            <div class="col-12 text-center wow fadeInUp">
+                <a href="https://www.visiless.cz/" class="btn btn-custom" style="font-size: 1.2rem; padding: 15px 40px;">
+                    <i class="fas fa-list mr-2"></i> Zobrazit kompletní B2B katalog
+                </a>
+            </div>
+        </div>
     </section>
     
     <section id="spolupraca" class="content box_margin3 text_wrapper text_wrapper__b">
@@ -998,11 +940,11 @@
             document.getElementById('cookie-banner').classList.remove('show');
         };
 
-// Upravte zatváracie tlačidlo v HTML, aby si pamätalo voľbu
-function closeSocialBanner() {
-    toggleSocialBanner(false);
-    localStorage.setItem('socialBannerClosed', 'true');
-}
+        // Upravte zatváracie tlačidlo v HTML, aby si pamätalo voľbu
+        function closeSocialBanner() {
+            toggleSocialBanner(false);
+            localStorage.setItem('socialBannerClosed', 'true');
+        }
 
         // Kontrola při načtení stránky
         $(window).on('load', function() {
@@ -1022,11 +964,10 @@ function closeSocialBanner() {
             }
 
             // 3. Obnovení stavu sociálního banneru
-if (localStorage.getItem('socialBannerHidden') === 'true') {
-    var sb = document.getElementById('social-banner-content');
-    if (sb) sb.style.display = 'none';
-}
-
+            if (localStorage.getItem('socialBannerHidden') === 'true') {
+                var sb = document.getElementById('social-banner-content');
+                if (sb) sb.style.display = 'none';
+            }
         });
     </script>
 
@@ -1081,9 +1022,6 @@ $(document).ready(function(){
     })
 });
 </script>
-
-
-
 
 <div id="social-banner-btn" class="social-trigger" onclick="toggleSocialBanner(true, event)" style="display: flex; z-index: 99999;">
     <i class="fas fa-users" style="font-size: 1.5rem; color: #fff;"></i>
