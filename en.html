@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-33YFYNBG70"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-33YFYNBG70');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VisiLess® | Wholesale Partnership</title>
@@ -8,6 +17,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     
@@ -19,10 +31,83 @@
     <link rel="stylesheet" href="main_theme.css">
     
     <style>
-        /* Modifications for VisiLess design (Green theme) */
+        /* Úpravy pro VisiLess design (Zelená téma) */
         :root {
             --visiless-green: #4B5320;
             --visiless-dark: #2a2e12;
+        }
+
+        /* Mini tlačidlo na pravom okraji */
+        .social-trigger {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 10px 0 0 10px;
+            border: 2px solid white;
+            border-right: none;
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            box-shadow: -2px 0 15px rgba(0,0,0,0.3);
+        }
+
+        .social-trigger:hover {
+            padding-right: 25px; /* Jemne sa vysunie pri hoveri */
+        }
+
+        /* Štýl bannera (Sklenený efekt) */
+        .social-banner {
+            position: fixed;
+            right: -350px; /* Štartovacia pozícia mimo obrazovky */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px 0 0 20px;
+            padding: 25px;
+            z-index: 9999;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            transition: right 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .social-banner.active {
+            right: 0; /* Vysunie sa na obrazovku */
+        }
+
+        /* Ostatné drobné detaily */
+        .social-banner-tag { background: var(--visiless-green); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        .social-banner-title { color: white; font-weight: bold; margin-top: 10px; font-size: 1.1rem; }
+        .social-banner-desc { color: #ccc; font-size: 0.85rem; margin: 15px 0; line-height: 1.4; }
+        .social-banner-links { display: flex; gap: 12px; }
+        .social-banner-link { width: 40px; height: 40px; background: rgba(206, 204, 204, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
+        .social-banner-link:hover { background: var(--visiless-green); transform: translateY(-3px); }
+        .social-banner-close { position: absolute; top: 15px; right: 15px; color: white; cursor: pointer; font-size: 1.5rem; opacity: 0.5; transition: 0.3s; }
+        .social-banner-close:hover { opacity: 1; }
+
+        @media (max-width: 768px) {
+            .social-banner {
+                right: 10px;
+                width: 260px;
+                top: auto;
+                bottom: 20px;
+                transform: none;
+            }
+            .social-trigger {
+                right: 10px;
+                top: auto;
+                bottom: 100px;
+                transform: none;
+            }
         }
 
         .brand-font {
@@ -39,7 +124,7 @@
             text-transform: uppercase;
         }
         
-        /* Adjusting (R) sign */
+        /* Úprava znaku (R) */
         .brand-font sup, .brand-font-white sup {
             font-family: 'WorkSansMedium', Arial, sans-serif !important;
             font-size: 0.6em !important; 
@@ -60,7 +145,7 @@
         .text-visiless { color: var(--visiless-green) !important; }
         .border-visiless { border-color: var(--visiless-green) !important; }
         
-        /* Buttons */
+        /* Tlačítka */
         .btn-custom {
             background-color: var(--visiless-green) !important;
             border: 2px solid var(--visiless-green) !important;
@@ -99,19 +184,19 @@
         .btn-primary-custom { border: 2px solid var(--visiless-green) !important; background: var(--visiless-green) !important; color: #fff !important; text-transform: uppercase; font-family: 'WorkSansMedium'; transition: 0.3s; }
         .btn-primary-custom:hover { background: transparent !important; color: var(--visiless-green) !important; }
         
-        /* Fixing image backgrounds */
+        /* Fixace obrázků a ořezů */
         .c_x_bg, .rslider_wrapper .image { background-position: center center !important; }
         .grid-gallery img, .card-img-top { object-fit: cover; object-position: center center; }
 
-        /* Showing full image in Partnership section */
+        /* Zobrazení celé fotky v sekci Spolupráce */
         #spolupraca .c_x_bg {
             background-size: contain !important;
-            background-position: center right !important;
+            background-position: center !important;
             background-repeat: no-repeat !important;
             background-color: var(--visiless-dark) !important;
         }
 
-        /* Removing white overlapping lines */
+        /* Úplné odstranění bílých čar přes fotky */
         .text_wrapper::before, .text_wrapper::after, .text_wrapper__a::before, .text_wrapper__a::after,
         .text_wrapper__b::before, .text_wrapper__b::after, .text_wrapper__a .img::before, .text_wrapper__a .img::after, 
         .text_wrapper__b .img::before, .text_wrapper__b .img::after, .c_x_bg::before, .c_x_bg::after,
@@ -120,11 +205,11 @@
         }
         
         /* Menu & Form */
-        .hamburger { cursor: pointer; color: #fff; font-size: 24px; z-index: 1200; position: relative; }
+        .hamburger { cursor: pointer; color: #fff; font-size: 24px; z-index: 10001 !important; position: relative !important; pointer-events: auto !important; }
         #ddfullscreenmenu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20, 25, 15, 0.98); z-index: 9999; }
         #ddfullscreenmenu.openmenu { display: block; }
-        #closex { position: absolute; top: 30px; right: 50px; color: #fff; font-size: 40px; text-decoration: none; }
-        #ulwrapper { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+        #closex { position: absolute; top: 30px; right: 50px; color: #fff; font-size: 40px; text-decoration: none; z-index: 10005; }
+        #ulwrapper { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 100%; }
         #fullscreenmenu-ul li { margin-bottom: 20px; list-style: none; }
         #fullscreenmenu-ul li a { color: #fff; font-size: 2rem; text-decoration: none; border-bottom: none; transition: color 0.3s; font-family: 'WorkSansMedium', sans-serif; }
         #fullscreenmenu-ul li a:hover { color: var(--visiless-green) !important; }
@@ -132,26 +217,28 @@
         .form-control { background: rgba(255,255,255,0.05); border: 1px solid #555; color: #fff; border-radius: 0; padding: 15px; }
         .form-control:focus { background: rgba(255,255,255,0.05); border-color: var(--visiless-green); color: #fff; box-shadow: none; }
     
-        /* Languages */
+        /* Jazyky */
         .lang-switcher a { font-family: 'WorkSansMedium', sans-serif; font-size: 1.1rem; text-decoration: none; border: none; transition: color 0.3s; }
         .lang-switcher a:hover { color: var(--visiless-green) !important; }
         .lang-switcher-mobile { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
         .lang-switcher-mobile a { font-size: 1.3rem !important; border: none !important; display: inline-block; }
         
-        /* FAQ Section */
+        /* FAQ Sekce */
         .faq-box { border-left: 3px solid var(--visiless-green); background: rgba(0,0,0,0.03); padding: 20px; height: 100%; transition: all 0.3s ease; }
         .faq-box:hover { background: rgba(75, 83, 32, 0.08); transform: translateY(-5px); }
 
         /* =========================================
            REGION MODAL & COOKIE BANNER STYLES
            ========================================= */
+        /* Výběr krajiny - překrytí celé obrazovky */
         .region-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 10, 10, 0.98); z-index: 10000;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; visibility: hidden; transition: all 0.5s ease;
+            pointer-events: none; /* OPRAVA: Zabraňuje blokovaniu kliknutí, keď je schované */
         }
-        .region-overlay.show { opacity: 1; visibility: visible; }
+        .region-overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
         .region-box {
             background: rgba(255,255,255,0.03); border: 1px solid var(--visiless-green);
             padding: 50px 40px; border-radius: 2px; max-width: 550px; width: 90%;
@@ -161,7 +248,7 @@
         .region-overlay.show .region-box { transform: translateY(0); }
         .region-box img { animation: pulse 2s infinite; }
 
-        /* Cookie Lišta - OPRAVENÁ VERZIA */
+        /* Cookie Lišta */
         .cookie-banner {
             position: fixed; 
             bottom: 0; 
@@ -171,7 +258,6 @@
             border-top: 2px solid var(--visiless-green);
             padding: 20px 0; 
             z-index: 9998; 
-            /* Použitie transform zaručí skrytie bez ohľadu na to, aká je lišta vysoká */
             transform: translateY(100%); 
             transition: transform 0.5s ease;
             box-shadow: 0 -5px 30px rgba(0,0,0,0.8);
@@ -181,13 +267,13 @@
         }
         .cookie-text { font-size: 0.9rem; line-height: 1.5; color: #ccc; }
     
-        /* Responsiveness */
+        /* Responzivita */
         @media screen and (max-width: 767px) {
-            .main_logo { left: 15px !important; top: 10px !important; transform: none !important; position: absolute !important; }
+            .main_logo { left: 15px !important; top: 10px !important; transform: none !important; position: absolute !important; z-index: 1000 !important; max-width: 70%; }
             .main_logo img { height: 35px !important; margin-right: 10px !important; }
             .brand-font { font-size: 1.6rem !important; }
             .header { padding-top: 10px !important; padding-bottom: 10px !important; }
-            .hamburger { font-size: 28px !important; margin-right: 15px !important; }
+            .hamburger { font-size: 28px !important; margin-right: 15px !important; position: relative !important; z-index: 10001 !important; pointer-events: auto !important; }
             .rslider_wrapper { height: 100vh !important; }
             .rslider_wrapper_in { height: 100% !important; display: flex !important; align-items: center !important; justify-content: center !important; }
             .rslider_wrapper_in::before { display: block !important; background-color: rgba(0,0,0,0.6) !important; z-index: 1; }
@@ -198,29 +284,165 @@
             .text_list li { text-align: left; }
             .box_padding { padding-left: 20px !important; padding-right: 20px !important; }
             
-            /* Cookies mobile */
+            /* Cookies mobil */
             .cookie-buttons { margin-top: 15px; width: 100%; justify-content: space-between; }
             .cookie-buttons button { width: 48%; padding: 10px 5px; font-size: 0.9rem; }
 
             /* OPRAVA OREZANÉHO TEXTU V ÚVODE NA MOBILE */
-        .rslider_wrapper_in {
-            padding-left: 0 !important; /* Odstráni 5% okraj, ktorý to posúval mimo stred */
+            .rslider_wrapper_in {
+                padding-left: 0 !important;
+            }
+            .rslider_content {
+                width: 100% !important;
+                padding: 0 15px !important;
+                box-sizing: border-box !important;
+            }
+            .box-content {
+                width: 100% !important; 
+                max-width: 100% !important;
+                padding: 25px 15px !important; 
+                box-sizing: border-box !important;
+            }
+            .rslider_title { font-size: 2rem !important; }
+            .rslider_content h3 { font-size: 1.1rem !important; }
+            .rslider_content p { font-size: 0.95rem !important; }
         }
-        .rslider_content {
-            width: 100% !important;
-            padding: 0 15px !important;
-            box-sizing: border-box !important;
+
+        /* Responzívne nastavenie pre logo a text VISILESS */
+        .brand-wrapper-link { padding-left: 10px; }
+        .brand-logo-img { max-height: 50px; margin-right: 15px; width: auto; } /* OPRAVA HLAVIČKY: max-výška loga */
+        .brand-text-span { font-size: 2.2rem; transform: translateY(8px); }
+
+        @media (max-width: 767px) {
+            /* 1. ÚPRAVY HLAVIČKY A LOGA */
+            .brand-wrapper-link { padding-left: 0px !important; }
+            .brand-logo-img { max-height: 35px !important; margin-right: 8px !important; }
+            .brand-text-span { font-size: 1.1rem !important; transform: translateY(3px) !important; } 
+
+            /* 2. ÚPRAVY ÚVODNÉHO BOXXU (HERO SEKCIA) */
+            .rslider_content {
+                margin-top: 40px !important; 
+            }
+            .box-content {
+                padding: 25px 20px !important; 
+            }
+            .box-content .rslider_title {
+                font-size: 1.8rem !important; 
+            }
+            .box-content h3 {
+                font-size: 1.2rem !important; 
+            }
+            .box-content p {
+                font-size: 1rem !important; 
+                margin-bottom: 30px !important;
+            }
+            
+            /* 3. TLAČIDLÁ NA CELÚ ŠÍRKU PRE POHODLNÉ KLIKANIE */
+            .box-content .btn {
+                width: 100% !important; 
+                margin-right: 0 !important; 
+                margin-bottom: 15px !important; 
+                padding: 12px 20px !important; 
+            }
         }
-        .box-content {
-            width: 100% !important; /* Zruší fixných 750px */
-            max-width: 100% !important;
-            padding: 25px 15px !important; /* Zmenší pôvodný 40px padding, aby mal text viac miesta */
-            box-sizing: border-box !important;
+
+        /* --- MARKETINGOVÁ SEKCIA ŠTÝLY --- */
+        .marketing-section {
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('visiless1.webp'); 
+            background-attachment: fixed;
+            background-size: cover;
+            padding: 80px 0;
         }
-        /* Jemné zmenšenie písma pre lepšiu čitateľnosť na veľmi malých displejoch */
-        .rslider_title { font-size: 2rem !important; }
-        .rslider_content h3 { font-size: 1.1rem !important; }
-        .rslider_content p { font-size: 0.95rem !important; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+        }
+
+        .stat-number {
+            font-family: 'Black Ops One', cursive;
+            font-size: 3rem;
+            color: var(--visiless-green);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .story-text {
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        .highlight-green {
+            color: var(--visiless-green);
+            font-weight: bold;
+        }
+
+        /* Galéria */
+        .marketing-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .marketing-gallery img:hover {
+            transform: scale(1.05);
+            border-color: var(--visiless-green);
+        }
+
+        .marketing-carousel .slick-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .marketing-carousel .px-2 {
+            padding: 0 8px;
+        }
+
+        .marketing-carousel .px-2 a {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+            transition: transform 0.35s ease, border-color 0.35s ease;
+            display: block;
+        }
+
+        .marketing-carousel .px-2 a:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .marketing-carousel .px-2 img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 767px) {
+            .marketing-carousel .px-2 img {
+                height: 200px;
+            }
+            .stat-number { font-size: 2rem; }
+            .marketing-section { padding: 40px 0; }
         }
     </style>
 </head>
@@ -233,7 +455,7 @@
             <p class="text-muted mb-4" style="font-family: 'WorkSansMedium';">Please select your region to continue</p>
             
             <div class="d-flex flex-column px-sm-4">
-               <a href="./" class="btn btn-outline-custom mb-3 py-3" onclick="setRegion('cz')">Česká republika / Slovensko (CZ)</a>
+                <a href="./" class="btn btn-outline-custom mb-3 py-3" onclick="setRegion('cz')">Czech Republic / Slovakia (CZ)</a>
                 <a href="en" class="btn btn-outline-custom mb-3 py-3" onclick="setRegion('en')">International (EN)</a>
                 <a href="de" class="btn btn-custom py-3" onclick="setRegion('de')">Deutschland / Österreich (DE)</a>
             </div>
@@ -244,27 +466,27 @@
         <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
             <div class="cookie-text mb-3 mb-md-0 mr-md-4">
                 <strong class="text-white d-block mb-1" style="font-family: 'WorkSansMedium';">This website uses cookies</strong>
-                We use cookies to ensure you get the best experience, analyze traffic, and personalize content. 
+                We use cookies to provide the best user experience, analyze traffic, and personalize content. 
                 <a href="gdpr" class="text-visiless text-decoration-none border-bottom border-visiless pb-1 ml-1 hover-white">More information</a>.
             </div>
             <div class="cookie-buttons d-flex flex-shrink-0">
-                <button class="btn btn-outline-custom btn-sm mr-2 py-2 px-3" onclick="acceptCookies('essential')">Strictly Necessary</button>
-                <button class="btn btn-custom btn-sm py-2 px-4" onclick="acceptCookies('all')">Accept All</button>
+                <button class="btn btn-outline-custom btn-sm mr-2 py-2 px-3" onclick="acceptCookies('essential')">Necessary only</button>
+                <button class="btn btn-custom btn-sm py-2 px-4" onclick="acceptCookies('all')">Accept all</button>
             </div>
         </div>
     </div>
 
     <nav id="ddfullscreenmenu">
-        <a href="#" id="closex">&times;</a>
+        <a href="javascript:void(0)" id="closex" onclick="ddfullscreenmenu.togglemenu()">&times;</a>
         <div id="ulwrapper">
             <ul id="fullscreenmenu-ul">
-                <li><a href="#uvod">Home</a></li>
-                <li><a href="#o-znacke">About Us</a></li>
-                <li><a href="#usp">Why VisiLess</a></li>
-                <li><a href="#produkty">Products</a></li>
-                <li><a href="#spolupraca">Partnership</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#kontakt">Contact</a></li>
+                <li><a href="#uvod" onclick="ddfullscreenmenu.togglemenu()">Home</a></li>
+                <li><a href="#o-znacke" onclick="ddfullscreenmenu.togglemenu()">About</a></li>
+                <li><a href="#usp" onclick="ddfullscreenmenu.togglemenu()">Why VisiLess</a></li>
+                <li><a href="#produkty" onclick="ddfullscreenmenu.togglemenu()">Products</a></li>
+                <li><a href="#spolupraca" onclick="ddfullscreenmenu.togglemenu()">Partnership</a></li>
+                <li><a href="#faq" onclick="ddfullscreenmenu.togglemenu()">FAQ</a></li>
+                <li><a href="#kontakt" onclick="ddfullscreenmenu.togglemenu()">Contact</a></li>
                 
                 <li class="lang-switcher-mobile d-flex justify-content-center">
                     <a href="./" class="text-muted mx-3">CZ</a>
@@ -275,11 +497,11 @@
         </div>
     </nav>
 
-    <header class="header w-100 position-fixed" style="z-index: 1000; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);">
-        <div class="container-fluid d-flex justify-content-between align-items-center box_padding" style="padding-top: 5px; padding-bottom: 5px;">
-            <a href="#" class="main_logo position-relative text-decoration-none d-flex align-items-center" style="border-bottom: none;">
-                <img src="logo_visiless.png" alt="VisiLess Logo" style="height: 60px; margin-right: 15px; object-fit: contain;">
-                <span class="brand-font d-none d-sm-block" style="font-size: 1.8rem;">VISILESS<sup>®</sup></span>
+    <header class="header w-100 position-fixed" style="z-index: 9990; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); height: 75px; display: flex; align-items: center;">
+        <div class="container-fluid d-flex justify-content-between align-items-center px-3 px-md-5 w-100">
+            <a href="/" class="brand-wrapper-link d-flex align-items-center text-decoration-none" style="margin: 0; outline: none; border: none;">
+                <img src="logo_visiless.png" alt="Visiless Logo" class="brand-logo-img" style="border: none; outline: none;">
+                <span class="brand-font brand-text-span" style="line-height: 0.7; margin: 0; padding: 0;">VISILESS<sup style="font-size: 0.5em; top: -1em;">®</sup></span>
             </a>
             
             <nav class="navigation ml-auto d-flex align-items-center mainNavigation">
@@ -287,7 +509,7 @@
                     <span class="mr-4 text-white"><i class="fas fa-phone text-visiless mr-2"></i>+420 733 719 766</span>
                 </div>
                 <div class="header_nav_a d-none d-md-block">
-                    <a href="#kontakt" class="text-center d-inline-block btn-primary-custom" style="height: auto; line-height: normal; padding: 8px 20px;">B2B Pricing</a>
+                    <a href="#kontakt" class="text-center d-inline-block btn-primary-custom" style="height: auto; line-height: normal; padding: 8px 20px;">B2B Price List</a>
                 </div>
                 
                 <div class="lang-switcher d-none d-sm-flex align-items-center ml-4">
@@ -298,7 +520,7 @@
                     <a href="de" class="text-white">DE</a>
                 </div>
 
-                <div class="hamburger ml-4" onclick="ddfullscreenmenu.togglemenu('open')">
+                <div class="hamburger ml-4" onclick="ddfullscreenmenu.togglemenu()">
                     <i class="fas fa-bars"></i>
                 </div>
             </nav>
@@ -306,28 +528,27 @@
     </header>
 
     <section id="uvod" class="rslider_wrapper position-relative overflow-hidden" style="height: 100vh;">
-    <div class="image" style="background-image: url('visiless1.webp');"></div>
-    
-    <div class="rslider_wrapper_in d-flex align-items-center justify-content-start h-100 position-relative rslider_opacity" style="padding-left: 5%;">
-        <div class="rslider_content z-index-10 wow fadeInDown" style="margin-top: 80px;">
-            <div class="box-content" style="width: 750px; max-width: 100%; background: rgba(0,0,0,0.4); padding: 40px; border-left: 4px solid var(--visiless-green);">
-                <h1 class="rslider_title font-weight-bold mb-3 brand-font-white">
-                    EXTREMELY THIN AND STRONG
-                </h1>
-                <h3 class="text-white mb-4" style="font-family: 'WorkSansMedium';">
-                    A product your customers will come back for.
-                </h3>
-                <p class="mb-5 text-light" style="font-size: 1.15rem; line-height: 1.6;">
-                    Expand your range with premium VISILESS fishing leaders. We offer competitive wholesale prices, strong sales support, and a top-tier product with a zero return rate for both brick-and-mortar stores and e-shops.
-                </p>
-                <div class="d-flex flex-column flex-sm-row">
-                    <a href="#kontakt" class="btn btn-custom mr-sm-3 mb-3 mb-sm-0">Get B2B Price List</a>
-                    <a href="#kontakt" class="btn btn-outline-custom">Request Samples & Info</a>
+        <div class="image" style="background-image: url('visiless1.webp');"></div>
+        
+        <div class="rslider_wrapper_in d-flex align-items-center justify-content-start h-100 position-relative rslider_opacity" style="padding-left: 5%;">
+            <div class="rslider_content z-index-10 wow fadeInDown" style="margin-top: 100px;">
+                <div class="box-content" style="width: 750px; max-width: 100%; background: rgba(0,0,0,0.4); padding: 40px; border-left: 4px solid var(--visiless-green); backdrop-filter: blur(8px); border-radius: 4px;">
+                    <h1 class="rslider_title font-weight-bold mb-3 brand-font-white">EXTREMELY THIN AND STRONG</h1>
+                    <h3 class="text-white mb-4" style="font-family: 'WorkSansMedium';">A product your customers will come back to buy again.</h3>
+                    <ul class="list-unstyled mt-4 mb-5 text-light" style="font-size: 1.1rem;">
+                        <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color: var(--visiless-green);"></i> Favorable B2B purchase prices</li>
+                        <li class="mb-2"><i class="fas fa-bullhorn mr-2" style="color: var(--visiless-green);"></i> Strong sales support</li>
+                        <li class="mb-2"><i class="fas fa-shield-alt mr-2" style="color: var(--visiless-green);"></i> Zero complaint rate</li>
+                    </ul>
+                    
+                    <div class="d-flex flex-column flex-sm-row">
+                        <a href="#kontakt" class="btn btn-custom mr-sm-3 mb-3 mb-sm-0">Get B2B price list</a>
+                        <a href="#kontakt" class="btn btn-outline-custom">Request samples and info</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="o-znacke" class="content box_margin3 text_wrapper text_wrapper__a">
         <div class="c_x_bg c_x_bg_left img" style="background-image: url('visiless0.jpg');"></div>
@@ -337,14 +558,14 @@
                 <div class="col-lg-6 offset-lg-6 p-0">
                     <div class="text_container container_bg__a text-white wow fadeInRight h-100 d-flex flex-column justify-content-center">
                         <div class="title_box mb-4">
-                            <h2>Story & Vision</h2> 
+                            <h2>Story and Vision</h2> 
                             <h3 class="text-white" style="font-size: 1.5rem;">
-                                <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> Was Born by the Water - Through Honest Practice
+                                <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> Born right by the water - through honest practice
                             </h3>
                         </div>
-                        <p class="mb-4">We are a team of professional anglers and nature lovers who refused to compromise. Our leaders are the result of decades of testing in crystal-clear waters. Today, we bring this proven product to the B2B network to help specialized shops offer their customers quality they can truly rely on.</p>
+                        <p class="mb-4">We are a team of professional anglers and nature lovers who refused to make compromises. Our rigs are the result of decades of testing in clear water fisheries. Today, we bring this proven product to the B2B network to help specialized stores offer their customers quality they can rely on.</p>
                         <blockquote class="blockquote pl-4" style="border-left: 3px solid var(--visiless-green); font-family: 'WorkSansMedium';">
-                            <p class="mb-0">"We manufacture every leader as if every cast meant a strike from a trophy catch. We pass this certainty on to you and your customers."</p>
+                            <p class="mb-0">"We manufacture every rig as if every cast meant a bite from a trophy catch. We pass this certainty on to you and your customers."</p>
                         </blockquote>
                     </div>
                 </div>
@@ -361,29 +582,29 @@
             <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="p-4 border h-100 title_box bg-white">
                     <i class="fas fa-chart-line mb-3 text-visiless" style="font-size: 2rem;"></i>
-                    <h3 class="font-weight-bold mb-3 text-dark" style="font-size: 1.5rem;">More Strikes</h3>
-                    <p class="text-muted">Thanks to its ultra-thin diameter and complete invisibility in the water, it demonstrably increases the number of strikes from cautious predators.</p>
+                    <h3 class="font-weight-bold mb-3 text-dark" style="font-size: 1.5rem;">More bites</h3>
+                    <p class="text-muted">Thanks to the ultra-thin diameter and complete invisibility in the water, the number of bites from cautious predators noticeably increases.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="p-4 border h-100 container_bg__b text-white title_box">
                     <i class="fas fa-clock mb-3" style="font-size: 2rem; color: #fff;"></i>
-                    <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Saves Time</h3>
-                    <p>The leader is completely ready for fishing straight from the factory. The customer doesn't waste time with lengthy preparation and tying rigs.</p>
+                    <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Save time by the water</h3>
+                    <p>The rig comes completely ready for fishing right out of the factory. The customer doesn't waste time with tedious preparation and tying.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="p-4 border h-100 title_box bg-white">
                     <i class="fas fa-tasks mb-3 text-visiless" style="font-size: 2rem;"></i>
-                    <h3 class="font-weight-bold mb-3 text-dark" style="font-size: 1.5rem;">Wide Portfolio</h3>
-                    <p class="text-muted">We cover the needs of all anglers – from light spinning to fishing for trophy pikes with live baits.</p>
+                    <h3 class="font-weight-bold mb-3 text-dark" style="font-size: 1.5rem;">Wide portfolio</h3>
+                    <p class="text-muted">We cover the needs of all anglers - from light spinning to fishing for trophy pike with live bait.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="p-4 border border-visiless h-100 container_bg__a text-white title_box">
                     <i class="fas fa-trophy mb-3 text-visiless" style="font-size: 2rem;"></i>
-                    <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Proven Effectiveness</h3>
-                    <p>A decade of testing and countless caught trophy fish make the leader an absolute certainty that anglers enthusiastically recommend to others.</p>
+                    <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Proven effectiveness</h3>
+                    <p>A decade of testing and countless caught trophy fish make the rig an absolute certainty that anglers recommend to others.</p>
                 </div>
             </div>
         </div>
@@ -403,8 +624,8 @@
 
     <section id="produkty" class="content box_padding box_margin3 container_bg__a pt-5 pb-5">
         <div class="title_box mb-5 text-center text-white wow fadeInDown">
-            <h2 class="brand-font-white">Product Lines</h2>
-            <p class="text-light">A compact and clear assortment for your shelves</p>
+            <h2 class="brand-font-white">Product lines</h2>
+            <p class="text-light">Compact and clear assortment for your shelves</p>
         </div>
         <div class="row">
             <div class="col-md-4 mb-4 wow zoomIn">
@@ -412,7 +633,7 @@
                     <img src="spining-pro.png" class="card-img-top rounded-0" style="height: 250px; object-fit: contain; background-color: #ffffff; padding: 10px;" alt="Spinning PRO Series">
                     <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
                         <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">Spinning PRO Series</h3>
-                        <p class="text-light">The standard of quality for everyday spinning drama. Maximum invisibility and lightness, enabling you to provoke a strike even from the most cautious fish.</p>
+                        <p class="text-light">The standard of quality for everyday spinning drama. Maximum invisibility and lightness, thanks to which you can entice even the most cautious fish to bite.</p>
                     </div>
                 </div>
             </div>
@@ -421,7 +642,7 @@
                     <img src="1.webp" class="card-img-top rounded-0" style="height: 250px; object-fit: contain; background-color: #ffffff; padding: 10px;" alt="LiveBait PRO Series">
                     <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
                         <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">LiveBait PRO Series</h3>
-                        <p class="text-light">LiveBait versions scaled for catching trophy fish with natural baits. Enjoy brutal fights without compromises.</p>
+                        <p class="text-light">LiveBait versions sized for catching trophy fish with live bait. Enjoy brutal battles without compromise.</p>
                     </div>
                 </div>
             </div>
@@ -430,7 +651,7 @@
                     <img src="visacka.png" class="card-img-top rounded-0" style="height: 250px; object-fit: contain; background-color: #ffffff; padding: 10px;" alt="GHOSTBAIT LAZY FISH ELITE">
                     <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
                         <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">GHOSTBAIT LAZY FISH ELITE</h3>
-                        <p class="text-light">Specialized dead bait rigs with special soft-crimping for perfect presentation. The only system that awakens even apathetic record fish to strike.</p>
+                        <p class="text-light">Specialized dead bait rigs with special soft-crimping for perfect presentation. The only system that awakens even an apathetic record fish to bite.</p>
                     </div>
                 </div>
             </div>
@@ -438,7 +659,7 @@
         <div class="row mt-5">
             <div class="col-12 text-center wow fadeInUp">
                 <a href="https://www.visiless.cz/" class="btn btn-custom" style="font-size: 1.2rem; padding: 15px 40px;">
-                    <i class="fas fa-list mr-2"></i> View Complete B2B Catalog
+                    <i class="fas fa-list mr-2"></i> View complete B2B catalog
                 </a>
             </div>
         </div>
@@ -451,21 +672,21 @@
                 <div class="col-lg-6 p-0">
                     <div class="text_container container_bg__b text-white wow fadeInLeft h-100 d-flex flex-column justify-content-center">
                         <div class="title_box mb-4">
-                            <h2>Want to grow with us?</h2>
+                            <h2>Do you want to grow with us?</h2>
                             <h3>We understand B2B partners and create ideal conditions for your business:</h3>
                         </div>
                         <ul class="text_list vnutro pl-3" style="border-left-color: #fff;">
                             <li class="pl-3 mb-4">
-                                <strong>Above-standard margins and market protection:</strong> We strictly monitor adherence to recommended retail prices (RRP). We guarantee your sales will always be profitable and free from price wars.
+                                <strong>Above-standard margins and market protection:</strong> We strictly monitor compliance with recommended retail prices (RRP). We guarantee that your sales will always be profitable and without price wars.
                             </li>
                             <li class="pl-3 mb-4">
-                                <strong>Support for physical stores and e-shops:</strong> We provide physical stores with attractive POS presentation materials (stands, banners). We supply e-shops with a complete XML feed with professional photos and texts for immediate listing.
+                                <strong>Support for brick-and-mortar stores and e-shops:</strong> We provide brick-and-mortar stores with attractive POS presentation materials (stands, banners). We will supply e-shops with a complete XML feed with professional photos and texts for immediate stocking.
                             </li>
                             <li class="pl-3 mb-4">
-                                <strong>Zero returns and guaranteed quality:</strong> You are selling a product that has passed manual inspection. We save your time and nerves with dissatisfied customers – you won't have to deal with returns with us.
+                                <strong>Zero complaints and guaranteed quality:</strong> You sell a product that has passed manual inspection. We save your time and nerves with dissatisfied customers - you will not have to deal with complaints with us.
                             </li>
                             <li class="pl-3">
-                                <strong>Reliable logistics and availability:</strong> We keep goods in stock in large volumes and dispatch orders to our B2B partners immediately, within 48 hours at the latest.
+                                <strong>Reliable logistics and availability:</strong> We keep goods in stock in large volumes.
                             </li>
                         </ul>
                     </div>
@@ -474,34 +695,118 @@
         </div>
     </section>
 
+    <section id="marketing" class="marketing-section text-white py-5" style="background: #0b0b0b;">
+    <div class="container">
+        <div class="row mb-5 align-items-center">
+            <div class="col-lg-7 wow fadeInLeft">
+                <h2 class="brand-font mb-4" style="color: var(--visiless-green); font-size: 2.5rem;">BRAND STRENGTH IN NUMBERS</h2>
+                <div class="glass-card p-4" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
+                    <p style="font-size: 1.1rem; line-height: 1.7;">Since 2020, we have been growing by <span style="color: var(--visiless-green); font-weight: bold;">tens of percent</span> every year. Our story began with the first large pike caught from a kayak 📸. It wasn't about business at all, it was just about the joy of fishing.</p>
+                    <p style="font-size: 1.1rem; line-height: 1.7;">Today we reach <span style="color: var(--visiless-green); font-weight: bold;">millions of views</span>. In 2025, we crossed the 1,000,000 view mark on a video twice. Will we soon conquer the magic 5 million? <br><strong>Come grow with us.</strong></p>
+                </div>
+            </div>
+            <div class="col-lg-5 mt-4 mt-lg-0 wow fadeInRight text-center">
+                <div class="p-4" style="border-left: 4px solid var(--visiless-green); background: rgba(75, 83, 32, 0.1);">
+                    <h3 class="brand-font" style="font-size: 3.5rem; color: var(--visiless-green); margin-bottom: 0;">2X</h3>
+                    <p class="text-uppercase" style="letter-spacing: 2px;">Million-plus reach (2025)</p>
+                    <hr style="border-color: rgba(255,255,255,0.1);">
+                    <h3 class="brand-font" style="font-size: 3.5rem; color: var(--visiless-green); margin-bottom: 0;">500%</h3>
+                    <p class="text-uppercase" style="letter-spacing: 2px;">Year-over-year community growth</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="marketing-slider-wrapper wow fadeInUp">
+            <h4 class="mb-4 text-uppercase" style="letter-spacing: 2px; font-size: 0.9rem; opacity: 0.7;">Statistics from our networks:</h4>
+            <div class="marketing-carousel">
+                <div class="px-2">
+                    <a href="marketing\visiless_stat4.jpeg" data-lightbox="marketing" data-title="Post reach - Detail">
+                        <img src="marketing\visiless_stat4.jpeg" class="img-fluid rounded" alt="Statistic 4">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat2.jpeg" data-lightbox="marketing" data-title="Growth statistics">
+                        <img src="marketing\visiless_stat2.jpeg" class="img-fluid rounded" alt="Statistic 2">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat3.jpeg" data-lightbox="marketing" data-title="Video views">
+                        <img src="marketing\visiless_stat3.jpeg" class="img-fluid rounded" alt="Statistic 3">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat5.jpeg" data-lightbox="marketing" data-title="Video views">
+                        <img src="marketing\visiless_stat5.jpeg" class="img-fluid rounded" alt="Statistic 5">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat6.jpeg" data-lightbox="marketing" data-title="Statistic 6">
+                        <img src="marketing\visiless_stat6.jpeg" class="img-fluid rounded" alt="Statistic 6">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat7.jpeg" data-lightbox="marketing" data-title="Statistic 7">
+                        <img src="marketing\visiless_stat7.jpeg" class="img-fluid rounded" alt="Statistic 7">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat8.jpeg" data-lightbox="marketing" data-title="Statistic 8">
+                        <img src="marketing\visiless_stat8.jpeg" class="img-fluid rounded" alt="Statistic 8">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat10.jpeg" data-lightbox="marketing" data-title="Statistic 10">
+                        <img src="marketing\visiless_stat10.jpeg" class="img-fluid rounded" alt="Statistic 10">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat11.jpeg" data-lightbox="marketing" data-title="Statistic 11">
+                        <img src="marketing\visiless_stat11.jpeg" class="img-fluid rounded" alt="Statistic 11">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat12.jpeg" data-lightbox="marketing" data-title="Statistic 12">
+                        <img src="marketing\visiless_stat12.jpeg" class="img-fluid rounded" alt="Statistic 12">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat13.jpeg" data-lightbox="marketing" data-title="Statistic 13">
+                        <img src="marketing\visiless_stat13.jpeg" class="img-fluid rounded" alt="Statistic 13">
+                    </a>
+                </div>
+                </div>
+        </div>
+    </div>
+</section>
+
     <section id="faq" class="content box_padding box_margin3 pt-5 pb-5 bg-white">
         <div class="title_box text-center mb-5 wow fadeInDown">
-            <h2>Partnership FAQ</h2>
+            <h2>FAQ about cooperation</h2>
             <p class="text-muted">Everything you need to know before your first order</p>
         </div>
         <div class="row">
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="faq-box">
-                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">What is the Minimum Order Quantity (MOQ)?</h4>
-                    <p class="mb-0 text-muted">Our goal is to support smaller shops as well. The minimum value of the first order is set very accessibly so that adding a new brand doesn't represent a financial burden. You will find specific numbers in our wholesale price list.</p>
+                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">What is the minimum order quantity (MOQ)?</h4>
+                    <p class="mb-0 text-muted">Our goal is to support even smaller stores. The minimum value of the first order is set very affordably, so adding a new brand will not be a financial burden for you. Specific numbers can be found in our price list.</p>
                 </div>
             </div>
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="faq-box">
                     <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Do you provide materials for e-shops?</h4>
-                    <p class="mb-0 text-muted">Yes, immediately after establishing a partnership, we will send you access to an XML/CSV feed, a folder with professional cutout photos of the products, and optimized descriptions ready to import into your system.</p>
+                    <p class="mb-0 text-muted">Yes, immediately after establishing cooperation, we will send you access to an XML/CSV feed, a folder with professional cutout photos of products, and optimized descriptions ready for import into your system.</p>
                 </div>
             </div>
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="faq-box">
-                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Is it possible to exchange unsold assortment?</h4>
-                    <p class="mb-0 text-muted">We understand that every fishing ground and customer is different. If you find that a certain length or variant isn't selling as expected, we will gladly exchange the goods for more requested variants without any problems.</p>
+                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Is it possible to exchange unsuitable assortment?</h4>
+                    <p class="mb-0 text-muted">We understand that every fishery and customer is different. If you find out that a certain length or test weight doesn't sell as expected, we will easily exchange the goods for more requested variants.</p>
                 </div>
             </div>
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="faq-box">
-                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Can I try the product before selling it?</h4>
-                    <p class="mb-0 text-muted">Absolutely. We know an angler needs to touch the product. Write to us via the form below, and we will gladly arrange the delivery of test samples or provide you with more detailed product information.</p>
+                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Is it possible to try the product before selling?</h4>
+                    <p class="mb-0 text-muted">Absolutely. We know an angler needs to feel the product. Write to us via the form below and we will gladly arrange the delivery of test samples or provide you with more detailed information about the products.</p>
                 </div>
             </div>
         </div>
@@ -513,9 +818,9 @@
                 <div class="title_box mb-4">
                     <h2>Get the wholesale price list and add <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> to your offer</h2>
                 </div>
-                <p class="mb-4" style="font-size: 1.1rem; color: #adadad;">Fill out the short form next to this. <strong class="text-white">We will reply within 24 hours</strong> with a complete wholesale price list, a margin proposal, and partnership terms tailored to your business.</p>
+                <p class="mb-4" style="font-size: 1.1rem; color: #adadad;">Fill out the short form next to this. <strong class="text-white">We will reply within 24 hours</strong> with a complete wholesale price list, margin proposal, and cooperation terms tailored to your business.</p>
                 <div class="mt-5">
-                    <h4 class="mb-3 font-weight-bold" style="font-family: 'WorkSansMedium'; color: var(--visiless-green);">Direct contact for the sales department</h4>
+                    <h4 class="mb-3 font-weight-bold" style="font-family: 'WorkSansMedium'; color: var(--visiless-green);">Direct contact to the sales department</h4>
                     <p class="mb-1"><i class="fas fa-phone mr-3 text-visiless"></i> +420 733 719 766</p>
                     <p class="mb-1"><i class="fas fa-envelope mr-3 text-visiless"></i> Info@lov-ryb.cz</p>
                     <p class="mb-1"><i class="fas fa-globe mr-3 text-visiless"></i> www.visiless.cz</p>
@@ -527,11 +832,11 @@
                     <form action="https://formspree.io/f/mvzbnzbv" method="POST" class="form">
                         <div class="row">
                             <div class="col-md-6 mb-4">
-                                <label class="text-muted small text-uppercase">Full Name / Company Name *</label>
-                                <input type="text" name="name" class="form-control" required placeholder="E.g. Peter's Tackle Shop">
+                                <label class="text-muted small text-uppercase">First and Last Name / Company *</label>
+                                <input type="text" name="name" class="form-control" required placeholder="E.g. Peter's Fishing Tackle">
                             </div>
                             <div class="col-md-6 mb-4">
-                                <label class="text-muted small text-uppercase">Company ID / VAT ID (optional)</label>
+                                <label class="text-muted small text-uppercase">Company ID / VAT ID (optional for verification)</label>
                                 <input type="text" name="ico" class="form-control">
                             </div>
                         </div>
@@ -541,19 +846,19 @@
                                 <input type="email" name="email" class="form-control" required>
                             </div>
                             <div class="col-md-6 mb-4">
-                                <label class="text-muted small text-uppercase">Phone Number *</label>
+                                <label class="text-muted small text-uppercase">Phone number *</label>
                                 <input type="tel" name="phone" class="form-control" required>
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label class="text-muted small text-uppercase">Message or specifics of your store *</label>
-                            <textarea name="message" class="form-control" rows="4" placeholder="Hello, I am interested in a wholesale price list for our e-shop/brick-and-mortar store..." required></textarea>
+                            <label class="text-muted small text-uppercase">Message or specification of e-shop/store *</label>
+                            <textarea name="message" class="form-control" rows="4" placeholder="Hello, I am interested in the wholesale price list for our e-shop/brick-and-mortar store..." required></textarea>
                         </div>
                         <div class="mb-4 d-flex align-items-center">
-                            <input type="checkbox" id="vzorky" name="vzorky" value="Yes" style="width: 20px; height: 20px; margin-right: 15px; cursor: pointer;">
-                            <label for="vzorky" class="mb-0 cursor-pointer" style="cursor: pointer; font-family: 'WorkSansMedium';">I am interested in test samples or more information about the partnership</label>
+                            <input type="checkbox" id="vzorky" name="vzorky" value="Ano" style="width: 20px; height: 20px; margin-right: 15px; cursor: pointer;">
+                            <label for="vzorky" class="mb-0 cursor-pointer" style="cursor: pointer; font-family: 'WorkSansMedium';">I am interested in test samples or more information about cooperation</label>
                         </div>
-                        <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-2" style="font-size: 1.2rem;">Send Partnership Request</button>
+                        <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-2" style="font-size: 1.2rem;">Send cooperation request</button>
                     </form>
                 </div>
             </div>
@@ -565,23 +870,26 @@
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">
                     <span class="brand-font text-visiless mb-3 d-inline-block" style="font-size: 1.5rem;">VISILESS<sup>®</sup></span>
-                    <p class="small">Premium fishing leaders developed for successfully catching cautious predators. Created with a passion for fishing, delivered with respect for business partners.</p>
+                    <p class="small">Premium fishing rigs developed for successful catching of cautious predators. Created with passion for fishing, delivered with respect to business partners.</p>
                 </div>
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <h5 class="text-white mb-3" style="font-size: 1.1rem;">Billing Details</h5>
-                    <p class="small mb-1"><strong>Trademont s. r. o.</strong></p>
-                    <p class="small mb-1">Korunní 2569/108</p>
-                    <p class="small mb-1">101 00 Praha</p>
-                    <p class="small mb-1">Czech Republic</p>
-                    <p class="small mb-1">Company ID (IČO): 07890842</p>
-                    <p class="small mb-0">VAT ID (DIČ): CZ07890842</p>
+                    <h5 class="text-white mb-3" style="font-size: 1.1rem;">Billing information</h5>
+                    <p class="small mb-1"><strong>Trademont s. r. o.</strong></p> <p class="small mb-1">Korunní 2569/108</p>
+                    <p class="small mb-1">10100 Prague, Czech Republic</p>
+                    <p class="small mb-1">Company ID: 07890842</p>
+                    <p class="small mb-0">VAT ID: CZ07890842</p>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-white mb-3" style="font-size: 1.1rem;">Legal Information</h5>
+                    <h5 class="text-white mb-3" style="font-size: 1.1rem;">Legal information</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Terms & Conditions (B2B)</a></li>
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Privacy Policy</a></li>
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Cookie Settings</a></li>
+                        <li class="mb-2"><a href="./" class="text-muted text-decoration-none hover-white">Terms and Conditions (B2B)</a></li>
+                        <li class="mb-2"><a href="gdpr" class="text-muted text-decoration-none hover-white">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="gdpr" class="text-muted text-decoration-none hover-white">Cookie Settings</a></li>
+                    </ul>
+                    <h5 class="text-white mb-3 mt-4" style="font-size: 1.1rem;">Follow us</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="https://www.youtube.com/@visiless" target="_blank" rel="noopener noreferrer" class="text-muted text-decoration-none hover-white"><i class="fab fa-youtube mr-2"></i>Youtube channel</a></li>
+                        <li class="mb-2"><a href="https://www.facebook.com/lovryb" target="_blank" rel="noopener noreferrer" class="text-muted text-decoration-none hover-white"><i class="fab fa-facebook-f mr-2"></i>Facebook channel</a></li>
                     </ul>
                 </div>
             </div>
@@ -599,7 +907,55 @@
     <script src="jquery.form.js"></script>
     <script src="jquery.matchHeight.js"></script>
     <script src="classie.js"></script>
-    <script src="ddfullscreenmenu.js"></script>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menu = document.getElementById('ddfullscreenmenu');
+        var hamburger = document.querySelector('.hamburger');
+        var closeBtn = document.getElementById('closex');
+        var menuLinks = document.querySelectorAll('#fullscreenmenu-ul a');
+
+        // Funkcia na otvorenie/zatvorenie menu
+        function toggleMyMenu(e) {
+            // Ak klikáme na krížik, zabránime preskočeniu stránky
+            if (e && e.currentTarget.id === 'closex') {
+                e.preventDefault();
+            }
+            
+            if (menu.classList.contains('openmenu')) {
+                menu.classList.remove('openmenu');
+                document.body.style.overflow = 'auto'; // Povoliť scrollovanie webu
+            } else {
+                menu.classList.add('openmenu');
+                document.body.style.overflow = 'hidden'; // Zablokovať scrollovanie pod menu
+            }
+        }
+
+        // 1. Aktivácia Hamburger ikony
+        if (hamburger) {
+            hamburger.removeAttribute('onclick'); // Zmazanie starého chybného príkazu
+            hamburger.addEventListener('click', toggleMyMenu);
+        }
+
+        // 2. Aktivácia krížika na zatvorenie
+        if (closeBtn) {
+            closeBtn.removeAttribute('onclick');
+            closeBtn.addEventListener('click', toggleMyMenu);
+        }
+
+        // 3. Zatvorenie menu po kliknutí na akýkoľvek odkaz v menu
+        if (menuLinks) {
+            menuLinks.forEach(function(link) {
+                link.removeAttribute('onclick');
+                link.addEventListener('click', function() {
+                    menu.classList.remove('openmenu');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+        }
+    });
+</script>
+
     <script src="wow.min.js"></script>
     <script src="scroll.js"></script>
     <script src="init.js"></script>
@@ -620,35 +976,170 @@
         // REGION & COOKIE LOGIC
         // ==========================================
         
-        // Save region preference to memory
+        // Zápis volby regionu do paměti
         window.setRegion = function(region) {
             localStorage.setItem('visilessRegion', region);
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.body.style.overflow = 'auto'; // Obnovení scrollování
         };
 
-        // Save cookie preference to memory
+        // Zápis volby cookies do paměti
         window.acceptCookies = function(type) {
             localStorage.setItem('visilessCookies', type);
             document.getElementById('cookie-banner').classList.remove('show');
         };
 
-        // Check on page load
+        // Upravte zatváracie tlačidlo v HTML, aby si pamätalo voľbu
+        function closeSocialBanner() {
+            toggleSocialBanner(false);
+            localStorage.setItem('socialBannerClosed', 'true');
+        }
+
+        // Kontrola při načtení stránky
         $(window).on('load', function() {
-            // 1. Region selection logic
+            // 1. Logika pro výběr krajiny
             if (!localStorage.getItem('visilessRegion')) {
-                // If not selected, show modal and block scrolling
+                // Pokud ještě nezvolil, zobrazíme okno a zablokujeme scrollování
                 document.getElementById('region-modal').classList.add('show');
                 document.body.style.overflow = 'hidden';
             }
 
-            // 2. Cookie banner logic
+            // 2. Logika pro Cookie lištu
             if (!localStorage.getItem('visilessCookies')) {
-                // If cookies not accepted, show banner with a small delay
+                // Pokud ještě nepotvrdil cookies, ukážeme lištu s malým zpožděním
                 setTimeout(function() {
                     document.getElementById('cookie-banner').classList.add('show');
-                }, 1500); // Appears 1.5 seconds after site loads
+                }, 1500); // Zobrazí se 1.5 sekundy po načtení webu
+            }
+
+            // 3. Obnovení stavu sociálního banneru
+            if (localStorage.getItem('socialBannerHidden') === 'true') {
+                var sb = document.getElementById('social-banner-content');
+                if (sb) sb.style.display = 'none';
             }
         });
     </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.marketing-carousel').slick({
+        dots: true,                // Body pod sliderom
+        infinite: true,            // Nekonečné opakovanie
+        speed: 6000,               // Pomalší prechod
+        slidesToShow: 4,           // Koľko fotiek vidieť naraz na PC
+        slidesToScroll: 1,
+        autoplay: true,            // Automatické posúvanie
+        autoplaySpeed: 0,          // Nepretržité pohybovanie bez paúzy - pomaly
+        pauseOnHover: false,       // Nepretržité pohybovanie
+        pauseOnFocus: false,       // Nepretržité pohybovanie
+        cssEase: 'linear',         // Lineárny prechod pre plynulé pohybovanie
+        draggable: true,           // Povoliť posúvanie myšou
+        swipe: true,               // Povoliť swipe na mobile
+        arrows: false,              // Zobraziť šípky
+        touchThreshold: 5,         // Citlivosť na touch
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1    // Na mobile len jedna fotka
+                }
+            }
+        ]
+    });
+
+    // Nastavenie Lightboxu (voliteľné)
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true,
+      'albumLabel': "Image %1 of %2"
+    })
+});
+</script>
+
+<div id="social-banner-btn" class="social-trigger" onclick="toggleSocialBanner(true, event)" style="display: flex; z-index: 99999;">
+    <i class="fas fa-users" style="font-size: 1.5rem; color: #fff;"></i>
+    <span style="font-size: 0.6rem; font-weight: bold; text-transform: uppercase;">Community</span>
+</div>
+
+<div id="social-banner-content" class="social-banner" style="display: none; z-index: 99999;">
+    <div class="social-banner-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div>
+            <span class="social-banner-tag" style="background: var(--visiless-green); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;">LIVE COMMUNITY</span>
+            <div class="social-banner-title" style="font-weight: bold; margin-top: 5px;">Follow the story of million-plus reach</div>
+        </div>
+        <span class="social-banner-close" onclick="toggleSocialBanner(false, event)" title="Close" style="cursor: pointer; font-size: 2.5rem; line-height: 1; padding: 0 15px; margin-right: -10px;">&times;</span>
+    </div>
+    <div class="social-banner-desc" style="font-size: 0.9rem; margin: 10px 0; color: #ffffff;">
+        Everything for fishing enthusiasts in one place. Get exclusive tips, articles, and news that move the fishing world.
+    </div>
+    <div class="social-banner-links" style="display: flex; gap: 10px;">
+        <a href="https://www.facebook.com/lovryb" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Follow our Facebook" onclick="event.stopPropagation();">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@visiless" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Subscribe to our YouTube" onclick="event.stopPropagation();">
+            <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.instagram.com/lovryb" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Follow our Instagram" onclick="event.stopPropagation();">
+            <i class="fab fa-instagram"></i>
+        </a>
+        
+    </div>
+</div>
+
+<script>
+    // Správna funkcionalita pre otváranie/zatváranie
+    function toggleSocialBanner(show, event) {
+        if (event) event.stopPropagation();
+
+        var bannerContent = document.getElementById('social-banner-content');
+        var bannerBtn = document.getElementById('social-banner-btn');
+
+        if (!bannerContent || !bannerBtn) return;
+
+        if (show) {
+            bannerContent.style.display = 'block';
+            setTimeout(function() {
+                bannerContent.classList.add('active');
+            }, 10);
+            bannerBtn.style.display = 'none'; 
+        } else {
+            bannerContent.classList.remove('active');
+            setTimeout(function() {
+                bannerContent.style.display = 'none';
+            }, 500); 
+            bannerBtn.style.display = 'flex';
+        }
+    }
+
+    // Kliknutie mimo bannera
+    ['click', 'touchstart'].forEach(function(eventType) {
+        document.addEventListener(eventType, function(event) {
+            var bannerContent = document.getElementById('social-banner-content');
+            var bannerBtn = document.getElementById('social-banner-btn');
+            
+            if (bannerContent && bannerContent.style.display !== 'none') {
+                if (!bannerContent.contains(event.target) && (!bannerBtn || !bannerBtn.contains(event.target))) {
+                    toggleSocialBanner(false);
+                }
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
