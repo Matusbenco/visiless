@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-33YFYNBG70"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-33YFYNBG70');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisiLess® | Großhandelspartnerschaft</title>
+    <title>VisiLess® | Großhandelskooperation</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     
@@ -19,10 +31,83 @@
     <link rel="stylesheet" href="main_theme.css">
     
     <style>
-        /* Modifikationen für VisiLess Design (Grünes Theme) */
+        /* Úpravy pro VisiLess design (Zelená téma) */
         :root {
             --visiless-green: #4B5320;
             --visiless-dark: #2a2e12;
+        }
+
+        /* Mini tlačidlo na pravom okraji */
+        .social-trigger {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 10px 0 0 10px;
+            border: 2px solid white;
+            border-right: none;
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            box-shadow: -2px 0 15px rgba(0,0,0,0.3);
+        }
+
+        .social-trigger:hover {
+            padding-right: 25px; /* Jemne sa vysunie pri hoveri */
+        }
+
+        /* Štýl bannera (Sklenený efekt) */
+        .social-banner {
+            position: fixed;
+            right: -350px; /* Štartovacia pozícia mimo obrazovky */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px 0 0 20px;
+            padding: 25px;
+            z-index: 9999;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            transition: right 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .social-banner.active {
+            right: 0; /* Vysunie sa na obrazovku */
+        }
+
+        /* Ostatné drobné detaily */
+        .social-banner-tag { background: var(--visiless-green); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        .social-banner-title { color: white; font-weight: bold; margin-top: 10px; font-size: 1.1rem; }
+        .social-banner-desc { color: #ccc; font-size: 0.85rem; margin: 15px 0; line-height: 1.4; }
+        .social-banner-links { display: flex; gap: 12px; }
+        .social-banner-link { width: 40px; height: 40px; background: rgba(206, 204, 204, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
+        .social-banner-link:hover { background: var(--visiless-green); transform: translateY(-3px); }
+        .social-banner-close { position: absolute; top: 15px; right: 15px; color: white; cursor: pointer; font-size: 1.5rem; opacity: 0.5; transition: 0.3s; }
+        .social-banner-close:hover { opacity: 1; }
+
+        @media (max-width: 768px) {
+            .social-banner {
+                right: 10px;
+                width: 260px;
+                top: auto;
+                bottom: 20px;
+                transform: none;
+            }
+            .social-trigger {
+                right: 10px;
+                top: auto;
+                bottom: 100px;
+                transform: none;
+            }
         }
 
         .brand-font {
@@ -39,7 +124,7 @@
             text-transform: uppercase;
         }
         
-        /* Anpassung des (R) Zeichens */
+        /* Úprava znaku (R) */
         .brand-font sup, .brand-font-white sup {
             font-family: 'WorkSansMedium', Arial, sans-serif !important;
             font-size: 0.6em !important; 
@@ -60,7 +145,7 @@
         .text-visiless { color: var(--visiless-green) !important; }
         .border-visiless { border-color: var(--visiless-green) !important; }
         
-        /* Buttons */
+        /* Tlačítka */
         .btn-custom {
             background-color: var(--visiless-green) !important;
             border: 2px solid var(--visiless-green) !important;
@@ -99,11 +184,11 @@
         .btn-primary-custom { border: 2px solid var(--visiless-green) !important; background: var(--visiless-green) !important; color: #fff !important; text-transform: uppercase; font-family: 'WorkSansMedium'; transition: 0.3s; }
         .btn-primary-custom:hover { background: transparent !important; color: var(--visiless-green) !important; }
         
-        /* Fixierung von Bildhintergründen */
+        /* Fixace obrázků a ořezů */
         .c_x_bg, .rslider_wrapper .image { background-position: center center !important; }
         .grid-gallery img, .card-img-top { object-fit: cover; object-position: center center; }
 
-        /* Anzeige des kompletten Bildes im Abschnitt Partnerschaft */
+        /* Zobrazení celé fotky v sekci Spolupráce */
         #spolupraca .c_x_bg {
             background-size: contain !important;
             background-position: center !important;
@@ -111,7 +196,7 @@
             background-color: var(--visiless-dark) !important;
         }
 
-        /* Entfernung weißer überlappender Linien */
+        /* Úplné odstranění bílých čar přes fotky */
         .text_wrapper::before, .text_wrapper::after, .text_wrapper__a::before, .text_wrapper__a::after,
         .text_wrapper__b::before, .text_wrapper__b::after, .text_wrapper__a .img::before, .text_wrapper__a .img::after, 
         .text_wrapper__b .img::before, .text_wrapper__b .img::after, .c_x_bg::before, .c_x_bg::after,
@@ -119,12 +204,12 @@
             display: none !important; border: none !important;
         }
         
-        /* Menü & Formular */
-        .hamburger { cursor: pointer; color: #fff; font-size: 24px; z-index: 1200; position: relative; }
+        /* Menu & Form */
+        .hamburger { cursor: pointer; color: #fff; font-size: 24px; z-index: 10001 !important; position: relative !important; pointer-events: auto !important; }
         #ddfullscreenmenu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20, 25, 15, 0.98); z-index: 9999; }
         #ddfullscreenmenu.openmenu { display: block; }
-        #closex { position: absolute; top: 30px; right: 50px; color: #fff; font-size: 40px; text-decoration: none; }
-        #ulwrapper { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+        #closex { position: absolute; top: 30px; right: 50px; color: #fff; font-size: 40px; text-decoration: none; z-index: 10005; }
+        #ulwrapper { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 100%; }
         #fullscreenmenu-ul li { margin-bottom: 20px; list-style: none; }
         #fullscreenmenu-ul li a { color: #fff; font-size: 2rem; text-decoration: none; border-bottom: none; transition: color 0.3s; font-family: 'WorkSansMedium', sans-serif; }
         #fullscreenmenu-ul li a:hover { color: var(--visiless-green) !important; }
@@ -132,26 +217,28 @@
         .form-control { background: rgba(255,255,255,0.05); border: 1px solid #555; color: #fff; border-radius: 0; padding: 15px; }
         .form-control:focus { background: rgba(255,255,255,0.05); border-color: var(--visiless-green); color: #fff; box-shadow: none; }
     
-        /* Sprachenschalter */
+        /* Jazyky */
         .lang-switcher a { font-family: 'WorkSansMedium', sans-serif; font-size: 1.1rem; text-decoration: none; border: none; transition: color 0.3s; }
         .lang-switcher a:hover { color: var(--visiless-green) !important; }
         .lang-switcher-mobile { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
         .lang-switcher-mobile a { font-size: 1.3rem !important; border: none !important; display: inline-block; }
         
-        /* FAQ Bereich */
+        /* FAQ Sekce */
         .faq-box { border-left: 3px solid var(--visiless-green); background: rgba(0,0,0,0.03); padding: 20px; height: 100%; transition: all 0.3s ease; }
         .faq-box:hover { background: rgba(75, 83, 32, 0.08); transform: translateY(-5px); }
 
         /* =========================================
            REGION MODAL & COOKIE BANNER STYLES
            ========================================= */
+        /* Výběr krajiny - překrytí celé obrazovky */
         .region-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 10, 10, 0.98); z-index: 10000;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; visibility: hidden; transition: all 0.5s ease;
+            pointer-events: none; /* OPRAVA: Zabraňuje blokovaniu kliknutí, keď je schované */
         }
-        .region-overlay.show { opacity: 1; visibility: visible; }
+        .region-overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
         .region-box {
             background: rgba(255,255,255,0.03); border: 1px solid var(--visiless-green);
             padding: 50px 40px; border-radius: 2px; max-width: 550px; width: 90%;
@@ -161,7 +248,7 @@
         .region-overlay.show .region-box { transform: translateY(0); }
         .region-box img { animation: pulse 2s infinite; }
 
-        /* Cookie Lišta - OPRAVENÁ VERZIA */
+        /* Cookie Lišta */
         .cookie-banner {
             position: fixed; 
             bottom: 0; 
@@ -171,7 +258,6 @@
             border-top: 2px solid var(--visiless-green);
             padding: 20px 0; 
             z-index: 9998; 
-            /* Použitie transform zaručí skrytie bez ohľadu na to, aká je lišta vysoká */
             transform: translateY(100%); 
             transition: transform 0.5s ease;
             box-shadow: 0 -5px 30px rgba(0,0,0,0.8);
@@ -181,13 +267,13 @@
         }
         .cookie-text { font-size: 0.9rem; line-height: 1.5; color: #ccc; }
     
-        /* Responsivität */
+        /* Responzivita */
         @media screen and (max-width: 767px) {
-            .main_logo { left: 15px !important; top: 10px !important; transform: none !important; position: absolute !important; }
+            .main_logo { left: 15px !important; top: 10px !important; transform: none !important; position: absolute !important; z-index: 1000 !important; max-width: 70%; }
             .main_logo img { height: 35px !important; margin-right: 10px !important; }
             .brand-font { font-size: 1.6rem !important; }
             .header { padding-top: 10px !important; padding-bottom: 10px !important; }
-            .hamburger { font-size: 28px !important; margin-right: 15px !important; }
+            .hamburger { font-size: 28px !important; margin-right: 15px !important; position: relative !important; z-index: 10001 !important; pointer-events: auto !important; }
             .rslider_wrapper { height: 100vh !important; }
             .rslider_wrapper_in { height: 100% !important; display: flex !important; align-items: center !important; justify-content: center !important; }
             .rslider_wrapper_in::before { display: block !important; background-color: rgba(0,0,0,0.6) !important; z-index: 1; }
@@ -198,28 +284,165 @@
             .text_list li { text-align: left; }
             .box_padding { padding-left: 20px !important; padding-right: 20px !important; }
             
-            /* Cookies Mobile */
+            /* Cookies mobil */
             .cookie-buttons { margin-top: 15px; width: 100%; justify-content: space-between; }
             .cookie-buttons button { width: 48%; padding: 10px 5px; font-size: 0.9rem; }
+
             /* OPRAVA OREZANÉHO TEXTU V ÚVODE NA MOBILE */
-        .rslider_wrapper_in {
-            padding-left: 0 !important; /* Odstráni 5% okraj, ktorý to posúval mimo stred */
+            .rslider_wrapper_in {
+                padding-left: 0 !important;
+            }
+            .rslider_content {
+                width: 100% !important;
+                padding: 0 15px !important;
+                box-sizing: border-box !important;
+            }
+            .box-content {
+                width: 100% !important; 
+                max-width: 100% !important;
+                padding: 25px 15px !important; 
+                box-sizing: border-box !important;
+            }
+            .rslider_title { font-size: 2rem !important; }
+            .rslider_content h3 { font-size: 1.1rem !important; }
+            .rslider_content p { font-size: 0.95rem !important; }
         }
-        .rslider_content {
-            width: 100% !important;
-            padding: 0 15px !important;
-            box-sizing: border-box !important;
+
+        /* Responzívne nastavenie pre logo a text VISILESS */
+        .brand-wrapper-link { padding-left: 10px; }
+        .brand-logo-img { max-height: 50px; margin-right: 15px; width: auto; } /* OPRAVA HLAVIČKY: max-výška loga */
+        .brand-text-span { font-size: 2.2rem; transform: translateY(8px); }
+
+        @media (max-width: 767px) {
+            /* 1. ÚPRAVY HLAVIČKY A LOGA */
+            .brand-wrapper-link { padding-left: 0px !important; }
+            .brand-logo-img { max-height: 35px !important; margin-right: 8px !important; }
+            .brand-text-span { font-size: 1.1rem !important; transform: translateY(3px) !important; } 
+
+            /* 2. ÚPRAVY ÚVODNÉHO BOXXU (HERO SEKCIA) */
+            .rslider_content {
+                margin-top: 40px !important; 
+            }
+            .box-content {
+                padding: 25px 20px !important; 
+            }
+            .box-content .rslider_title {
+                font-size: 1.8rem !important; 
+            }
+            .box-content h3 {
+                font-size: 1.2rem !important; 
+            }
+            .box-content p {
+                font-size: 1rem !important; 
+                margin-bottom: 30px !important;
+            }
+            
+            /* 3. TLAČIDLÁ NA CELÚ ŠÍRKU PRE POHODLNÉ KLIKANIE */
+            .box-content .btn {
+                width: 100% !important; 
+                margin-right: 0 !important; 
+                margin-bottom: 15px !important; 
+                padding: 12px 20px !important; 
+            }
         }
-        .box-content {
-            width: 100% !important; /* Zruší fixných 750px */
-            max-width: 100% !important;
-            padding: 25px 15px !important; /* Zmenší pôvodný 40px padding, aby mal text viac miesta */
-            box-sizing: border-box !important;
+
+        /* --- MARKETINGOVÁ SEKCIA ŠTÝLY --- */
+        .marketing-section {
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('visiless1.webp'); 
+            background-attachment: fixed;
+            background-size: cover;
+            padding: 80px 0;
         }
-        /* Jemné zmenšenie písma pre lepšiu čitateľnosť na veľmi malých displejoch */
-        .rslider_title { font-size: 2rem !important; }
-        .rslider_content h3 { font-size: 1.1rem !important; }
-        .rslider_content p { font-size: 0.95rem !important; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+        }
+
+        .stat-number {
+            font-family: 'Black Ops One', cursive;
+            font-size: 3rem;
+            color: var(--visiless-green);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .story-text {
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        .highlight-green {
+            color: var(--visiless-green);
+            font-weight: bold;
+        }
+
+        /* Galéria */
+        .marketing-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .marketing-gallery img:hover {
+            transform: scale(1.05);
+            border-color: var(--visiless-green);
+        }
+
+        .marketing-carousel .slick-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .marketing-carousel .px-2 {
+            padding: 0 8px;
+        }
+
+        .marketing-carousel .px-2 a {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+            transition: transform 0.35s ease, border-color 0.35s ease;
+            display: block;
+        }
+
+        .marketing-carousel .px-2 a:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .marketing-carousel .px-2 img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 767px) {
+            .marketing-carousel .px-2 img {
+                height: 200px;
+            }
+            .stat-number { font-size: 2rem; }
+            .marketing-section { padding: 40px 0; }
         }
     </style>
 </head>
@@ -232,7 +455,7 @@
             <p class="text-muted mb-4" style="font-family: 'WorkSansMedium';">Bitte wählen Sie Ihre Region, um fortzufahren</p>
             
             <div class="d-flex flex-column px-sm-4">
-                <a href="./" class="btn btn-outline-custom mb-3 py-3" onclick="setRegion('cz')">Česká republika / Slovensko (CZ)</a>
+                <a href="./" class="btn btn-outline-custom mb-3 py-3" onclick="setRegion('cz')">Tschechische Republik / Slowakei (CZ)</a>
                 <a href="en" class="btn btn-outline-custom mb-3 py-3" onclick="setRegion('en')">International (EN)</a>
                 <a href="de" class="btn btn-custom py-3" onclick="setRegion('de')">Deutschland / Österreich (DE)</a>
             </div>
@@ -243,8 +466,8 @@
         <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
             <div class="cookie-text mb-3 mb-md-0 mr-md-4">
                 <strong class="text-white d-block mb-1" style="font-family: 'WorkSansMedium';">Diese Website verwendet Cookies</strong>
-                Wir verwenden Cookies, um Ihnen das beste Erlebnis zu bieten, den Datenverkehr zu analysieren und Inhalte zu personalisieren. 
-                <a href="gdpr" class="text-visiless text-decoration-none border-bottom border-visiless pb-1 ml-1 hover-white">Weitere Informationen</a>.
+                Wir verwenden Cookies für die beste Benutzererfahrung, Traffic-Analyse und Personalisierung von Inhalten. 
+                <a href="gdpr" class="text-visiless text-decoration-none border-bottom border-visiless pb-1 ml-1 hover-white">Mehr Informationen</a>.
             </div>
             <div class="cookie-buttons d-flex flex-shrink-0">
                 <button class="btn btn-outline-custom btn-sm mr-2 py-2 px-3" onclick="acceptCookies('essential')">Nur notwendige</button>
@@ -254,16 +477,16 @@
     </div>
 
     <nav id="ddfullscreenmenu">
-        <a href="#" id="closex">&times;</a>
+        <a href="javascript:void(0)" id="closex" onclick="ddfullscreenmenu.togglemenu()">&times;</a>
         <div id="ulwrapper">
             <ul id="fullscreenmenu-ul">
-                <li><a href="#uvod">Startseite</a></li>
-                <li><a href="#o-znacke">Über uns</a></li>
-                <li><a href="#usp">Warum VisiLess</a></li>
-                <li><a href="#produkty">Produkte</a></li>
-                <li><a href="#spolupraca">Partnerschaft</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#kontakt">Kontakt</a></li>
+                <li><a href="#uvod" onclick="ddfullscreenmenu.togglemenu()">Startseite</a></li>
+                <li><a href="#o-znacke" onclick="ddfullscreenmenu.togglemenu()">Über die Marke</a></li>
+                <li><a href="#usp" onclick="ddfullscreenmenu.togglemenu()">Warum VisiLess</a></li>
+                <li><a href="#produkty" onclick="ddfullscreenmenu.togglemenu()">Produkte</a></li>
+                <li><a href="#spolupraca" onclick="ddfullscreenmenu.togglemenu()">Partnerschaft</a></li>
+                <li><a href="#faq" onclick="ddfullscreenmenu.togglemenu()">FAQ</a></li>
+                <li><a href="#kontakt" onclick="ddfullscreenmenu.togglemenu()">Kontakt</a></li>
                 
                 <li class="lang-switcher-mobile d-flex justify-content-center">
                     <a href="./" class="text-muted mx-3">CZ</a>
@@ -274,11 +497,11 @@
         </div>
     </nav>
 
-    <header class="header w-100 position-fixed" style="z-index: 1000; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);">
-        <div class="container-fluid d-flex justify-content-between align-items-center box_padding" style="padding-top: 5px; padding-bottom: 5px;">
-            <a href="#" class="main_logo position-relative text-decoration-none d-flex align-items-center" style="border-bottom: none;">
-                <img src="logo_visiless.png" alt="VisiLess Logo" style="height: 60px; margin-right: 15px; object-fit: contain;">
-                <span class="brand-font d-none d-sm-block" style="font-size: 1.8rem;">VISILESS<sup>®</sup></span>
+    <header class="header w-100 position-fixed" style="z-index: 9990; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); height: 75px; display: flex; align-items: center;">
+        <div class="container-fluid d-flex justify-content-between align-items-center px-3 px-md-5 w-100">
+            <a href="/" class="brand-wrapper-link d-flex align-items-center text-decoration-none" style="margin: 0; outline: none; border: none;">
+                <img src="logo_visiless.png" alt="Visiless Logo" class="brand-logo-img" style="border: none; outline: none;">
+                <span class="brand-font brand-text-span" style="line-height: 0.7; margin: 0; padding: 0;">VISILESS<sup style="font-size: 0.5em; top: -1em;">®</sup></span>
             </a>
             
             <nav class="navigation ml-auto d-flex align-items-center mainNavigation">
@@ -297,7 +520,7 @@
                     <a href="de" class="text-visiless font-weight-bold">DE</a>
                 </div>
 
-                <div class="hamburger ml-4" onclick="ddfullscreenmenu.togglemenu('open')">
+                <div class="hamburger ml-4" onclick="ddfullscreenmenu.togglemenu()">
                     <i class="fas fa-bars"></i>
                 </div>
             </nav>
@@ -305,28 +528,27 @@
     </header>
 
     <section id="uvod" class="rslider_wrapper position-relative overflow-hidden" style="height: 100vh;">
-    <div class="image" style="background-image: url('visiless1.webp');"></div>
-    
-    <div class="rslider_wrapper_in d-flex align-items-center justify-content-start h-100 position-relative rslider_opacity" style="padding-left: 5%;">
-        <div class="rslider_content z-index-10 wow fadeInDown" style="margin-top: 80px;">
-            <div class="box-content" style="width: 750px; max-width: 100%; background: rgba(0,0,0,0.4); padding: 40px; border-left: 4px solid var(--visiless-green);">
-                <h1 class="rslider_title font-weight-bold mb-3 brand-font-white">
-                    EXTREM DÜNN UND ROBUST
-                </h1>
-                <h3 class="text-white mb-4" style="font-family: 'WorkSansMedium';">
-                    Ein Produkt, das Ihre Kunden immer wieder kaufen werden.
-                </h3>
-                <p class="mb-5 text-light" style="font-size: 1.15rem; line-height: 1.6;">
-                    Erweitern Sie Ihr Sortiment um die Premium-Vorfächer von VISILESS. Wir bieten attraktive Einkaufspreise, starke Verkaufsunterstützung und ein Spitzenprodukt mit null Reklamationen für stationäre Geschäfte und Onlineshops.
-                </p>
-                <div class="d-flex flex-column flex-sm-row">
-                    <a href="#kontakt" class="btn btn-custom mr-sm-3 mb-3 mb-sm-0">B2B-Preisliste anfordern</a>
-                    <a href="#kontakt" class="btn btn-outline-custom">Muster & Infos anfragen</a>
+        <div class="image" style="background-image: url('visiless1.webp');"></div>
+        
+        <div class="rslider_wrapper_in d-flex align-items-center justify-content-start h-100 position-relative rslider_opacity" style="padding-left: 5%;">
+            <div class="rslider_content z-index-10 wow fadeInDown" style="margin-top: 100px;">
+                <div class="box-content" style="width: 750px; max-width: 100%; background: rgba(0,0,0,0.4); padding: 40px; border-left: 4px solid var(--visiless-green); backdrop-filter: blur(8px); border-radius: 4px;">
+                    <h1 class="rslider_title font-weight-bold mb-3 brand-font-white">EXTREM DÜNN UND STARK</h1>
+                    <h3 class="text-white mb-4" style="font-family: 'WorkSansMedium';">Ein Produkt, das Ihre Kunden immer wieder kaufen werden.</h3>
+                    <ul class="list-unstyled mt-4 mb-5 text-light" style="font-size: 1.1rem;">
+                        <li class="mb-2"><i class="fas fa-check-circle mr-2" style="color: var(--visiless-green);"></i> Günstige B2B-Einkaufspreise</li>
+                        <li class="mb-2"><i class="fas fa-bullhorn mr-2" style="color: var(--visiless-green);"></i> Starke Verkaufsförderung</li>
+                        <li class="mb-2"><i class="fas fa-shield-alt mr-2" style="color: var(--visiless-green);"></i> Null Reklamationsrate</li>
+                    </ul>
+                    
+                    <div class="d-flex flex-column flex-sm-row">
+                        <a href="#kontakt" class="btn btn-custom mr-sm-3 mb-3 mb-sm-0">B2B-Preisliste anfordern</a>
+                        <a href="#kontakt" class="btn btn-outline-custom">Muster und Infos anfordern</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="o-znacke" class="content box_margin3 text_wrapper text_wrapper__a">
         <div class="c_x_bg c_x_bg_left img" style="background-image: url('visiless0.jpg');"></div>
@@ -336,14 +558,14 @@
                 <div class="col-lg-6 offset-lg-6 p-0">
                     <div class="text_container container_bg__a text-white wow fadeInRight h-100 d-flex flex-column justify-content-center">
                         <div class="title_box mb-4">
-                            <h2>Geschichte & Vision</h2> 
+                            <h2>Geschichte und Vision</h2> 
                             <h3 class="text-white" style="font-size: 1.5rem;">
-                                <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> Entstanden am Wasser - durch ehrliche Praxis
+                                <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> Direkt am Wasser entstanden - durch ehrliche Praxis
                             </h3>
                         </div>
-                        <p class="mb-4">Wir sind ein Team von professionellen Anglern und Naturliebhabern, die keine Kompromisse eingehen. Unsere Vorfächer sind das Ergebnis jahrzehntelanger Tests an Gewässern mit kristallklarem Wasser. Heute bringen wir dieses bewährte Produkt ins B2B-Netzwerk, um Fachgeschäften zu helfen, ihren Kunden eine Qualität anzubieten, auf die sie sich verlassen können.</p>
+                        <p class="mb-4">Wir sind ein Team von professionellen Anglern und Naturliebhabern, die sich weigerten, Kompromisse einzugehen. Unsere Vorfächer sind das Ergebnis jahrzehntelanger Tests in Gewässern mit klarem Wasser. Heute bringen wir dieses bewährte Produkt in das B2B-Netzwerk, um Fachgeschäften zu helfen, ihren Kunden Qualität zu bieten, auf die sie sich verlassen können.</p>
                         <blockquote class="blockquote pl-4" style="border-left: 3px solid var(--visiless-green); font-family: 'WorkSansMedium';">
-                            <p class="mb-0">„Wir fertigen jedes Vorfach so, als würde jeder Wurf einen Biss von einem kapitalen Fang bedeuten. Diese Sicherheit geben wir an Sie und Ihre Kunden weiter.“</p>
+                            <p class="mb-0">„Wir stellen jedes Vorfach so her, als würde jeder Wurf einen Biss von einem kapitalen Fang bedeuten. Diese Gewissheit geben wir an Sie und Ihre Kunden weiter.“</p>
                         </blockquote>
                     </div>
                 </div>
@@ -361,28 +583,28 @@
                 <div class="p-4 border h-100 title_box bg-white">
                     <i class="fas fa-chart-line mb-3 text-visiless" style="font-size: 2rem;"></i>
                     <h3 class="font-weight-bold mb-3 text-dark" style="font-size: 1.5rem;">Mehr Bisse</h3>
-                    <p class="text-muted">Dank des extrem dünnen Durchmessers und der absoluten Unsichtbarkeit im Wasser erhöht sich die Anzahl der Bisse von vorsichtigen Raubfischen nachweislich.</p>
+                    <p class="text-muted">Dank des extrem dünnen Durchmessers und der völligen Unauffälligkeit im Wasser steigt nachweislich die Anzahl der Bisse vorsichtiger Raubfische.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="p-4 border h-100 container_bg__b text-white title_box">
                     <i class="fas fa-clock mb-3" style="font-size: 2rem; color: #fff;"></i>
                     <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Zeitersparnis am Wasser</h3>
-                    <p>Das Vorfach ist ab Werk komplett einsatzbereit. Der Kunde verliert keine Zeit mit langwierigen Vorbereitungen und dem Binden von Montagen.</p>
+                    <p>Das Vorfach ist ab Werk komplett einsatzbereit. Der Kunde verliert keine Zeit mit langwieriger Vorbereitung und dem Binden von Montagen.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="p-4 border h-100 title_box bg-white">
                     <i class="fas fa-tasks mb-3 text-visiless" style="font-size: 2rem;"></i>
                     <h3 class="font-weight-bold mb-3 text-dark" style="font-size: 1.5rem;">Breites Portfolio</h3>
-                    <p class="text-muted">Wir decken die Bedürfnisse aller Angler ab – vom leichten Spinnfischen bis zur Jagd auf Trophäenhechte mit Naturködern.</p>
+                    <p class="text-muted">Wir decken die Bedürfnisse aller Angler ab – vom leichten Spinnfischen bis zur Jagd auf Trophäenhechte mit lebenden Ködern.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="p-4 border border-visiless h-100 container_bg__a text-white title_box">
                     <i class="fas fa-trophy mb-3 text-visiless" style="font-size: 2rem;"></i>
                     <h3 class="font-weight-bold mb-3 text-white" style="font-size: 1.5rem;">Bewährte Wirksamkeit</h3>
-                    <p>Ein Jahrzehnt an Tests und unzählige gefangene Trophäenfische machen das Vorfach zu einer absoluten Sicherheit, die Angler gerne weiterempfehlen.</p>
+                    <p>Ein Jahrzehnt an Tests und unzählige gefangene Trophäenfische machen das Vorfach zu einer absoluten Gewissheit, die Angler weiterempfehlen.</p>
                 </div>
             </div>
         </div>
@@ -403,7 +625,7 @@
     <section id="produkty" class="content box_padding box_margin3 container_bg__a pt-5 pb-5">
         <div class="title_box mb-5 text-center text-white wow fadeInDown">
             <h2 class="brand-font-white">Produktlinien</h2>
-            <p class="text-light">Ein kompaktes und übersichtliches Sortiment für Ihre Regale</p>
+            <p class="text-light">Kompaktes und übersichtliches Sortiment für Ihre Regale</p>
         </div>
         <div class="row">
             <div class="col-md-4 mb-4 wow zoomIn">
@@ -411,7 +633,7 @@
                     <img src="spining-pro.png" class="card-img-top rounded-0" style="height: 250px; object-fit: contain; background-color: #ffffff; padding: 10px;" alt="Spinning PRO Series">
                     <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
                         <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">Spinning PRO Series</h3>
-                        <p class="text-light">Der Qualitätsmaßstab für das alltägliche Spinnfischen. Maximale Unsichtbarkeit und Leichtigkeit, dank derer Sie selbst den vorsichtigsten Fisch zum Biss verleiten können.</p>
+                        <p class="text-light">Der Qualitätsmaßstab für das tägliche Spinnfisch-Drama. Maximale Unauffälligkeit und Leichtigkeit, mit der Sie selbst den vorsichtigsten Fisch zum Biss verleiten.</p>
                     </div>
                 </div>
             </div>
@@ -420,7 +642,7 @@
                     <img src="1.webp" class="card-img-top rounded-0" style="height: 250px; object-fit: contain; background-color: #ffffff; padding: 10px;" alt="LiveBait PRO Series">
                     <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
                         <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">LiveBait PRO Series</h3>
-                        <p class="text-light">LiveBait-Versionen, die für den Fang von Trophäenfischen mit Naturködern dimensioniert sind. Genießen Sie brutale Drills ohne Kompromisse.</p>
+                        <p class="text-light">LiveBait-Versionen, die für den Fang von Trophäenfischen mit tierischen Ködern dimensioniert sind. Genießen Sie brutale Drills ohne Kompromisse.</p>
                     </div>
                 </div>
             </div>
@@ -429,7 +651,7 @@
                     <img src="visacka.png" class="card-img-top rounded-0" style="height: 250px; object-fit: contain; background-color: #ffffff; padding: 10px;" alt="GHOSTBAIT LAZY FISH ELITE">
                     <div class="card-body p-4 title_box" style="border-top: 3px solid var(--visiless-green);">
                         <h3 class="font-weight-bold text-visiless" style="font-size: 1.5rem;">GHOSTBAIT LAZY FISH ELITE</h3>
-                        <p class="text-light">Spezialisierte Montagen für tote Köderfische mit speziellem Soft-Crimping für eine perfekte Präsentation. Das einzige System, das selbst apathische Rekordfische zum Biss animiert.</p>
+                        <p class="text-light">Spezialisierte Montagen für tote Köderfische mit speziellem Soft-Crimping für eine perfekte Präsentation. Das einzige System, das selbst einen apathischen Rekordfisch zum Biss weckt.</p>
                     </div>
                 </div>
             </div>
@@ -437,7 +659,7 @@
         <div class="row mt-5">
             <div class="col-12 text-center wow fadeInUp">
                 <a href="https://www.visiless.cz/" class="btn btn-custom" style="font-size: 1.2rem; padding: 15px 40px;">
-                    <i class="fas fa-list mr-2"></i> Kompletten B2B-Katalog ansehen
+                    <i class="fas fa-list mr-2"></i> Kompletten B2B-Katalog anzeigen
                 </a>
             </div>
         </div>
@@ -455,16 +677,16 @@
                         </div>
                         <ul class="text_list vnutro pl-3" style="border-left-color: #fff;">
                             <li class="pl-3 mb-4">
-                                <strong>Überdurchschnittliche Margen und Marktschutz:</strong> Wir überwachen streng die Einhaltung der unverbindlichen Preisempfehlung (UVP). Wir garantieren, dass Ihr Verkauf immer profitabel und frei von Preiskämpfen ist.
+                                <strong>Überdurchschnittliche Margen und Marktschutz:</strong> Wir achten streng auf die Einhaltung der unverbindlichen Preisempfehlung (UVP). Wir garantieren, dass Ihr Verkauf immer profitabel und ohne Preiskämpfe ist.
                             </li>
                             <li class="pl-3 mb-4">
-                                <strong>Unterstützung für Ladengeschäfte und E-Shops:</strong> Wir stellen stationären Geschäften attraktive POS-Präsentationsmaterialien (Ständer, Aufsteller) zur Verfügung. E-Shops erhalten einen kompletten XML-Feed mit professionellen Fotos und Texten für die sofortige Listung.
+                                <strong>Unterstützung für stationäre Geschäfte und Onlineshops:</strong> Wir stellen stationären Geschäften attraktive POS-Präsentationsmaterialien (Aufsteller, Banner) zur Verfügung. Onlineshops erhalten einen kompletten XML-Feed mit Profi-Fotos und Texten für die sofortige Einlistung.
                             </li>
                             <li class="pl-3 mb-4">
-                                <strong>Null Reklamationen und garantierte Qualität:</strong> Sie verkaufen ein Produkt, das eine manuelle Kontrolle bestanden hat. Wir sparen Ihre Zeit und Nerven mit unzufriedenen Kunden – mit uns müssen Sie keine Reklamationen abwickeln.
+                                <strong>Null Reklamationen und garantierte Qualität:</strong> Sie verkaufen ein Produkt, das manuell geprüft wurde. Wir sparen Ihnen Zeit und Nerven mit unzufriedenen Kunden – mit uns müssen Sie keine Reklamationen bearbeiten.
                             </li>
                             <li class="pl-3">
-                                <strong>Zuverlässige Logistik und Verfügbarkeit:</strong> Wir halten Waren in großen Mengen auf Lager und versenden Bestellungen an unsere B2B-Partner umgehend, spätestens innerhalb von 48 Stunden.
+                                <strong>Zuverlässige Logistik und Verfügbarkeit:</strong> Wir halten Waren in großen Mengen auf Lager.
                             </li>
                         </ul>
                     </div>
@@ -473,34 +695,118 @@
         </div>
     </section>
 
+    <section id="marketing" class="marketing-section text-white py-5" style="background: #0b0b0b;">
+    <div class="container">
+        <div class="row mb-5 align-items-center">
+            <div class="col-lg-7 wow fadeInLeft">
+                <h2 class="brand-font mb-4" style="color: var(--visiless-green); font-size: 2.5rem;">DIE KRAFT DER MARKE IN ZAHLEN</h2>
+                <div class="glass-card p-4" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
+                    <p style="font-size: 1.1rem; line-height: 1.7;">Seit 2020 wachsen wir jedes Jahr um <span style="color: var(--visiless-green); font-weight: bold;">zweistellige Prozentsätze</span>. Unsere Geschichte begann mit dem ersten großen Hecht, der von einem Kajak aus gefangen wurde 📸. Es ging überhaupt nicht um Geschäft, es ging nur um die Freude am Angeln.</p>
+                    <p style="font-size: 1.1rem; line-height: 1.7;">Heute erreichen wir <span style="color: var(--visiless-green); font-weight: bold;">Millionen von Aufrufen</span>. Im Jahr 2025 haben wir bei einem Video gleich 2x die Grenze von 1.000.000 Aufrufen überschritten. Werden wir bald die magischen 5 Millionen knacken? <br><strong>Kommen Sie und wachsen Sie mit uns.</strong></p>
+                </div>
+            </div>
+            <div class="col-lg-5 mt-4 mt-lg-0 wow fadeInRight text-center">
+                <div class="p-4" style="border-left: 4px solid var(--visiless-green); background: rgba(75, 83, 32, 0.1);">
+                    <h3 class="brand-font" style="font-size: 3.5rem; color: var(--visiless-green); margin-bottom: 0;">2X</h3>
+                    <p class="text-uppercase" style="letter-spacing: 2px;">Millionen-Reichweiten (2025)</p>
+                    <hr style="border-color: rgba(255,255,255,0.1);">
+                    <h3 class="brand-font" style="font-size: 3.5rem; color: var(--visiless-green); margin-bottom: 0;">500%</h3>
+                    <p class="text-uppercase" style="letter-spacing: 2px;">Wachstum der Community im Jahresvergleich</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="marketing-slider-wrapper wow fadeInUp">
+            <h4 class="mb-4 text-uppercase" style="letter-spacing: 2px; font-size: 0.9rem; opacity: 0.7;">Statistiken aus unseren Netzwerken:</h4>
+            <div class="marketing-carousel">
+                <div class="px-2">
+                    <a href="marketing\visiless_stat4.jpeg" data-lightbox="marketing" data-title="Beitragsreichweite - Detail">
+                        <img src="marketing\visiless_stat4.jpeg" class="img-fluid rounded" alt="Statistik 4">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat2.jpeg" data-lightbox="marketing" data-title="Wachstumsstatistik">
+                        <img src="marketing\visiless_stat2.jpeg" class="img-fluid rounded" alt="Statistik 2">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat3.jpeg" data-lightbox="marketing" data-title="Videoaufrufe">
+                        <img src="marketing\visiless_stat3.jpeg" class="img-fluid rounded" alt="Statistik 3">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat5.jpeg" data-lightbox="marketing" data-title="Videoaufrufe">
+                        <img src="marketing\visiless_stat5.jpeg" class="img-fluid rounded" alt="Statistik 5">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat6.jpeg" data-lightbox="marketing" data-title="Statistik 6">
+                        <img src="marketing\visiless_stat6.jpeg" class="img-fluid rounded" alt="Statistik 6">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat7.jpeg" data-lightbox="marketing" data-title="Statistik 7">
+                        <img src="marketing\visiless_stat7.jpeg" class="img-fluid rounded" alt="Statistik 7">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat8.jpeg" data-lightbox="marketing" data-title="Statistik 8">
+                        <img src="marketing\visiless_stat8.jpeg" class="img-fluid rounded" alt="Statistik 8">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat10.jpeg" data-lightbox="marketing" data-title="Statistik 10">
+                        <img src="marketing\visiless_stat10.jpeg" class="img-fluid rounded" alt="Statistik 10">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat11.jpeg" data-lightbox="marketing" data-title="Statistik 11">
+                        <img src="marketing\visiless_stat11.jpeg" class="img-fluid rounded" alt="Statistik 11">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat12.jpeg" data-lightbox="marketing" data-title="Statistik 12">
+                        <img src="marketing\visiless_stat12.jpeg" class="img-fluid rounded" alt="Statistik 12">
+                    </a>
+                </div>
+                <div class="px-2">
+                    <a href="marketing\visiless_stat13.jpeg" data-lightbox="marketing" data-title="Statistik 13">
+                        <img src="marketing\visiless_stat13.jpeg" class="img-fluid rounded" alt="Statistik 13">
+                    </a>
+                </div>
+                </div>
+        </div>
+    </div>
+</section>
+
     <section id="faq" class="content box_padding box_margin3 pt-5 pb-5 bg-white">
         <div class="title_box text-center mb-5 wow fadeInDown">
-            <h2>Häufig gestellte Fragen (FAQ)</h2>
+            <h2>Häufig gestellte Fragen zur Zusammenarbeit</h2>
             <p class="text-muted">Alles, was Sie vor Ihrer ersten Bestellung wissen müssen</p>
         </div>
         <div class="row">
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="faq-box">
                     <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Wie hoch ist die Mindestbestellmenge (MOQ)?</h4>
-                    <p class="mb-0 text-muted">Unser Ziel ist es, auch kleinere Geschäfte zu unterstützen. Der Mindestwert der Erstbestellung ist sehr zugänglich angesetzt, damit die Aufnahme einer neuen Marke keine finanzielle Belastung darstellt. Konkrete Zahlen finden Sie in unserer Preisliste.</p>
+                    <p class="mb-0 text-muted">Unser Ziel ist es, auch kleinere Geschäfte zu unterstützen. Der Mindestwert der Erstbestellung ist sehr erschwinglich angesetzt, damit die Aufnahme einer neuen Marke für Sie keine finanzielle Belastung darstellt. Konkrete Zahlen finden Sie in unserer Preisliste.</p>
                 </div>
             </div>
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="faq-box">
                     <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Stellen Sie Materialien für Onlineshops zur Verfügung?</h4>
-                    <p class="mb-0 text-muted">Ja, direkt nach Beginn der Partnerschaft senden wir Ihnen Zugang zu einem XML/CSV-Feed, einen Ordner mit professionellen Produktfotos und optimierten Beschreibungen, die bereit für den Import in Ihr System sind.</p>
+                    <p class="mb-0 text-muted">Ja, unmittelbar nach Beginn der Zusammenarbeit senden wir Ihnen den Zugang zum XML/CSV-Feed, einem Ordner mit professionell freigestellten Produktfotos und optimierten Beschreibungen, die bereit für den Import in Ihr System sind.</p>
                 </div>
             </div>
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="faq-box">
-                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Ist es möglich, nicht verkaufte Artikel umzutauschen?</h4>
+                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Ist es möglich, ein unpassendes Sortiment umzutauschen?</h4>
                     <p class="mb-0 text-muted">Wir verstehen, dass jedes Gewässer und jeder Kunde anders ist. Wenn Sie feststellen, dass sich eine bestimmte Länge oder Tragkraft nicht wie erwartet verkauft, tauschen wir die Ware problemlos gegen gefragtere Varianten um.</p>
                 </div>
             </div>
             <div class="col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="faq-box">
-                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Kann ich das Produkt vor dem Verkauf testen?</h4>
-                    <p class="mb-0 text-muted">Absolut. Wir wissen, dass ein Angler das Produkt anfassen muss. Schreiben Sie uns über das untenstehende Formular und wir vereinbaren gerne die Lieferung von Testmustern oder versorgen Sie mit detaillierteren Produktinformationen.</p>
+                    <h4 class="font-weight-bold" style="font-family: 'WorkSansMedium'; font-size: 1.2rem;">Ist es möglich, das Produkt vor dem Verkauf zu testen?</h4>
+                    <p class="mb-0 text-muted">Absolut. Wir wissen, dass ein Angler das Produkt anfassen muss. Schreiben Sie uns über das untenstehende Formular und wir vereinbaren gerne die Lieferung von Testmustern oder geben Ihnen detailliertere Informationen zu den Produkten.</p>
                 </div>
             </div>
         </div>
@@ -510,11 +816,11 @@
         <div class="row">
             <div class="col-lg-5 mb-5 mb-lg-0 pr-lg-5 wow fadeInRight">
                 <div class="title_box mb-4">
-                    <h2>Fordern Sie die B2B-Preisliste an und nehmen Sie <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> in Ihr Angebot auf</h2>
+                    <h2>Holen Sie sich die Großhandelspreisliste und nehmen Sie <span class="text-visiless brand-font brand-inline">VISILESS<sup>®</sup></span> in Ihr Angebot auf</h2>
                 </div>
-                <p class="mb-4" style="font-size: 1.1rem; color: #adadad;">Füllen Sie das kurze Formular nebenan aus. <strong class="text-white">Wir antworten Ihnen innerhalb von 24 Stunden</strong> mit einer kompletten Großhandelspreisliste, einem Margenvorschlag und auf Ihr Geschäft zugeschnittenen Partnerschaftsbedingungen.</p>
+                <p class="mb-4" style="font-size: 1.1rem; color: #adadad;">Füllen Sie das kurze Formular nebenan aus. <strong class="text-white">Wir antworten Ihnen innerhalb von 24 Stunden</strong> mit einer kompletten Großhandelspreisliste, einem Margenvorschlag und auf Ihr Geschäft zugeschnittenen Kooperationsbedingungen.</p>
                 <div class="mt-5">
-                    <h4 class="mb-3 font-weight-bold" style="font-family: 'WorkSansMedium'; color: var(--visiless-green);">Direkter Kontakt zur Verkaufsabteilung</h4>
+                    <h4 class="mb-3 font-weight-bold" style="font-family: 'WorkSansMedium'; color: var(--visiless-green);">Direkter Kontakt zur Vertriebsabteilung</h4>
                     <p class="mb-1"><i class="fas fa-phone mr-3 text-visiless"></i> +420 733 719 766</p>
                     <p class="mb-1"><i class="fas fa-envelope mr-3 text-visiless"></i> Info@lov-ryb.cz</p>
                     <p class="mb-1"><i class="fas fa-globe mr-3 text-visiless"></i> www.visiless.cz</p>
@@ -526,11 +832,11 @@
                     <form action="https://formspree.io/f/mvzbnzbv" method="POST" class="form">
                         <div class="row">
                             <div class="col-md-6 mb-4">
-                                <label class="text-muted small text-uppercase">Vor- und Nachname / Firmenname *</label>
-                                <input type="text" name="name" class="form-control" required placeholder="z.B. Peters Angelshop">
+                                <label class="text-muted small text-uppercase">Vor- und Nachname / Firma *</label>
+                                <input type="text" name="name" class="form-control" required placeholder="Z. B. Angelbedarf bei Peter">
                             </div>
                             <div class="col-md-6 mb-4">
-                                <label class="text-muted small text-uppercase">Firmen-ID / USt-IdNr. (optional)</label>
+                                <label class="text-muted small text-uppercase">USt-IdNr. / Firmennummer (optional zur Überprüfung)</label>
                                 <input type="text" name="ico" class="form-control">
                             </div>
                         </div>
@@ -545,14 +851,14 @@
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label class="text-muted small text-uppercase">Nachricht oder Besonderheiten Ihres Shops *</label>
-                            <textarea name="message" class="form-control" rows="4" placeholder="Guten Tag, ich interessiere mich für eine B2B-Preisliste für unseren Onlineshop/unser Ladengeschäft..." required></textarea>
+                            <label class="text-muted small text-uppercase">Nachricht oder Spezifikation des Onlineshops/Geschäfts *</label>
+                            <textarea name="message" class="form-control" rows="4" placeholder="Guten Tag, ich interessiere mich für die Großhandelspreisliste für unseren Onlineshop/unser stationäres Geschäft..." required></textarea>
                         </div>
                         <div class="mb-4 d-flex align-items-center">
-                            <input type="checkbox" id="vzorky" name="vzorky" value="Ja" style="width: 20px; height: 20px; margin-right: 15px; cursor: pointer;">
-                            <label for="vzorky" class="mb-0 cursor-pointer" style="cursor: pointer; font-family: 'WorkSansMedium';">Ich bin an Testmustern oder weiteren Informationen zur Zusammenarbeit interessiert</label>
+                            <input type="checkbox" id="vzorky" name="vzorky" value="Ano" style="width: 20px; height: 20px; margin-right: 15px; cursor: pointer;">
+                            <label for="vzorky" class="mb-0 cursor-pointer" style="cursor: pointer; font-family: 'WorkSansMedium';">Ich interessiere mich für Testmuster oder weitere Informationen zur Zusammenarbeit</label>
                         </div>
-                        <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-2" style="font-size: 1.2rem;">Partnerschaftsanfrage senden</button>
+                        <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-2" style="font-size: 1.2rem;">Kooperationsanfrage senden</button>
                     </form>
                 </div>
             </div>
@@ -564,23 +870,26 @@
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">
                     <span class="brand-font text-visiless mb-3 d-inline-block" style="font-size: 1.5rem;">VISILESS<sup>®</sup></span>
-                    <p class="small">Premium-Angelvorfächer, entwickelt für den erfolgreichen Fang vorsichtiger Raubfische. Mit Leidenschaft für das Angeln kreiert, mit Respekt an Geschäftspartner geliefert.</p>
+                    <p class="small">Premium-Angelvorfächer, entwickelt für den erfolgreichen Fang vorsichtiger Raubfische. Mit Leidenschaft für das Angeln kreiert, mit Respekt gegenüber Geschäftspartnern geliefert.</p>
                 </div>
                 <div class="col-md-4 mb-4 mb-md-0">
                     <h5 class="text-white mb-3" style="font-size: 1.1rem;">Rechnungsdaten</h5>
-                    <p class="small mb-1"><strong>Trademont s. r. o.</strong></p>
-                    <p class="small mb-1">Korunní 2569/108</p>
-                    <p class="small mb-1">101 00 Praha</p>
-                    <p class="small mb-1">Tschechische Republik</p>
-                    <p class="small mb-1">IČO: 07890842</p>
-                    <p class="small mb-0">DIČ: CZ07890842</p>
+                    <p class="small mb-1"><strong>Trademont s. r. o.</strong></p> <p class="small mb-1">Korunní 2569/108</p>
+                    <p class="small mb-1">10100 Prag, Tschechische Republik</p>
+                    <p class="small mb-1">Firmennummer: 07890842</p>
+                    <p class="small mb-0">USt-IdNr.: CZ07890842</p>
                 </div>
                 <div class="col-md-4">
                     <h5 class="text-white mb-3" style="font-size: 1.1rem;">Rechtliche Informationen</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Allgemeine Geschäftsbedingungen (B2B)</a></li>
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Datenschutzerklärung</a></li>
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none hover-white">Cookie-Einstellungen</a></li>
+                        <li class="mb-2"><a href="./" class="text-muted text-decoration-none hover-white">Allgemeine Geschäftsbedingungen (B2B)</a></li>
+                        <li class="mb-2"><a href="gdpr" class="text-muted text-decoration-none hover-white">Datenschutzrichtlinie</a></li>
+                        <li class="mb-2"><a href="gdpr" class="text-muted text-decoration-none hover-white">Cookie-Einstellungen</a></li>
+                    </ul>
+                    <h5 class="text-white mb-3 mt-4" style="font-size: 1.1rem;">Folgen Sie uns</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="https://www.youtube.com/@visiless" target="_blank" rel="noopener noreferrer" class="text-muted text-decoration-none hover-white"><i class="fab fa-youtube mr-2"></i>YouTube-Kanal</a></li>
+                        <li class="mb-2"><a href="https://www.facebook.com/lovryb" target="_blank" rel="noopener noreferrer" class="text-muted text-decoration-none hover-white"><i class="fab fa-facebook-f mr-2"></i>Facebook-Kanal</a></li>
                     </ul>
                 </div>
             </div>
@@ -598,7 +907,55 @@
     <script src="jquery.form.js"></script>
     <script src="jquery.matchHeight.js"></script>
     <script src="classie.js"></script>
-    <script src="ddfullscreenmenu.js"></script>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menu = document.getElementById('ddfullscreenmenu');
+        var hamburger = document.querySelector('.hamburger');
+        var closeBtn = document.getElementById('closex');
+        var menuLinks = document.querySelectorAll('#fullscreenmenu-ul a');
+
+        // Funkcia na otvorenie/zatvorenie menu
+        function toggleMyMenu(e) {
+            // Ak klikáme na krížik, zabránime preskočeniu stránky
+            if (e && e.currentTarget.id === 'closex') {
+                e.preventDefault();
+            }
+            
+            if (menu.classList.contains('openmenu')) {
+                menu.classList.remove('openmenu');
+                document.body.style.overflow = 'auto'; // Povoliť scrollovanie webu
+            } else {
+                menu.classList.add('openmenu');
+                document.body.style.overflow = 'hidden'; // Zablokovať scrollovanie pod menu
+            }
+        }
+
+        // 1. Aktivácia Hamburger ikony
+        if (hamburger) {
+            hamburger.removeAttribute('onclick'); // Zmazanie starého chybného príkazu
+            hamburger.addEventListener('click', toggleMyMenu);
+        }
+
+        // 2. Aktivácia krížika na zatvorenie
+        if (closeBtn) {
+            closeBtn.removeAttribute('onclick');
+            closeBtn.addEventListener('click', toggleMyMenu);
+        }
+
+        // 3. Zatvorenie menu po kliknutí na akýkoľvek odkaz v menu
+        if (menuLinks) {
+            menuLinks.forEach(function(link) {
+                link.removeAttribute('onclick');
+                link.addEventListener('click', function() {
+                    menu.classList.remove('openmenu');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+        }
+    });
+</script>
+
     <script src="wow.min.js"></script>
     <script src="scroll.js"></script>
     <script src="init.js"></script>
@@ -619,35 +976,170 @@
         // REGION & COOKIE LOGIC
         // ==========================================
         
-        // Save region preference to memory
+        // Zápis volby regionu do paměti
         window.setRegion = function(region) {
             localStorage.setItem('visilessRegion', region);
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.body.style.overflow = 'auto'; // Obnovení scrollování
         };
 
-        // Save cookie preference to memory
+        // Zápis volby cookies do paměti
         window.acceptCookies = function(type) {
             localStorage.setItem('visilessCookies', type);
             document.getElementById('cookie-banner').classList.remove('show');
         };
 
-        // Check on page load
+        // Upravte zatváracie tlačidlo v HTML, aby si pamätalo voľbu
+        function closeSocialBanner() {
+            toggleSocialBanner(false);
+            localStorage.setItem('socialBannerClosed', 'true');
+        }
+
+        // Kontrola při načtení stránky
         $(window).on('load', function() {
-            // 1. Region selection logic
+            // 1. Logika pro výběr krajiny
             if (!localStorage.getItem('visilessRegion')) {
-                // If not selected, show modal and block scrolling
+                // Pokud ještě nezvolil, zobrazíme okno a zablokujeme scrollování
                 document.getElementById('region-modal').classList.add('show');
                 document.body.style.overflow = 'hidden';
             }
 
-            // 2. Cookie banner logic
+            // 2. Logika pro Cookie lištu
             if (!localStorage.getItem('visilessCookies')) {
-                // If cookies not accepted, show banner with a small delay
+                // Pokud ještě nepotvrdil cookies, ukážeme lištu s malým zpožděním
                 setTimeout(function() {
                     document.getElementById('cookie-banner').classList.add('show');
-                }, 1500); // Appears 1.5 seconds after site loads
+                }, 1500); // Zobrazí se 1.5 sekundy po načtení webu
+            }
+
+            // 3. Obnovení stavu sociálního banneru
+            if (localStorage.getItem('socialBannerHidden') === 'true') {
+                var sb = document.getElementById('social-banner-content');
+                if (sb) sb.style.display = 'none';
             }
         });
     </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.marketing-carousel').slick({
+        dots: true,                // Body pod sliderom
+        infinite: true,            // Nekonečné opakovanie
+        speed: 6000,               // Pomalší prechod
+        slidesToShow: 4,           // Koľko fotiek vidieť naraz na PC
+        slidesToScroll: 1,
+        autoplay: true,            // Automatické posúvanie
+        autoplaySpeed: 0,          // Nepretržité pohybovanie bez paúzy - pomaly
+        pauseOnHover: false,       // Nepretržité pohybovanie
+        pauseOnFocus: false,       // Nepretržité pohybovanie
+        cssEase: 'linear',         // Lineárny prechod pre plynulé pohybovanie
+        draggable: true,           // Povoliť posúvanie myšou
+        swipe: true,               // Povoliť swipe na mobile
+        arrows: false,              // Zobraziť šípky
+        touchThreshold: 5,         // Citlivosť na touch
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1    // Na mobile len jedna fotka
+                }
+            }
+        ]
+    });
+
+    // Nastavenie Lightboxu (voliteľné)
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true,
+      'albumLabel': "Bild %1 von %2"
+    })
+});
+</script>
+
+<div id="social-banner-btn" class="social-trigger" onclick="toggleSocialBanner(true, event)" style="display: flex; z-index: 99999;">
+    <i class="fas fa-users" style="font-size: 1.5rem; color: #fff;"></i>
+    <span style="font-size: 0.6rem; font-weight: bold; text-transform: uppercase;">Community</span>
+</div>
+
+<div id="social-banner-content" class="social-banner" style="display: none; z-index: 99999;">
+    <div class="social-banner-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div>
+            <span class="social-banner-tag" style="background: var(--visiless-green); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;">LIVE-COMMUNITY</span>
+            <div class="social-banner-title" style="font-weight: bold; margin-top: 5px;">Verfolgen Sie die Geschichte von Millionen-Reichweiten</div>
+        </div>
+        <span class="social-banner-close" onclick="toggleSocialBanner(false, event)" title="Schließen" style="cursor: pointer; font-size: 2.5rem; line-height: 1; padding: 0 15px; margin-right: -10px;">&times;</span>
+    </div>
+    <div class="social-banner-desc" style="font-size: 0.9rem; margin: 10px 0; color: #ffffff;">
+        Alles für Angelbegeisterte an einem Ort. Erhalten Sie exklusive Tipps, Artikel und Neuigkeiten, die die Angelwelt bewegen.
+    </div>
+    <div class="social-banner-links" style="display: flex; gap: 10px;">
+        <a href="https://www.facebook.com/lovryb" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Folgen Sie unserem Facebook" onclick="event.stopPropagation();">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@visiless" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Abonnieren Sie unseren YouTube-Kanal" onclick="event.stopPropagation();">
+            <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.instagram.com/lovryb" target="_blank" rel="noopener noreferrer" class="social-banner-link" title="Folgen Sie unserem Instagram" onclick="event.stopPropagation();">
+            <i class="fab fa-instagram"></i>
+        </a>
+       
+    </div>
+</div>
+
+<script>
+    // Správna funkcionalita pre otváranie/zatváranie
+    function toggleSocialBanner(show, event) {
+        if (event) event.stopPropagation();
+
+        var bannerContent = document.getElementById('social-banner-content');
+        var bannerBtn = document.getElementById('social-banner-btn');
+
+        if (!bannerContent || !bannerBtn) return;
+
+        if (show) {
+            bannerContent.style.display = 'block';
+            setTimeout(function() {
+                bannerContent.classList.add('active');
+            }, 10);
+            bannerBtn.style.display = 'none'; 
+        } else {
+            bannerContent.classList.remove('active');
+            setTimeout(function() {
+                bannerContent.style.display = 'none';
+            }, 500); 
+            bannerBtn.style.display = 'flex';
+        }
+    }
+
+    // Kliknutie mimo bannera
+    ['click', 'touchstart'].forEach(function(eventType) {
+        document.addEventListener(eventType, function(event) {
+            var bannerContent = document.getElementById('social-banner-content');
+            var bannerBtn = document.getElementById('social-banner-btn');
+            
+            if (bannerContent && bannerContent.style.display !== 'none') {
+                if (!bannerContent.contains(event.target) && (!bannerBtn || !bannerBtn.contains(event.target))) {
+                    toggleSocialBanner(false);
+                }
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
